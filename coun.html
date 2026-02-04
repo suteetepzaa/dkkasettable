@@ -3,182 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Maintenance | ประกาศปรับปรุงระบบ</title>
+    <title>🚨 ระบบขัดข้องชั่วคราว</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Tektur:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&family=Tektur:wght@500;800&display=swap');
 
-        :root {
-            --accent-color: #00f2ff;
-            --error-color: #ff4b2b;
-            --bg-dark: #0d0d0f;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
+        body {
+            background-color: #050505;
+            color: #ffffff;
             font-family: 'Kanit', sans-serif;
-            background-color: var(--bg-dark);
-            color: white;
-            overflow: hidden;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
 
-        /* กราฟิกพื้นหลัง */
-        .bg-overlay {
+        /* พื้นหลังกราฟิก Abstract */
+        .graphic-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 75, 43, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 100, 0.08) 0%, transparent 50%);
             z-index: -1;
         }
 
-        .container {
-            max-width: 700px;
-            width: 90%;
-            text-align: center;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        /* เส้นตารางกราฟิกแบบ Perspective */
+        .grid-plane {
+            position: absolute;
+            width: 200%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(500px) rotateX(60deg);
+            bottom: -20%;
+            z-index: -1;
+            mask-image: linear-gradient(to top, rgba(0,0,0,1), transparent);
         }
 
-        .header-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-            display: block;
+        .card {
+            background: rgba(15, 15, 20, 0.8);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            padding: 50px;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+            clip-path: polygon(0 0, 95% 0, 100% 5%, 100% 100%, 5% 100%, 0 95%); /* ตัดมุมกราฟิก */
+        }
+
+        /* แถบสีแดงแจ้งเหตุขัดข้อง */
+        .error-tag {
+            background: #ff004c;
+            color: white;
+            display: inline-block;
+            padding: 4px 15px;
+            font-family: 'Tektur', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
         }
 
         h1 {
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
+            font-family: 'Tektur', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            line-height: 1;
+            text-transform: uppercase;
             color: #fff;
+            text-shadow: 0 0 15px rgba(255,255,255,0.3);
         }
 
-        .highlight {
-            color: var(--accent-color);
-        }
-
-        /* ส่วนของแจ้งสาเหตุ */
-        .reason-box {
-            text-align: left;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 4px solid var(--error-color);
-            margin-bottom: 30px;
-        }
-
-        .reason-box p {
-            margin: 0;
-            font-size: 1.1rem;
+        .reason-text {
+            font-size: 1.25rem;
+            font-weight: 200;
             line-height: 1.8;
-            font-weight: 300;
-            color: #e0e0e0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
         }
 
-        .apology {
-            color: var(--accent-color);
-            font-weight: 500;
-            margin-top: 10px;
-            display: block;
+        .reason-text b {
+            color: #00f2ff;
+            font-weight: 400;
         }
 
-        /* ส่วนคาดการณ์เวลาด้านล่าง */
-        .estimation-footer {
-            margin-top: 20px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .time-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .time-value {
-            font-family: 'Tektur', sans-serif;
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-left: 10px;
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
-        }
-
-        /* Countdown แบบมินิมอล */
-        .countdown-mini {
+        /* ส่วนท้ายกราฟิก */
+        .footer-info {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-            font-family: 'Tektur', sans-serif;
-            font-size: 0.9rem;
-            color: #888;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
         }
 
-        .countdown-mini span { color: #fff; }
+        .estimation {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .estimation span {
+            color: #00f2ff;
+            font-weight: 600;
+        }
+
+        .countdown-timer {
+            font-family: 'Tektur', sans-serif;
+            color: #00f2ff;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        /* แสงกะพริบแจ้งเตือน */
+        .blink {
+            animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker { 50% { opacity: 0; } }
 
     </style>
 </head>
 <body>
 
-    <div class="bg-overlay"></div>
+    <div class="graphic-bg"></div>
+    <div class="grid-plane"></div>
 
-    <div class="container">
-        <span class="header-icon">⚠️</span>
-        <h1>SYSTEM <span class="highlight">MAINTENANCE</span></h1>
+    <div class="card">
+        <div class="error-tag"><span class="blink">●</span> DATABASE ERROR</div>
         
-        <div class="reason-box">
-            <p>
-                เนื่องจากระบบฐานข้อมูลเกิดการขัดข้องทำให้ระบบเกิดความล่าช้ากว่าปกติ 
-                ทางทีมงานจึงจำเป็นต้องปิดปรับปรุงชั่วคราวเพื่อแก้ไขปัญหา 
-                และเพิ่มความปลอดภัยของระบบให้ดียิ่งขึ้น
-                <span class="apology">ขออภัยในความไม่สะดวกมา ณ ที่นี้</span>
-            </p>
-        </div>
+        <h1>SYSTEM<br><span style="color: #00f2ff;">UNAVAILABLE</span></h1>
 
-        <div class="estimation-footer">
-            <div class="time-label">
-                คาดการณ์ระบบจะกลับมาใช้ได้: <span class="time-value">22.00 น. ของวันนี้</span>
+        <p class="reason-text">
+            เนื่องจากระบบฐานข้อมูลเกิดการขัดข้องทำให้ระบบเกิดความล่าช้ากว่าปกติ 
+            ขณะนี้ทีมงานกำลังเร่งดำเนินการแก้ไขและ <b>เพิ่มความปลอดภัยของระบบ</b> 
+            ให้มีความเสถียรสูงสุด ขออภัยในความไม่สะดวกมา ณ ที่นี้
+        </p>
+
+        <div class="footer-info">
+            <div class="estimation">
+                คาดการณ์ระบบจะกลับมาใช้ได้ <span>22.00 น. ของวันนี้</span>
             </div>
-            
-            <div class="countdown-mini">
-                นับถอยหลัง: 
-                <div><span id="hours">00</span> H</div> : 
-                <div><span id="minutes">00</span> M</div> : 
-                <div><span id="seconds">00</span> S</div>
-            </div>
+            <div class="countdown-timer" id="timer">00:00:00</div>
         </div>
     </div>
 
     <script>
-        // ตั้งเป้าหมายเวลาที่ 22:00 น. ของวันนี้
         const target = new Date();
         target.setHours(22, 0, 0, 0);
 
         function updateTimer() {
-            const now = new Date().getTime();
-            const diff = target - now;
-
+            const diff = target - new Date();
             if (diff <= 0) return;
-
-            const h = Math.floor(diff / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            const h = Math.floor(diff / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+            document.getElementById('timer').innerText = 
+                `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
         }
-
         setInterval(updateTimer, 1000);
         updateTimer();
     </script>
+
 </body>
 </html>
