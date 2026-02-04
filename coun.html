@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประกาศปิดปรับปรุงระบบชั่วคราว - System Maintenance</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>แจ้งปิดปรับปรุงระบบชั่วคราว</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-navy: #1a2a6c;
-            --secondary-gold: #b2945e; /* เพิ่มสีทองเล็กน้อยให้ดูหรูหราและเป็นทางการ */
-            --text-main: #2c3e50;
-            --text-sub: #5d6d7e;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -20,183 +13,158 @@
         }
 
         body {
-            font-family: 'Sarabun', sans-serif;
-            background-color: #f8fafc;
+            font-family: 'Kanit', sans-serif;
+            background-color: #f0f2f5;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--text-main);
+            color: #444;
         }
 
-        .maintenance-card {
-            background: #ffffff;
-            width: 100%;
-            max-width: 800px;
-            padding: 60px 40px;
-            border-radius: 4px; /* ทรงเหลี่ยมจะดูเป็นทางการกว่าทรงมนมาก */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border-top: 6px solid var(--primary-navy);
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 550px;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             text-align: center;
-            position: relative;
         }
 
-        .logo-placeholder {
-            font-weight: 600;
-            font-size: 1.5rem;
-            color: var(--primary-navy);
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .status-icon {
+            width: 70px;
+            height: 70px;
+            background: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            margin: 0 auto 20px;
         }
 
         h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: var(--primary-navy);
+            font-size: 22px;
+            color: #202124;
+            margin-bottom: 15px;
+            font-weight: 500;
         }
 
-        .description {
+        p {
             font-size: 16px;
-            line-height: 1.8;
-            color: var(--text-sub);
-            margin-bottom: 40px;
-            text-align: justify;
-            text-align-last: center;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.6;
+            color: #5f6368;
+            margin-bottom: 25px;
         }
 
-        /* Countdown Area */
-        .countdown-section {
-            background: #f1f4f8;
-            padding: 30px;
-            border-radius: 4px;
-            margin-bottom: 30px;
+        .highlight {
+            color: #1a73e8;
+            font-weight: 500;
         }
 
-        .timer-grid {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
+        /* Countdown */
+        .timer-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
         }
 
-        .timer-item {
+        .time-unit {
             display: flex;
             flex-direction: column;
         }
 
-        .time-val {
-            font-size: 32px;
-            font-weight: 600;
-            color: var(--primary-navy);
-            font-family: sans-serif; /* ใช้ Sans-serif สำหรับตัวเลขเพื่อให้ดูเป็นสากล */
+        .num {
+            font-size: 24px;
+            font-weight: 500;
+            color: #202124;
         }
 
-        .time-label {
+        .label {
             font-size: 12px;
-            color: var(--text-sub);
-            margin-top: 5px;
+            color: #70757a;
         }
 
-        .footer-info {
+        .footer {
             font-size: 14px;
-            color: #95a5a6;
-            margin-top: 20px;
+            border-top: 1px solid #f1f3f4;
+            padding-top: 20px;
+            color: #70757a;
         }
 
-        .contact-link {
-            color: var(--primary-navy);
+        .contact-btn {
+            display: inline-block;
+            margin-top: 10px;
+            color: #1a73e8;
             text-decoration: none;
-            border-bottom: 1px solid var(--primary-navy);
-            transition: all 0.3s;
-        }
-
-        .contact-link:hover {
-            color: var(--secondary-gold);
-            border-color: var(--secondary-gold);
-        }
-
-        hr {
-            border: 0;
-            border-top: 1px solid #eee;
-            margin: 30px 0;
+            font-weight: 400;
         }
     </style>
 </head>
 <body>
 
-    <div class="maintenance-card">
-        <div class="logo-placeholder">OFFICIAL ANNOUNCEMENT</div>
+    <div class="container">
+        <div class="status-icon">⚙️</div>
+        <h1>ขออภัย เรากำลังปรับปรุงระบบให้ดียิ่งขึ้น</h1>
         
-        <h1>ประกาศแจ้งปิดปรับปรุงระบบเป็นการชั่วคราว</h1>
-        
-        <p class="description">
-            เรียน ท่านผู้ใช้บริการทุกท่าน <br>
-            เนื่องด้วยตรวจพบข้อขัดข้องในส่วนของ <strong>ระบบฐานข้อมูล (Database System)</strong> 
-            ขณะนี้ฝ่ายวิศวกรรมระบบกำลังดำเนินการแก้ไข พร้อมทั้งบูรณาการ <strong>ระบบรักษาความปลอดภัยเพิ่มเติม</strong> 
-            เพื่อให้การใช้งานของท่านเป็นไปอย่างมีประสิทธิภาพและปลอดภัยสูงสุด
+        <p>
+            ขณะนี้ระบบเกิดการขัดข้องในส่วนของ <span class="highlight">ฐานข้อมูล</span> 
+            ทางทีมงานกำลังเร่งแก้ไขและ <span class="highlight">อัปเกรดความปลอดภัย</span> 
+            เพื่อการใช้งานที่เสถียรกว่าเดิม แล้วเราจะกลับมาพบกันเร็วๆ นี้ครับ
         </p>
 
-        <div class="countdown-section">
-            <p style="margin-bottom: 15px; font-weight: 500;">ระยะเวลาดำเนินการคงเหลือโดยประมาณ</p>
-            <div class="timer-grid" id="timer">
-                <div class="timer-item">
-                    <span class="time-val" id="hours">00</span>
-                    <span class="time-label">ชั่วโมง</span>
-                </div>
-                <div class="timer-item">
-                    <span class="time-val" id="minutes">00</span>
-                    <span class="time-label">นาที</span>
-                </div>
-                <div class="timer-item">
-                    <span class="time-val" id="seconds">00</span>
-                    <span class="time-label">วินาที</span>
-                </div>
+        <div class="timer-box">
+            <div class="time-unit">
+                <span class="num" id="hours">00</span>
+                <span class="label">ชั่วโมง</span>
+            </div>
+            <div class="time-unit">
+                <span class="num" id="minutes">00</span>
+                <span class="label">นาที</span>
+            </div>
+            <div class="time-unit">
+                <span class="num" id="seconds">00</span>
+                <span class="label">วินาที</span>
             </div>
         </div>
 
-        <p class="footer-info">
-            ระบบจะเปิดให้บริการตามปกติในเวลา <strong>22:00 น.</strong> ของวันที่ 4 กุมภาพันธ์ 2569
-        </p>
-
-        <hr>
-
-        <p style="font-size: 14px;">
-            ขออภัยในความไม่สะดวกมา ณ ที่นี้ <br>
-            ติดต่อสอบถามเพิ่มเติมทางอีเมล: <a href="mailto:admin@yourcompany.com" class="contact-link">admin@yourcompany.com</a>
-        </p>
+        <div class="footer">
+            คาดว่าระบบจะกลับมาใช้งานได้ตามปกติในเวลา <strong>22:00 น.</strong> <br>
+            ขอบคุณที่เข้าใจและไว้วางใจเราครับ <br>
+            <a href="mailto:support@yourweb.com" class="contact-btn">แจ้งปัญหาเพิ่มเติม</a>
+        </div>
     </div>
 
     <script>
-        function startCountdown() {
+        function updateTimer() {
+            const now = new Date();
             const target = new Date();
             target.setHours(22, 0, 0, 0);
 
-            function update() {
-                const now = new Date();
-                const diff = target - now;
+            let diff = target - now;
 
-                if (diff <= 0) {
-                    document.getElementById('timer').innerHTML = "<p>ระบบกำลังดำเนินการเปิดใช้งาน...</p>";
-                    return;
-                }
-
-                const h = Math.floor(diff / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            if (diff <= 0) {
+                document.querySelector('.timer-box').innerHTML = "<p style='grid-column: span 3;'>กำลังเปิดระบบในไม่ช้า...</p>";
+                return;
             }
 
-            setInterval(update, 1000);
-            update();
+            const h = Math.floor(diff / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
         }
-        startCountdown();
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
     </script>
 </body>
 </html>
