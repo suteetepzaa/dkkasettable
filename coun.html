@@ -3,175 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แจ้งปิดปรับปรุงระบบชั่วคราว - โรงเรียน</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>System Maintenance | School Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --accent-color: #6366f1; /* สีม่วงน้ำเงินแบบแอปสมัยใหม่ */
+            --text-dark: #1e293b;
+            --text-light: #64748b;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #f4f6f9;
-            height: 100vh;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #334155;
+            padding: 20px;
         }
 
-        .school-card {
-            background: #ffffff;
-            width: 90%;
-            max-width: 600px;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-            border-top: 8px solid #1e40af; /* สีน้ำเงินสถาบันการศึกษา */
+        /* ตกแต่งพื้นหลังด้วยวงกลมฟุ้งๆ */
+        .bg-circle {
+            position: absolute;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+        .circle-1 { width: 300px; height: 300px; background: #818cf8; top: 10%; left: 15%; }
+        .circle-2 { width: 400px; height: 400px; background: #c084fc; bottom: 10%; right: 10%; }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 32px;
+            padding: 50px 30px;
+            max-width: 550px;
+            width: 100%;
             text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
         }
 
-        .school-logo {
-            font-size: 50px;
-            margin-bottom: 15px;
+        .badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
 
         h1 {
-            font-size: 1.5rem;
-            color: #1e3a8a;
-            margin-bottom: 1rem;
+            font-size: 26px;
+            color: var(--text-dark);
             font-weight: 600;
+            margin-bottom: 15px;
         }
 
-        .message {
-            font-size: 1rem;
+        p.main-desc {
+            color: var(--text-light);
             line-height: 1.7;
-            color: #64748b;
-            margin-bottom: 25px;
+            font-size: 16px;
+            margin-bottom: 30px;
         }
 
-        .highlight-box {
-            background-color: #eff6ff;
-            border-left: 4px solid #3b82f6;
-            padding: 15px;
-            text-align: left;
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-        }
+        .highlight { color: var(--accent-color); font-weight: 500; }
 
-        /* Countdown Style สำหรับโรงเรียน */
-        .countdown-wrapper {
-            display: flex;
-            justify-content: center;
+        /* Countdown Grid */
+        .timer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
         }
 
-        .time-box {
-            background: #1e40af;
-            color: white;
-            padding: 12px;
-            border-radius: 12px;
-            min-width: 75px;
+        .timer-slot {
+            background: white;
+            padding: 15px 5px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        .time-num {
+        .t-num {
             display: block;
-            font-size: 1.4rem;
+            font-size: 28px;
             font-weight: 600;
+            color: var(--accent-color);
+            font-family: 'Inter', sans-serif;
         }
 
-        .time-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
+        .t-label {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 400;
         }
 
         .footer {
-            border-top: 1px solid #e2e8f0;
-            padding-top: 20px;
-            font-size: 0.9rem;
-            color: #94a3b8;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-light);
         }
 
-        .contact-info {
-            color: #1e40af;
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 500;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 2px;
+            transition: 0.3s;
         }
+
+        .contact-btn:hover { opacity: 0.7; }
+
     </style>
 </head>
 <body>
 
-    <div class="school-card">
-        <div class="school-logo">🏫</div>
-        <h1>ประกาศปิดปรับปรุงระบบสารสนเทศ</h1>
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+
+    <div class="glass-card">
+        <span class="badge">SYSTEM UPDATING</span>
+        <h1>พัฒนาเพื่อการเรียนรู้ที่ดีกว่า</h1>
         
-        <p class="message">
-            แจ้งคณะครู นักเรียน และผู้ปกครองทุกท่าน <br>
-            ขณะนี้ระบบอยู่ระหว่างการแก้ไขกรณี <strong>ฐานข้อมูลขัดข้อง</strong> 
-            และดำเนินการ <strong>เพิ่มมาตรการความปลอดภัย</strong> เพื่อปกป้องข้อมูลของทุกคนให้ดียิ่งขึ้น
+        <p class="main-desc">
+            ขณะนี้ระบบสารสนเทศของโรงเรียนกำลังปรับปรุง <br>
+            เนื่องจาก <span class="highlight">ฐานข้อมูลขัดข้อง</span> และเรากำลัง <span class="highlight">เสริมความปลอดภัย</span> <br>
+            ของข้อมูลนักเรียนและบุคลากรให้เป็นไปตามมาตรฐานสากล
         </p>
 
-        <div class="highlight-box">
-            📌 <strong>สิ่งที่กำลังดำเนินการ:</strong>
-            <ul style="margin-left: 20px; margin-top: 5px;">
-                <li>กู้คืนระบบฐานข้อมูลส่วนกลาง</li>
-                <li>ติดตั้งระบบรักษาความปลอดภัยเวอร์ชันใหม่</li>
-            </ul>
-        </div>
-
-        <div class="countdown-wrapper">
-            <div class="time-box">
-                <span class="time-num" id="hours">00</span>
-                <span class="time-label">ชั่วโมง</span>
+        <div class="timer-container">
+            <div class="timer-slot">
+                <span class="t-num" id="hours">00</span>
+                <span class="t-label">Hours</span>
             </div>
-            <div class="time-box">
-                <span class="time-num" id="minutes">00</span>
-                <span class="time-label">นาที</span>
+            <div class="timer-slot">
+                <span class="t-num" id="minutes">00</span>
+                <span class="t-label">Minutes</span>
             </div>
-            <div class="time-box">
-                <span class="time-num" id="seconds">00</span>
-                <span class="time-label">วินาที</span>
+            <div class="timer-slot">
+                <span class="t-num" id="seconds">00</span>
+                <span class="t-label">Seconds</span>
             </div>
         </div>
 
         <div class="footer">
-            คาดว่าจะเสร็จสิ้นและกลับมาเปิดใช้งานได้ในเวลา <strong>22:00 น.</strong> <br>
-            หากมีกรณีเร่งด่วน ติดต่อได้ที่ฝ่ายทะเบียน-วัดผล หรือ <br>
-            อีเมล: <a href="mailto:admin@school.ac.th" class="contact-info">admin@school.ac.th</a>
+            เราจะกลับมาเปิดระบบอีกครั้งในเวลา <span style="color: var(--text-dark); font-weight: 500;">22:00 น.</span>
+            <br>
+            <a href="mailto:it@school-name.ac.th" class="contact-btn">ติดต่อฝ่าย IT Support</a>
         </div>
     </div>
 
     <script>
-        function runTimer() {
-            const targetTime = new Date();
-            targetTime.setHours(22, 0, 0, 0);
+        function updateTimer() {
+            const target = new Date();
+            target.setHours(22, 0, 0, 0);
 
-            function update() {
-                const now = new Date();
-                const diff = targetTime - now;
+            const now = new Date();
+            const diff = target - now;
 
-                if (diff <= 0) {
-                    document.querySelector('.countdown-wrapper').innerHTML = "ขณะนี้ใกล้เวลาเปิดให้บริการแล้ว";
-                    return;
-                }
-
-                const hrs = Math.floor(diff / (1000 * 60 * 60));
-                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('hours').innerText = hrs.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = mins.toString().padStart(2, '0');
-                document.getElementById('seconds').innerText = secs.toString().padStart(2, '0');
+            if (diff <= 0) {
+                document.querySelector('.timer-container').innerHTML = "<p style='grid-column: span 3; color: #6366f1;'>กำลังดำเนินการขั้นตอนสุดท้าย...</p>";
+                return;
             }
 
-            setInterval(update, 1000);
-            update();
-        }
-        runTimer();
-    </script>
+            const h = Math.floor(diff / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
 
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
 </html>
