@@ -7,106 +7,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f4f7f6;
-            font-family: 'Kanit', sans-serif;
-            color: #333;
+            margin: 0; padding: 0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; background-color: #f4f7f6;
+            font-family: 'Kanit', sans-serif; color: #333;
         }
 
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 550px;
-        }
+        .container { text-align: center; padding: 2rem; max-width: 600px; width: 100%; }
 
-        /* ไอคอนฟันเฟืองหมุน */
-        .icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-            animation: gear-spin 4s linear infinite;
-            display: inline-block;
-        }
-
-        @keyframes gear-spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        p {
-            font-size: 1.1rem;
-            color: #7f8c8d;
-            line-height: 1.6;
-        }
+        /* Gear Animation */
+        .icon { font-size: 60px; margin-bottom: 15px; animation: gear-spin 4s linear infinite; display: inline-block; }
+        @keyframes gear-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         .status-badge {
-            display: inline-block;
-            background-color: #e67e22;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            display: inline-block; background-color: #e67e22; color: white;
+            padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 15px;
         }
 
-        /* สไตล์ตัวนับถอยหลัง */
-        .countdown-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
-        }
+        /* Countdown */
+        .countdown-wrapper { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .time-box { background: white; padding: 8px; border-radius: 8px; min-width: 65px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .time-num { display: block; font-size: 1.5rem; font-weight: 500; color: #e67e22; }
+        .time-unit { font-size: 0.7rem; color: #999; }
 
-        .time-box {
-            background: white;
-            padding: 10px;
-            border-radius: 10px;
-            min-width: 70px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        /* --- Progress Steps Bar --- */
+        .progress-container { margin: 40px 0; position: relative; }
+        .progress-bar-bg {
+            position: absolute; top: 15px; left: 10%; width: 80%;
+            height: 4px; background: #ddd; z-index: 1;
         }
-
-        .time-num {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #e67e22; /* สีเดียวกับ Badge */
+        .progress-bar-fill {
+            position: absolute; top: 15px; left: 10%; width: 50%; /* ปรับความยาวเส้นสีส้มที่นี่ (เช่น 50% คือถึงขั้นตอนที่ 3) */
+            height: 4px; background: #e67e22; z-index: 2; transition: width 0.5s;
         }
-
-        .time-unit {
-            font-size: 0.75rem;
-            color: #999;
+        .steps {
+            display: flex; justify-content: space-between; position: relative; z-index: 3;
         }
-
-        .contact-info {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
+        .step { text-align: center; width: 25%; }
+        .dot {
+            width: 30px; height: 30px; background: #fff; border: 3px solid #ddd;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 8px; font-size: 14px; font-weight: bold; color: #999;
         }
+        .step.active .dot { border-color: #e67e22; color: #e67e22; }
+        .step.completed .dot { background: #e67e22; border-color: #e67e22; color: #fff; }
+        .step.completed .dot::after { content: '✓'; }
+        .step-label { font-size: 0.8rem; color: #888; }
+        .step.active .step-label { color: #333; font-weight: 500; }
 
+        /* Footer & Button */
+        .contact-info { margin-top: 30px; font-size: 0.85rem; border-top: 1px solid #ddd; padding-top: 20px; color: #7f8c8d; }
         .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .button:hover {
-            background-color: #2980b9;
+            display: inline-block; margin-top: 15px; padding: 10px 25px;
+            background-color: #3498db; color: white; text-decoration: none;
+            border-radius: 5px; font-size: 0.9rem;
         }
     </style>
 </head>
@@ -116,28 +70,30 @@
         <div class="icon">⚙️</div><br>
         <div class="status-badge">Under Maintenance</div>
         
-        <h1>ขออภัยในความไม่สะดวก</h1>
-        <p>เรากำลังปรับปรุงประสิทธิภาพของเว็บไซต์เพื่อให้คุณใช้งานได้ดียิ่งขึ้น</p>
+        <h1 style="margin:0;">ขออภัยในความไม่สะดวก</h1>
+        <p>ขณะนี้กำลังปรับปรุงระบบ คาดว่าจะกลับมาใช้งานได้ปกติในอีก...</p>
 
         <div class="countdown-wrapper">
-            <div class="time-box">
-                <span class="time-num" id="hrs">00</span>
-                <span class="time-unit">ชั่วโมง</span>
-            </div>
-            <div class="time-box">
-                <span class="time-num" id="mins">00</span>
-                <span class="time-unit">นาที</span>
-            </div>
-            <div class="time-box">
-                <span class="time-num" id="secs">00</span>
-                <span class="time-unit">วินาที</span>
+            <div class="time-box"><span class="time-num" id="hrs">00</span><span class="time-unit">ชั่วโมง</span></div>
+            <div class="time-box"><span class="time-num" id="mins">00</span><span class="time-unit">นาที</span></div>
+            <div class="time-box"><span class="time-num" id="secs">00</span><span class="time-unit">วินาที</span></div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar-bg"></div>
+            <div class="progress-bar-fill" style="width: 53%;"></div> 
+            
+            <div class="steps">
+                <div class="step completed"><div class="dot"></div><div class="step-label">ตรวจสอบ</div></div>
+                <div class="step completed"><div class="dot"></div><div class="step-label">แก้ไขระบบ</div></div>
+                <div class="step active"><div class="dot">3</div><div class="step-label">ทดสอบ</div></div>
+                <div class="step"><div class="dot">4</div><div class="step-label">เปิดใช้งาน</div></div>
             </div>
         </div>
-        
-        <p><strong>คาดว่าจะเปิดให้บริการ:</strong> วันนี้ เวลา 22:00 น.</p>
+
+        <p>เป้าหมายเวลาเสร็จสิ้น: <strong>วันนี้ 22:00 น.</strong></p>
 
         <div class="contact-info">
-            หากมีเรื่องด่วน สามารถติดต่อเราได้ที่ <br>
             <strong>Email:</strong> support@yourdomain.com | <strong>Line:</strong> @yourbrand
         </div>
 
@@ -147,13 +103,13 @@
     <script>
         function updateTimer() {
             const now = new Date();
-            // ตั้งเวลาเป้าหมายเป็น 22:00 น. ของวันนี้
             const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0);
-            
             const diff = target - now;
 
             if (diff <= 0) {
-                document.querySelector(".countdown-wrapper").innerHTML = "<h3>ระบบกำลังทยอยกลับมาเปิดใช้งาน...</h3>";
+                document.getElementById("hrs").innerText = "00";
+                document.getElementById("mins").innerText = "00";
+                document.getElementById("secs").innerText = "00";
                 return;
             }
 
@@ -165,10 +121,8 @@
             document.getElementById("mins").innerText = m.toString().padStart(2, '0');
             document.getElementById("secs").innerText = s.toString().padStart(2, '0');
         }
-
         setInterval(updateTimer, 1000);
         updateTimer();
     </script>
-
 </body>
 </html>
