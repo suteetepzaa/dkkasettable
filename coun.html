@@ -3,153 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประกาศปิดปรับปรุงระบบชั่วคราว</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500;600&display=swap" rel="stylesheet">
+    <title>ประกาศปิดปรับปรุงระบบชั่วคราว - System Maintenance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #e74c3c;
-            --dark-blue: #2c3e50;
+            --primary-navy: #1a2a6c;
+            --secondary-gold: #b2945e; /* เพิ่มสีทองเล็กน้อยให้ดูหรูหราและเป็นทางการ */
+            --text-main: #2c3e50;
+            --text-sub: #5d6d7e;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            font-family: 'Kanit', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f8fafc;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #333;
+            color: var(--text-main);
         }
 
-        .card {
+        .maintenance-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 800px;
+            padding: 60px 40px;
+            border-radius: 4px; /* ทรงเหลี่ยมจะดูเป็นทางการกว่าทรงมนมาก */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid var(--primary-navy);
             text-align: center;
-            padding: 3rem 2rem;
-            max-width: 700px;
-            width: 90%;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            position: relative;
         }
 
-        .icon-box {
-            font-size: 60px;
-            margin-bottom: 20px;
-            color: var(--primary-color);
+        .logo-placeholder {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         h1 {
-            font-size: 1.8rem;
-            color: var(--dark-blue);
-            margin-bottom: 1.5rem;
+            font-size: 24px;
             font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--primary-navy);
         }
 
-        .status-text {
-            font-size: 1.1rem;
-            color: #555;
+        .description {
+            font-size: 16px;
             line-height: 1.8;
-            margin-bottom: 2rem;
+            color: var(--text-sub);
+            margin-bottom: 40px;
+            text-align: justify;
+            text-align-last: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .highlight {
-            color: var(--primary-color);
-            font-weight: 500;
+        /* Countdown Area */
+        .countdown-section {
+            background: #f1f4f8;
+            padding: 30px;
+            border-radius: 4px;
+            margin-bottom: 30px;
         }
 
-        /* Countdown Style */
-        .countdown-container {
+        .timer-grid {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 2rem 0;
+            gap: 40px;
         }
 
-        .time-block {
-            background: var(--dark-blue);
-            color: white;
-            padding: 15px;
-            border-radius: 12px;
-            min-width: 80px;
+        .timer-item {
+            display: flex;
+            flex-direction: column;
         }
 
-        .time-number {
-            display: block;
-            font-size: 1.5rem;
+        .time-val {
+            font-size: 32px;
             font-weight: 600;
+            color: var(--primary-navy);
+            font-family: sans-serif; /* ใช้ Sans-serif สำหรับตัวเลขเพื่อให้ดูเป็นสากล */
         }
 
         .time-label {
-            font-size: 0.75rem;
-            opacity: 0.8;
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-top: 5px;
         }
 
-        .footer-note {
-            font-size: 1rem;
-            color: #7f8c8d;
-            margin-top: 1rem;
-            font-weight: 500;
+        .footer-info {
+            font-size: 14px;
+            color: #95a5a6;
+            margin-top: 20px;
+        }
+
+        .contact-link {
+            color: var(--primary-navy);
+            text-decoration: none;
+            border-bottom: 1px solid var(--primary-navy);
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--secondary-gold);
+            border-color: var(--secondary-gold);
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 30px 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="icon-box">🛡️</div>
-        <h1>ปิดปรับปรุงระบบชั่วคราว</h1>
+    <div class="maintenance-card">
+        <div class="logo-placeholder">OFFICIAL ANNOUNCEMENT</div>
         
-        <p class="status-text">
-            ขออภัยในความไม่สะดวก เนื่องจาก <span class="highlight">ระบบฐานข้อมูลเกิดการขัดข้อง</span> <br>
-            ทีมงานกำลังเร่งดำเนินการแก้ไขและ <span class="highlight">เพิ่มระบบความปลอดภัย</span> ให้ดียิ่งขึ้น <br>
-            <strong>"แล้วเราจะกลับมาเปิดให้บริการอีกครั้ง"</strong>
+        <h1>ประกาศแจ้งปิดปรับปรุงระบบเป็นการชั่วคราว</h1>
+        
+        <p class="description">
+            เรียน ท่านผู้ใช้บริการทุกท่าน <br>
+            เนื่องด้วยตรวจพบข้อขัดข้องในส่วนของ <strong>ระบบฐานข้อมูล (Database System)</strong> 
+            ขณะนี้ฝ่ายวิศวกรรมระบบกำลังดำเนินการแก้ไข พร้อมทั้งบูรณาการ <strong>ระบบรักษาความปลอดภัยเพิ่มเติม</strong> 
+            เพื่อให้การใช้งานของท่านเป็นไปอย่างมีประสิทธิภาพและปลอดภัยสูงสุด
         </p>
 
-        <div class="countdown-container" id="countdown">
-            <div class="time-block">
-                <span class="time-number" id="hours">00</span>
-                <span class="time-label">ชั่วโมง</span>
-            </div>
-            <div class="time-block">
-                <span class="time-number" id="minutes">00</span>
-                <span class="time-label">นาที</span>
-            </div>
-            <div class="time-block">
-                <span class="time-number" id="seconds">00</span>
-                <span class="time-label">วินาที</span>
+        <div class="countdown-section">
+            <p style="margin-bottom: 15px; font-weight: 500;">ระยะเวลาดำเนินการคงเหลือโดยประมาณ</p>
+            <div class="timer-grid" id="timer">
+                <div class="timer-item">
+                    <span class="time-val" id="hours">00</span>
+                    <span class="time-label">ชั่วโมง</span>
+                </div>
+                <div class="timer-item">
+                    <span class="time-val" id="minutes">00</span>
+                    <span class="time-label">นาที</span>
+                </div>
+                <div class="timer-item">
+                    <span class="time-val" id="seconds">00</span>
+                    <span class="time-label">วินาที</span>
+                </div>
             </div>
         </div>
 
-        <p class="footer-note">คาดว่าจะพร้อมใช้งานภายในเวลา 22:00 น. ของวันนี้</p>
+        <p class="footer-info">
+            ระบบจะเปิดให้บริการตามปกติในเวลา <strong>22:00 น.</strong> ของวันที่ 4 กุมภาพันธ์ 2569
+        </p>
+
+        <hr>
+
+        <p style="font-size: 14px;">
+            ขออภัยในความไม่สะดวกมา ณ ที่นี้ <br>
+            ติดต่อสอบถามเพิ่มเติมทางอีเมล: <a href="mailto:admin@yourcompany.com" class="contact-link">admin@yourcompany.com</a>
+        </p>
     </div>
 
     <script>
-        function updateCountdown() {
-            const now = new Date();
+        function startCountdown() {
             const target = new Date();
-            
-            // ตั้งเวลาเป้าหมายเป็นวันนี้ตอน 22:00 น.
             target.setHours(22, 0, 0, 0);
 
-            let diff = target - now;
+            function update() {
+                const now = new Date();
+                const diff = target - now;
 
-            if (diff <= 0) {
-                document.getElementById('countdown').innerHTML = "<h3>ระบบกำลังจะกลับมาเปิดใช้งานเร็วๆ นี้</h3>";
-                return;
+                if (diff <= 0) {
+                    document.getElementById('timer').innerHTML = "<p>ระบบกำลังดำเนินการเปิดใช้งาน...</p>";
+                    return;
+                }
+
+                const h = Math.floor(diff / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
             }
 
-            const h = Math.floor(diff / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            setInterval(update, 1000);
+            update();
         }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        startCountdown();
     </script>
-
 </body>
 </html>
