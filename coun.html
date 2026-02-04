@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            background: #fdfdfd; /* พื้นหลังสีนวลสบายตา */
+            background: #fdfdfd;
             font-family: 'Kanit', sans-serif;
             color: #333;
             display: flex;
@@ -19,61 +19,65 @@
 
         .container {
             width: 100%;
-            max-width: 500px;
-            padding: 20px;
+            max-width: 650px; /* ขยายความกว้างจาก 500px */
+            padding: 40px 20px;
             text-align: center;
-            /* นำ background และ box-shadow ออกแล้ว */
         }
 
         h1 {
-            font-size: 1.8rem;
-            margin: 0 0 10px 0;
+            font-size: 2.5rem; /* ใหญ่ขึ้นจาก 1.8rem */
+            margin: 0 0 15px 0;
             color: #000;
+            letter-spacing: -1px;
         }
 
         p {
-            font-size: 1rem;
+            font-size: 1.2rem; /* ใหญ่ขึ้นจาก 1rem */
             color: #666;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
+            line-height: 1.6;
         }
 
         .timer {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 30px; /* เพิ่มระยะห่าง */
+            margin-bottom: 50px;
         }
 
         .time-block {
-            background: #f1f1f1; /* เปลี่ยนจากสีเทาขาวเป็นเทาอ่อนเพื่อให้เห็นขอบเขต */
-            padding: 12px;
-            border-radius: 8px;
-            min-width: 80px;
+            background: #f1f1f1;
+            padding: 20px; /* ใหญ่ขึ้น */
+            border-radius: 12px;
+            min-width: 110px; /* กว้างขึ้น */
         }
 
         .time-block span {
             display: block;
-            font-size: 1.6rem;
+            font-size: 2.5rem; /* ตัวเลขใหญ่ขึ้น */
             font-weight: 500;
             color: #222;
+            line-height: 1;
+            margin-bottom: 5px;
         }
 
         .time-block label {
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             color: #888;
         }
 
         .progress-box {
-            margin: 40px 0;
+            margin: 50px 0;
             text-align: left;
+            padding: 0 10px;
         }
 
         .bar-bg {
-            height: 6px;
+            height: 8px; /* หนาขึ้นเล็กน้อย */
             background: #eee;
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .bar-fill {
@@ -85,7 +89,7 @@
         .steps-text {
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem;
+            font-size: 1rem; /* ใหญ่ขึ้น */
             color: #999;
         }
 
@@ -95,16 +99,16 @@
         }
 
         .footer {
-            margin-top: 40px;
-            padding-top: 25px;
+            margin-top: 50px;
+            padding-top: 30px;
             border-top: 1px solid #eee;
-            font-size: 0.95rem;
+            font-size: 1.1rem; /* ใหญ่ขึ้น */
             color: #666;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .contact-urgent {
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: #999;
         }
 
@@ -112,6 +116,13 @@
             color: #333;
             text-decoration: none;
             font-weight: 500;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            .timer { gap: 10px; }
+            .time-block { min-width: 80px; padding: 15px 10px; }
+            .time-block span { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -155,7 +166,7 @@
         const diff = target - now;
 
         if (diff <= 0) {
-            document.querySelector(".timer").innerHTML = "ระบบพร้อมใช้งานแล้ว";
+            document.querySelector(".timer").innerHTML = "<h2 style='font-size: 2rem;'>ระบบพร้อมใช้งานแล้ว</h2>";
             return;
         }
 
