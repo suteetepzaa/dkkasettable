@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ปิดปรับปรุงระบบชั่วคราว | Maintenance Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f4f7f6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #ffeaa7;
+            color: #d35400;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+
+        .contact a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* Animation เล็กน้อย */
+        .container {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="icon">🛠️</div>
+        <div class="status-badge">Under Maintenance</div>
+        <h1>ขออภัยในความไม่สะดวก</h1>
+        <p>
+            ขณะนี้เรากำลังปรับปรุงระบบเพื่อเพิ่มประสิทธิภาพในการใช้งาน <br>
+            คาดว่าจะกลับมาให้บริการได้อีกครั้งในเร็วๆ นี้
+        </p>
+        
+        <div class="contact">
+            หากมีเรื่องด่วน สามารถติดต่อเราได้ที่ <br>
+            <a href="mailto:support@yourdomain.com">support@yourdomain.com</a> หรือ 
+            <a href="#">Line Official</a>
+        </div>
+    </div>
+
+</body>
+</html>
