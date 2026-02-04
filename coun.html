@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ขออภัย! ระบบกำลังปิดปรับปรุง</title>
+    <title>ระบบกำลังปรับปรุง - จะกลับมาใช้งานได้ในอีกไม่ช้า</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
@@ -21,92 +21,131 @@
         .container {
             text-align: center;
             padding: 2rem;
-            max-width: 500px;
+            max-width: 600px;
         }
 
         .icon {
-            font-size: 70px;
-            margin-bottom: 25px;
+            font-size: 60px;
+            margin-bottom: 20px;
             display: inline-block;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
         }
 
         h1 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 10px;
             color: #1a1a1a;
-            font-weight: 500;
         }
 
         p {
             font-size: 1.1rem;
             color: #666;
-            line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .time-box {
-            background-color: #f8f9fa;
-            border-radius: 12px;
+        /* Countdown Styles */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .time-segment {
+            background: #f4f4f4;
             padding: 15px;
-            margin: 25px 0;
-            border: 1px dashed #ddd;
+            border-radius: 10px;
+            min-width: 80px;
         }
 
-        .contact-info {
-            margin-top: 40px;
-            font-size: 0.95rem;
+        .time-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .time-label {
+            font-size: 0.8rem;
             color: #888;
+            text-transform: uppercase;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 40px;
         }
 
         .button {
             display: inline-block;
-            margin-top: 10px;
-            padding: 12px 30px;
+            margin-top: 20px;
+            padding: 10px 25px;
             background-color: #000;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 300;
-            transition: transform 0.2s, opacity 0.2s;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-            opacity: 0.8;
-        }
-
-        /* อนิเมชั่นขยับไอคอนเบาๆ */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .icon {
-            animation: float 3s ease-in-out infinite;
+            border-radius: 5px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="icon">🛠️</div>
+        <div class="icon">⌛</div>
         <h1>ขออภัยในความไม่สะดวก</h1>
-        <p>ขณะนี้เรากำลังดำเนินการปรับปรุงระบบชั่วคราว <br>เพื่อเพิ่มประสิทธิภาพการใช้งานให้ดียิ่งขึ้น</p>
-        
-        <div class="time-box">
-            <strong>คาดว่าจะกลับมาเปิดใช้งาน:</strong> <br>
-            4 กุมภาพันธ์ 2569 | เวลา 18:00 น.
+        <p>เรากำลังปรับปรุงระบบ และจะกลับมาพร้อมให้บริการในอีก...</p>
+
+        <div class="countdown-container">
+            <div class="time-segment">
+                <span class="time-value" id="hours">00</span>
+                <span class="time-label">ชั่วโมง</span>
+            </div>
+            <div class="time-segment">
+                <span class="time-value" id="minutes">00</span>
+                <span class="time-label">นาที</span>
+            </div>
+            <div class="time-segment">
+                <span class="time-value" id="seconds">00</span>
+                <span class="time-label">วินาที</span>
+            </div>
         </div>
 
-        <div class="contact-info">
-            สอบถามข้อมูลเพิ่มเติม <br>
-            <strong>Email:</strong> support@yourdomain.com
-        </div>
+        <p><strong>คาดว่าจะเปิดใช้งานปกติ:</strong> วันนี้ เวลา 22:00 น.</p>
 
-        <br>
-        <a href="javascript:location.reload()" class="button">รีเฟรชหน้าเว็บ</a>
+        <a href="javascript:location.reload()" class="button">ตรวจสอบสถานะอีกครั้ง</a>
+
+        <div class="footer-text">
+            หากมีข้อสงสัยประการใด ติดต่อสอบถามได้ที่ฝ่ายสนับสนุน
+        </div>
     </div>
+
+    <script>
+        // ตั้งค่าเวลาเป้าหมาย: 22:00 น. ของวันนี้
+        const now = new Date();
+        const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0);
+
+        function updateCountdown() {
+            const currentTime = new Date();
+            const diff = targetDate - currentTime;
+
+            if (diff <= 0) {
+                document.querySelector(".countdown-container").innerHTML = "<h3>ระบบพร้อมใช้งานแล้ว</h3>";
+                return;
+            }
+
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+        }
+
+        // อัปเดตทุกๆ 1 วินาที
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 
 </body>
 </html>
