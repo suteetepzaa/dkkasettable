@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบกำลังปรับปรุง - จะกลับมาใช้งานได้ในอีกไม่ช้า</title>
+    <title>ขออภัย! ระบบกำลังปิดปรับปรุง</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #ffffff;
+            background-color: #f4f7f6;
             font-family: 'Kanit', sans-serif;
             color: #333;
         }
@@ -21,115 +21,139 @@
         .container {
             text-align: center;
             padding: 2rem;
-            max-width: 600px;
+            max-width: 550px;
         }
 
+        /* ไอคอนฟันเฟืองหมุน */
         .icon {
-            font-size: 60px;
+            font-size: 80px;
             margin-bottom: 20px;
+            animation: gear-spin 4s linear infinite;
             display: inline-block;
         }
 
+        @keyframes gear-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
-            color: #1a1a1a;
+            color: #2c3e50;
         }
 
         p {
             font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 30px;
+            color: #7f8c8d;
+            line-height: 1.6;
         }
 
-        /* Countdown Styles */
-        .countdown-container {
+        .status-badge {
+            display: inline-block;
+            background-color: #e67e22;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* สไตล์ตัวนับถอยหลัง */
+        .countdown-wrapper {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
+            gap: 15px;
+            margin: 25px 0;
         }
 
-        .time-segment {
-            background: #f4f4f4;
-            padding: 15px;
+        .time-box {
+            background: white;
+            padding: 10px;
             border-radius: 10px;
-            min-width: 80px;
+            min-width: 70px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .time-value {
+        .time-num {
             display: block;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 500;
-            color: #000;
+            color: #e67e22; /* สีเดียวกับ Badge */
         }
 
-        .time-label {
-            font-size: 0.8rem;
-            color: #888;
-            text-transform: uppercase;
+        .time-unit {
+            font-size: 0.75rem;
+            color: #999;
         }
 
-        .footer-text {
+        .contact-info {
+            margin-top: 30px;
             font-size: 0.9rem;
-            color: #aaa;
-            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
         }
 
         .button {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 25px;
-            background-color: #000;
+            background-color: #3498db;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="icon">⌛</div>
+        <div class="icon">⚙️</div><br>
+        <div class="status-badge">Under Maintenance</div>
+        
         <h1>ขออภัยในความไม่สะดวก</h1>
-        <p>เรากำลังปรับปรุงระบบ และจะกลับมาพร้อมให้บริการในอีก...</p>
+        <p>เรากำลังปรับปรุงประสิทธิภาพของเว็บไซต์เพื่อให้คุณใช้งานได้ดียิ่งขึ้น</p>
 
-        <div class="countdown-container">
-            <div class="time-segment">
-                <span class="time-value" id="hours">00</span>
-                <span class="time-label">ชั่วโมง</span>
+        <div class="countdown-wrapper">
+            <div class="time-box">
+                <span class="time-num" id="hrs">00</span>
+                <span class="time-unit">ชั่วโมง</span>
             </div>
-            <div class="time-segment">
-                <span class="time-value" id="minutes">00</span>
-                <span class="time-label">นาที</span>
+            <div class="time-box">
+                <span class="time-num" id="mins">00</span>
+                <span class="time-unit">นาที</span>
             </div>
-            <div class="time-segment">
-                <span class="time-value" id="seconds">00</span>
-                <span class="time-label">วินาที</span>
+            <div class="time-box">
+                <span class="time-num" id="secs">00</span>
+                <span class="time-unit">วินาที</span>
             </div>
         </div>
+        
+        <p><strong>คาดว่าจะเปิดให้บริการ:</strong> วันนี้ เวลา 22:00 น.</p>
 
-        <p><strong>คาดว่าจะเปิดใช้งานปกติ:</strong> วันนี้ เวลา 22:00 น.</p>
-
-        <a href="javascript:location.reload()" class="button">ตรวจสอบสถานะอีกครั้ง</a>
-
-        <div class="footer-text">
-            หากมีข้อสงสัยประการใด ติดต่อสอบถามได้ที่ฝ่ายสนับสนุน
+        <div class="contact-info">
+            หากมีเรื่องด่วน สามารถติดต่อเราได้ที่ <br>
+            <strong>Email:</strong> support@yourdomain.com | <strong>Line:</strong> @yourbrand
         </div>
+
+        <a href="javascript:location.reload()" class="button">รีเฟรชหน้าเว็บ</a>
     </div>
 
     <script>
-        // ตั้งค่าเวลาเป้าหมาย: 22:00 น. ของวันนี้
-        const now = new Date();
-        const targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0);
-
-        function updateCountdown() {
-            const currentTime = new Date();
-            const diff = targetDate - currentTime;
+        function updateTimer() {
+            const now = new Date();
+            // ตั้งเวลาเป้าหมายเป็น 22:00 น. ของวันนี้
+            const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0);
+            
+            const diff = target - now;
 
             if (diff <= 0) {
-                document.querySelector(".countdown-container").innerHTML = "<h3>ระบบพร้อมใช้งานแล้ว</h3>";
+                document.querySelector(".countdown-wrapper").innerHTML = "<h3>ระบบกำลังทยอยกลับมาเปิดใช้งาน...</h3>";
                 return;
             }
 
@@ -137,14 +161,13 @@
             const m = Math.floor((diff / (1000 * 60)) % 60);
             const s = Math.floor((diff / 1000) % 60);
 
-            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+            document.getElementById("hrs").innerText = h.toString().padStart(2, '0');
+            document.getElementById("mins").innerText = m.toString().padStart(2, '0');
+            document.getElementById("secs").innerText = s.toString().padStart(2, '0');
         }
 
-        // อัปเดตทุกๆ 1 วินาที
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        setInterval(updateTimer, 1000);
+        updateTimer();
     </script>
 
 </body>
