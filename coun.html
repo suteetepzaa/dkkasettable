@@ -8,7 +8,6 @@
     <style>
         :root {
             --primary-color: #3498db;
-            --success-color: #2ecc71;
             --orange-color: #f39c12;
             --gray-light: #ecf0f1;
             --text-main: #2c3e50;
@@ -57,7 +56,7 @@
 
         /* Step Progress */
         .progress-wrapper {
-            margin: 40px 0; position: relative;
+            margin: 40px 0 60px; position: relative;
             display: flex; justify-content: space-between;
         }
         .progress-line {
@@ -67,7 +66,6 @@
         .progress-line-active {
             position: absolute; top: 15px; left: 0; width: 66%; /* ปรับความคืบหน้าที่นี่ */
             height: 3px; background: var(--primary-color); z-index: 2;
-            transition: width 0.5s;
         }
         .step {
             position: relative; z-index: 3; background: white;
@@ -93,13 +91,12 @@
         }
         .step.active .step-label, .step.done .step-label { color: var(--text-main); }
 
-        .btn {
-            background: var(--primary-color); color: white;
-            padding: 12px 30px; border-radius: 5px; text-decoration: none;
-            display: inline-block; margin-top: 20px; font-size: 0.9rem;
-            transition: opacity 0.2s;
+        .footer-note {
+            border-top: 1px solid #f1f1f1;
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: #bdc3c7;
         }
-        .btn:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
@@ -111,7 +108,7 @@
     <h1>ขออภัยในความไม่สะดวก</h1>
     <p>เรากำลังปรับปรุงระบบให้ดียิ่งขึ้น และจะกลับมาในอีก...</p>
 
-    <div class="countdown-container">
+    <div class="countdown-container" id="countdown">
         <div class="time-item"><b id="h">00</b><span>ชั่วโมง</span></div>
         <div class="time-item"><b id="m">00</b><span>นาที</span></div>
         <div class="time-item"><b id="s">00</b><span>วินาที</span></div>
@@ -119,7 +116,9 @@
 
     <div class="progress-wrapper">
         <div class="progress-line"></div>
-        <div class="progress-line-active"></div> <div class="step done">
+        <div class="progress-line-active"></div> 
+        
+        <div class="step done">
             <div class="step-dot">✓</div>
             <div class="step-label">ตรวจสอบ</div>
         </div>
@@ -137,8 +136,9 @@
         </div>
     </div>
 
-    <p style="margin-top: 50px;">คาดว่าจะเสร็จสิ้น: <strong>วันนี้ 22:00 น.</strong></p>
-    <a href="javascript:location.reload()" class="btn">รีเฟรชหน้าเว็บ</a>
+    <div class="footer-note">
+        คาดว่าจะเสร็จสิ้น: <strong>วันนี้ 22:00 น.</strong>
+    </div>
 </div>
 
 <script>
@@ -148,7 +148,7 @@
         const diff = target - now;
 
         if (diff <= 0) {
-            document.querySelector(".countdown-container").innerHTML = "<h3>ขณะนี้ถึงเวลาเปิดใช้งานแล้ว</h3>";
+            document.getElementById("countdown").innerHTML = "<h3 style='color:#2ecc71'>ระบบพร้อมใช้งานแล้ว</h3>";
             return;
         }
 
