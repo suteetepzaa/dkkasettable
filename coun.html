@@ -3,99 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประกาศปรับปรุงระบบ</title>
+    <title>ขออภัย! ระบบกำลังปิดปรับปรุง</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;300;400;500&display=swap');
-
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            background-color: #f8f9fa; /* สีพื้นเทาอ่อนสะอาดตา */
-            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            background-color: #f4f7f6;
+            font-family: 'Kanit', sans-serif;
+            color: #333;
         }
 
         .container {
             text-align: center;
-            max-width: 600px;
-            padding: 40px;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* เงาบางๆ */
-            border: 1px solid #eee;
+            padding: 2rem;
+            max-width: 500px;
         }
 
         .icon {
-            color: #d9534f; /* แดงแบบซอฟต์ๆ */
-            font-size: 48px;
+            font-size: 80px;
             margin-bottom: 20px;
+            animation: gear-spin 4s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes gear-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         h1 {
-            font-size: 24px;
-            font-weight: 500;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: #e67e22;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             margin-bottom: 20px;
-            color: #222;
         }
 
-        .message {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #666;
-            font-weight: 300;
-            margin-bottom: 30px;
-            text-align: left;
-            border-left: 2px solid #ddd;
-            padding-left: 20px;
+        .contact-info {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
         }
 
-        .estimate-box {
-            background-color: #f1f3f5;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 15px;
-            color: #444;
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
-        .estimate-box b {
-            color: #007bff; /* ฟ้าเรียบๆ */
-            font-weight: 500;
-        }
-
-        .footer {
-            margin-top: 25px;
-            font-size: 13px;
-            color: #aaa;
+        .button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="icon">!</div>
-        <h1>แจ้งปรับปรุงระบบชั่วคราว</h1>
+        <div class="icon">⚙️</div>
+        <div class="status-badge">Under Maintenance</div>
+        <h1>ขออภัยในความไม่สะดวก</h1>
+        <p>เรากำลังปรับปรุงประสิทธิภาพของเว็บไซต์เพื่อให้คุณใช้งานได้ดียิ่งขึ้น คาดว่าจะกลับมาเปิดให้บริการอีกครั้งในเร็วๆ นี้</p>
         
-        <div class="message">
-            เนื่องจากระบบฐานข้อมูลเกิดการขัดข้องทำให้ระบบเกิดความล่าช้ากว่าปกติ 
-            ขณะนี้เรากำลังเร่งดำเนินการแก้ไขและเพิ่มความปลอดภัยของระบบให้ดียิ่งขึ้น 
-            ขออภัยในความไม่สะดวกมา ณ ที่นี้
+        <p><strong>คาดว่าจะเสร็จสิ้น:</strong> 4 กุมภาพันธ์ 2569 เวลา 18:00 น.</p>
+
+        <div class="contact-info">
+            หากมีเรื่องด่วน สามารถติดต่อเราได้ที่ <br>
+            <strong>Email:</strong> support@yourdomain.com | <strong>Line:</strong> @yourbrand
         </div>
 
-        <div class="estimate-box">
-            คาดการณ์ระบบจะกลับมาใช้ได้ <b>22.00 น. ของวันนี้</b>
-        </div>
-
-        <div class="footer">
-            ขอบคุณที่ไว้วางใจใช้บริการของเรา
-        </div>
+        <a href="javascript:location.reload()" class="button">รีเฟรชหน้าเว็บ</a>
     </div>
 
 </body>
