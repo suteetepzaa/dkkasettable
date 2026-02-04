@@ -24,64 +24,97 @@
         }
 
         .content {
-            width: 100%; max-width: 480px;
-            padding: 20px; text-align: center;
+            width: 100%; 
+            max-width: 800px; /* ขยายความกว้างรวม */
+            padding: 40px; 
+            text-align: center;
         }
 
-        /* Gear Icon - แบบเส้นบางเรียบๆ */
         .icon-box {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             color: var(--accent);
-            font-size: 40px;
-            animation: slow-spin 10s linear infinite;
+            font-size: 60px; /* ขยายไอคอน */
+            animation: slow-spin 12s linear infinite;
             display: inline-block;
         }
         @keyframes slow-spin { 100% { transform: rotate(360deg); } }
 
-        h1 { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px; }
-        p { font-size: 1rem; color: var(--text-sub); margin-bottom: 40px; font-weight: 300; }
-
-        /* Countdown - เรียบที่สุด */
-        .timer {
-            display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;
+        h1 { 
+            font-size: 3rem; /* ขยายหัวข้อ */
+            font-weight: 500; 
+            letter-spacing: -0.03em; 
+            margin-bottom: 20px; 
         }
-        .time-val { display: block; font-size: 2rem; font-weight: 500; color: var(--text-main); }
-        .time-lab { font-size: 0.75rem; color: var(--text-sub); }
+        p { 
+            font-size: 1.4rem; /* ขยายคำบรรยาย */
+            color: var(--text-sub); 
+            margin-bottom: 60px; 
+            font-weight: 300; 
+        }
 
-        /* Progress - เส้นบางขีดจำกัด */
+        /* Countdown - ขยายให้เด่นชัด */
+        .timer {
+            display: flex; 
+            justify-content: center; 
+            gap: 60px; /* เพิ่มระยะห่างระหว่างตัวเลข */
+            margin-bottom: 80px;
+        }
+        .time-val { 
+            display: block; 
+            font-size: 4.5rem; /* ตัวเลขใหญ่ขึ้นมาก */
+            font-weight: 500; 
+            line-height: 1;
+            color: var(--text-main); 
+        }
+        .time-lab { 
+            font-size: 1.1rem; 
+            color: var(--text-sub); 
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* Progress Bar - ขยายขนาดเส้นและจุด */
         .progress-box {
-            position: relative; margin: 40px 0;
-            display: flex; justify-content: space-between;
+            position: relative; 
+            margin: 80px 0;
+            display: flex; 
+            justify-content: space-between;
         }
         .p-line {
-            position: absolute; top: 10px; left: 0; right: 0;
-            height: 1px; background: var(--line); z-index: 1;
+            position: absolute; top: 12px; left: 0; right: 0;
+            height: 2px; background: var(--line); z-index: 1;
         }
         .p-fill {
-            position: absolute; top: 10px; left: 0; width: 66%; /* ปรับตามสถานะ */
-            height: 1.5px; background: var(--accent); z-index: 2;
+            position: absolute; top: 12px; left: 0; width: 66%; 
+            height: 2px; background: var(--accent); z-index: 2;
             transition: width 1s ease;
         }
         .p-step {
             position: relative; z-index: 3; background: var(--bg);
-            width: 20px; height: 20px;
+            width: 26px; height: 26px;
         }
         .p-dot {
-            width: 8px; height: 8px; background: var(--line);
-            border-radius: 50%; margin: 6px auto;
+            width: 12px; height: 12px; background: var(--line);
+            border-radius: 50%; margin: 7px auto;
         }
-        .p-step.active .p-dot { background: var(--accent); box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--accent); }
+        .p-step.active .p-dot { 
+            background: var(--accent); 
+            box-shadow: 0 0 0 6px var(--bg), 0 0 0 8px var(--accent); 
+        }
         .p-step.done .p-dot { background: var(--accent); }
         
         .p-label {
-            position: absolute; top: 25px; left: 50%; transform: translateX(-50%);
-            font-size: 0.7rem; color: var(--text-sub); white-space: nowrap;
+            position: absolute; top: 35px; left: 50%; transform: translateX(-50%);
+            font-size: 1rem; color: var(--text-sub); white-space: nowrap;
         }
         .p-step.active .p-label { color: var(--text-main); font-weight: 500; }
 
         .footer {
-            margin-top: 60px; font-size: 0.8rem; color: var(--text-sub);
-            border-top: 1px solid var(--line); padding-top: 20px;
+            margin-top: 100px; 
+            font-size: 1.1rem; 
+            color: var(--text-sub);
+            border-top: 1px solid var(--line); 
+            padding-top: 30px;
         }
     </style>
 </head>
@@ -90,7 +123,7 @@
 <div class="content">
     <div class="icon-box">⚙️</div>
     <h1>กำลังปรับปรุงระบบ</h1>
-    <p>เราจะกลับมาให้บริการอีกครั้งในเร็วๆ นี้</p>
+    <p>ขออภัยในความไม่สะดวก เราจะกลับมาให้บริการอีกครั้งในเร็วๆ นี้</p>
 
     <div class="timer">
         <div><span class="time-val" id="h">00</span><span class="time-lab">ชั่วโมง</span></div>
@@ -109,18 +142,18 @@
     </div>
 
     <div class="footer">
-        คาดว่าจะเสร็จสิ้นวันนี้ เวลา 22:00 น.
+        คาดว่าจะเสร็จสิ้นวันนี้ เวลา <strong>22:00 น.</strong>
     </div>
 </div>
 
 <script>
     function update() {
-        const target = new Date();
-        target.setHours(22, 0, 0, 0);
-        const diff = target - new Date();
+        const now = new Date();
+        const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0);
+        const diff = target - now;
 
         if (diff <= 0) {
-            document.querySelector(".timer").innerHTML = "พร้อมให้บริการแล้ว";
+            document.querySelector(".timer").innerHTML = "<h2 style='font-size: 2.5rem;'>ระบบพร้อมให้บริการแล้ว</h2>";
             return;
         }
 
