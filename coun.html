@@ -10,6 +10,7 @@
         :root {
             --accent-color: #00f2ff;
             --bg-dark: #0a0a0c;
+            --sub-text: rgba(255, 255, 255, 0.6);
         }
 
         body, html {
@@ -17,14 +18,13 @@
             padding: 0;
             height: 100%;
             width: 100%;
-            /* ใช้ Kanit เป็นฟอนต์หลัก */
             font-family: 'Kanit', sans-serif;
             background-color: var(--bg-dark);
             color: white;
             overflow: hidden;
         }
 
-        /* พื้นหลังกราฟิก Grid Line */
+        /* Background Graphics */
         .bg-grid {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -35,12 +35,11 @@
             z-index: -1;
         }
 
-        /* แสง Glow ฟุ้งๆ ด้านหลัง */
         .glow {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.12) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -66,7 +65,8 @@
             padding: 5px 15px;
             font-size: 0.8rem;
             margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+            border-radius: 4px;
         }
 
         h1 {
@@ -74,31 +74,43 @@
             font-weight: 700;
             margin: 0;
             text-transform: uppercase;
-            /* ทำตัวอักษรแบบ Outline กราฟิก */
-            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
             color: white;
         }
 
         .highlight {
             color: var(--accent-color);
-            -webkit-text-stroke: 0;
             text-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
         }
 
-        p {
-            font-weight: 300;
-            font-size: 1.1rem;
-            max-width: 600px;
-            line-height: 1.8;
-            color: #a0a0a0;
-            margin: 20px 0 40px 0;
+        /* กล่องข้อความคาดการณ์เวลา */
+        .estimation-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 30px;
+            margin: 30px 0;
+            backdrop-filter: blur(5px);
         }
 
-        /* Countdown สไตล์ Sci-fi */
+        .estimation-box p {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .estimation-box .time-highlight {
+            color: var(--accent-color);
+            font-family: 'Tektur', sans-serif;
+            font-size: 1.4rem;
+            margin: 0 5px;
+        }
+
+        /* Countdown Area */
         .countdown {
             display: flex;
             gap: 20px;
             font-family: 'Tektur', sans-serif;
+            margin-top: 20px;
         }
 
         .unit {
@@ -120,18 +132,25 @@
             letter-spacing: 2px;
         }
 
-        /* ตกแต่ง Animation */
+        .footer-note {
+            margin-top: 40px;
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: var(--sub-text);
+        }
+
         .scan-line {
             position: absolute;
             width: 100%;
-            height: 2px;
-            background: rgba(0, 242, 255, 0.2);
-            top: 0;
-            animation: scan 4s linear infinite;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 242, 255, 0.03), transparent);
+            top: -100%;
+            animation: scan 6s linear infinite;
+            pointer-events: none;
         }
 
         @keyframes scan {
-            0% { top: 0; }
+            0% { top: -100%; }
             100% { top: 100%; }
         }
     </style>
@@ -145,15 +164,18 @@
     <div class="main-container">
         <div class="status-tag">System Status: Updating</div>
         <h1>WE ARE <span class="highlight">UPGRADING</span></h1>
-        <p>ขออภัยในความไม่สะดวก เรากำลังปรับปรุงระบบให้ดียิ่งขึ้น <br> เพื่อการใช้งานที่รวดเร็วและปลอดภัยกว่าเดิม</p>
+        
+        <div class="estimation-box">
+            <p>คาดการณ์ระบบจะกลับมาใช้ได้ <span class="time-highlight">22.00 น.</span> ของวันนี้</p>
+        </div>
 
         <div class="countdown">
             <div class="unit">
-                <span class="number" id="hours">02</span>
+                <span class="number" id="hours">00</span>
                 <span class="label">Hours</span>
             </div>
             <div class="unit">
-                <span class="number" id="minutes">45</span>
+                <span class="number" id="minutes">00</span>
                 <span class="label">Minutes</span>
             </div>
             <div class="unit">
@@ -161,21 +183,31 @@
                 <span class="label">Seconds</span>
             </div>
         </div>
+
+        <p class="footer-note">ขออภัยในความไม่สะดวก ทีมงานกำลังเร่งดำเนินการอย่างเต็มที่</p>
     </div>
 
     <script>
-        // ระบบนับถอยหลัง
-        let countDate = new Date().getTime() + (3 * 60 * 60 * 1000); // ตั้งไว้ 3 ชม.
+        // ตั้งเป้าหมายเวลาที่ 22:00 น. ของวันนี้
+        const targetTime = new Date();
+        targetTime.setHours(22, 0, 0, 0);
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const gap = countDate - now;
+            const gap = targetTime - now;
+
+            if (gap <= 0) {
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                return;
+            }
 
             const second = 1000;
             const minute = second * 60;
             const hour = minute * 60;
 
-            const h = Math.floor((gap % (hour * 24)) / hour);
+            const h = Math.floor(gap / hour);
             const m = Math.floor((gap % hour) / minute);
             const s = Math.floor((gap % minute) / second);
 
@@ -185,6 +217,7 @@
         }
 
         setInterval(updateCountdown, 1000);
+        updateCountdown();
     </script>
 </body>
 </html>
