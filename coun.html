@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แจ้งปิดปรับปรุงระบบชั่วคราว</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>แจ้งปิดปรับปรุงระบบชั่วคราว - โรงเรียน</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,157 +14,164 @@
 
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #f0f2f5;
+            background-color: #f4f6f9;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #444;
+            color: #334155;
         }
 
-        .container {
-            background: white;
+        .school-card {
+            background: #ffffff;
             width: 90%;
-            max-width: 550px;
+            max-width: 600px;
             padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border-top: 8px solid #1e40af; /* สีน้ำเงินสถาบันการศึกษา */
             text-align: center;
         }
 
-        .status-icon {
-            width: 70px;
-            height: 70px;
-            background: #e8f0fe;
-            color: #1a73e8;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
-            margin: 0 auto 20px;
+        .school-logo {
+            font-size: 50px;
+            margin-bottom: 15px;
         }
 
         h1 {
-            font-size: 22px;
-            color: #202124;
-            margin-bottom: 15px;
-            font-weight: 500;
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #5f6368;
+        .message {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #64748b;
             margin-bottom: 25px;
         }
 
-        .highlight {
-            color: #1a73e8;
-            font-weight: 500;
-        }
-
-        /* Countdown */
-        .timer-box {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
+        .highlight-box {
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            text-align: left;
             margin-bottom: 25px;
+            font-size: 0.95rem;
         }
 
-        .time-unit {
+        /* Countdown Style สำหรับโรงเรียน */
+        .countdown-wrapper {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
-        .num {
-            font-size: 24px;
-            font-weight: 500;
-            color: #202124;
+        .time-box {
+            background: #1e40af;
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            min-width: 75px;
         }
 
-        .label {
-            font-size: 12px;
-            color: #70757a;
+        .time-num {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .time-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
         }
 
         .footer {
-            font-size: 14px;
-            border-top: 1px solid #f1f3f4;
+            border-top: 1px solid #e2e8f0;
             padding-top: 20px;
-            color: #70757a;
+            font-size: 0.9rem;
+            color: #94a3b8;
         }
 
-        .contact-btn {
-            display: inline-block;
-            margin-top: 10px;
-            color: #1a73e8;
+        .contact-info {
+            color: #1e40af;
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="status-icon">⚙️</div>
-        <h1>ขออภัย เรากำลังปรับปรุงระบบให้ดียิ่งขึ้น</h1>
+    <div class="school-card">
+        <div class="school-logo">🏫</div>
+        <h1>ประกาศปิดปรับปรุงระบบสารสนเทศ</h1>
         
-        <p>
-            ขณะนี้ระบบเกิดการขัดข้องในส่วนของ <span class="highlight">ฐานข้อมูล</span> 
-            ทางทีมงานกำลังเร่งแก้ไขและ <span class="highlight">อัปเกรดความปลอดภัย</span> 
-            เพื่อการใช้งานที่เสถียรกว่าเดิม แล้วเราจะกลับมาพบกันเร็วๆ นี้ครับ
+        <p class="message">
+            แจ้งคณะครู นักเรียน และผู้ปกครองทุกท่าน <br>
+            ขณะนี้ระบบอยู่ระหว่างการแก้ไขกรณี <strong>ฐานข้อมูลขัดข้อง</strong> 
+            และดำเนินการ <strong>เพิ่มมาตรการความปลอดภัย</strong> เพื่อปกป้องข้อมูลของทุกคนให้ดียิ่งขึ้น
         </p>
 
-        <div class="timer-box">
-            <div class="time-unit">
-                <span class="num" id="hours">00</span>
-                <span class="label">ชั่วโมง</span>
+        <div class="highlight-box">
+            📌 <strong>สิ่งที่กำลังดำเนินการ:</strong>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+                <li>กู้คืนระบบฐานข้อมูลส่วนกลาง</li>
+                <li>ติดตั้งระบบรักษาความปลอดภัยเวอร์ชันใหม่</li>
+            </ul>
+        </div>
+
+        <div class="countdown-wrapper">
+            <div class="time-box">
+                <span class="time-num" id="hours">00</span>
+                <span class="time-label">ชั่วโมง</span>
             </div>
-            <div class="time-unit">
-                <span class="num" id="minutes">00</span>
-                <span class="label">นาที</span>
+            <div class="time-box">
+                <span class="time-num" id="minutes">00</span>
+                <span class="time-label">นาที</span>
             </div>
-            <div class="time-unit">
-                <span class="num" id="seconds">00</span>
-                <span class="label">วินาที</span>
+            <div class="time-box">
+                <span class="time-num" id="seconds">00</span>
+                <span class="time-label">วินาที</span>
             </div>
         </div>
 
         <div class="footer">
-            คาดว่าระบบจะกลับมาใช้งานได้ตามปกติในเวลา <strong>22:00 น.</strong> <br>
-            ขอบคุณที่เข้าใจและไว้วางใจเราครับ <br>
-            <a href="mailto:support@yourweb.com" class="contact-btn">แจ้งปัญหาเพิ่มเติม</a>
+            คาดว่าจะเสร็จสิ้นและกลับมาเปิดใช้งานได้ในเวลา <strong>22:00 น.</strong> <br>
+            หากมีกรณีเร่งด่วน ติดต่อได้ที่ฝ่ายทะเบียน-วัดผล หรือ <br>
+            อีเมล: <a href="mailto:admin@school.ac.th" class="contact-info">admin@school.ac.th</a>
         </div>
     </div>
 
     <script>
-        function updateTimer() {
-            const now = new Date();
-            const target = new Date();
-            target.setHours(22, 0, 0, 0);
+        function runTimer() {
+            const targetTime = new Date();
+            targetTime.setHours(22, 0, 0, 0);
 
-            let diff = target - now;
+            function update() {
+                const now = new Date();
+                const diff = targetTime - now;
 
-            if (diff <= 0) {
-                document.querySelector('.timer-box').innerHTML = "<p style='grid-column: span 3;'>กำลังเปิดระบบในไม่ช้า...</p>";
-                return;
+                if (diff <= 0) {
+                    document.querySelector('.countdown-wrapper').innerHTML = "ขณะนี้ใกล้เวลาเปิดให้บริการแล้ว";
+                    return;
+                }
+
+                const hrs = Math.floor(diff / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('hours').innerText = hrs.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = mins.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = secs.toString().padStart(2, '0');
             }
 
-            const h = Math.floor(diff / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            setInterval(update, 1000);
+            update();
         }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
+        runTimer();
     </script>
+
 </body>
 </html>
