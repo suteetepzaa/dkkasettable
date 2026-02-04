@@ -3,221 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบกำลังปรับปรุง | Animated School Version</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>System Maintenance | University Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f0f7ff;
-            --primary: #4f46e5;
-            --secondary: #fbbf24;
-            --white: #ffffff;
+            --uni-navy: #1e293b;
+            --uni-gold: #c5a059;
+            --accent-blue: #38bdf8;
+            --text-light: #f1f5f9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Kanit', sans-serif;
-            background: var(--bg-color);
+            background-color: #0f172a;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            perspective: 1000px;
+            color: var(--text-light);
         }
 
-        /* พื้นหลังเคลื่อนไหว (Floating Shapes) */
-        .shape {
+        /* Animated Background Particles */
+        .bg-lines {
             position: absolute;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            border-radius: 50%;
-            filter: blur(40px);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
             z-index: -1;
-            opacity: 0.2;
-            animation: float-bg 20s infinite alternate;
-        }
-        .shape-1 { width: 400px; height: 400px; top: -100px; left: -100px; }
-        .shape-2 { width: 300px; height: 300px; bottom: -50px; right: -50px; animation-delay: -5s; }
-
-        @keyframes float-bg {
-            from { transform: translate(0, 0) rotate(0deg); }
-            to { transform: translate(50px, 100px) rotate(30deg); }
         }
 
-        /* Card Container */
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 50px 40px;
-            border-radius: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+        .glow-orb {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+            top: -200px; right: -100px;
+            animation: drift 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes drift {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-100px, 100px); }
+        }
+
+        /* Main Container */
+        .uni-container {
             text-align: center;
-            max-width: 600px;
+            padding: 60px 40px;
+            max-width: 800px;
             width: 90%;
-            border: 2px solid white;
-            animation: scale-up 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 1px solid rgba(255,255,255,0.1);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(to bottom, rgba(30, 41, 59, 0.5), transparent);
+            position: relative;
         }
 
-        @keyframes scale-up {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* กราฟิกไอคอนเคลื่อนไหว */
-        .main-icon {
-            font-size: 80px;
+        .uni-header {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 4px;
+            font-size: 14px;
+            color: var(--uni-gold);
             margin-bottom: 20px;
-            display: inline-block;
-            animation: bounce 2s infinite ease-in-out;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            text-transform: uppercase;
         }
 
         h1 {
-            color: var(--primary);
-            font-size: 26px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        p {
-            color: #64748b;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .highlight {
-            color: var(--primary);
+            font-size: clamp(24px, 5vw, 36px);
             font-weight: 500;
-            background: #eef2ff;
-            padding: 2px 8px;
-            border-radius: 6px;
+            margin-bottom: 25px;
+            line-height: 1.4;
         }
 
-        /* Animated Countdown */
+        .desc {
+            font-weight: 300;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* Countdown Grid */
         .timer-grid {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 450px;
+            margin: 0 auto 50px;
         }
 
-        .timer-box {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            border-radius: 20px;
-            min-width: 85px;
-            transition: transform 0.3s;
+        .timer-item {
+            position: relative;
+            padding: 20px 0;
         }
 
-        .timer-box:hover { transform: scale(1.05); }
+        .timer-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 20%; width: 60%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--uni-gold), transparent);
+        }
 
-        .time-num {
+        .val {
             display: block;
-            font-size: 28px;
-            font-weight: 600;
+            font-size: 42px;
+            font-weight: 200;
+            color: white;
             font-family: sans-serif;
         }
 
-        .time-label {
+        .unit {
             font-size: 11px;
-            opacity: 0.9;
+            color: var(--uni-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
         }
 
-        .footer-note {
+        /* Progress Bar Animation */
+        .progress-container {
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            width: 50%;
+            height: 100%;
+            background: var(--uni-gold);
+            position: absolute;
+            animation: loading 2s infinite ease-in-out;
+        }
+        @keyframes loading {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+
+        .footer {
             font-size: 14px;
-            color: #94a3b8;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 20px;
+            color: #64748b;
         }
 
-        /* ปุ่มติดต่อแบบ Pulsing */
-        .btn-contact {
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--uni-gold);
             margin-top: 20px;
-            display: inline-block;
-            padding: 10px 25px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
-            animation: pulse 2s infinite;
+            font-size: 13px;
         }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(79, 70, 229, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
+    <div class="bg-lines"></div>
+    <div class="glow-orb"></div>
 
-    <div class="card">
-        <div class="main-icon">🏫</div>
-        <h1>ขออภัย ระบบกำลังปิดปรับปรุง</h1>
+    <div class="uni-container">
+        <div class="uni-header">Official Notification</div>
+        <h1>ขออภัย ระบบเครือข่ายสารสนเทศ<br>อยู่ระหว่างการปรับปรุง</h1>
         
-        <p>
-            เนื่องจาก <span class="highlight">ระบบฐานข้อมูลขัดข้อง</span> ทีมงานกำลังเร่งแก้ไข <br>
-            พร้อม <span class="highlight">เพิ่มมาตรการความปลอดภัย</span> ให้ดียิ่งขึ้น <br>
-            เรากำลังเร่งดำเนินการ และจะกลับมาให้บริการอีกครั้งในเร็วๆ นี้ครับ
+        <p class="desc">
+            เนื่องจากตรวจพบข้อขัดข้องใน <span style="color:white">ระบบฐานข้อมูลกลาง</span> 
+            ขณะนี้ศูนย์คอมพิวเตอร์กำลังเร่งดำเนินการแก้ไขและติดตั้ง <span style="color:white">ระบบรักษาความปลอดภัยขั้นสูง</span> 
+            เพื่อให้เป็นไปตามนโยบายคุ้มครองข้อมูลส่วนบุคคลของมหาวิทยาลัย
         </p>
 
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+
         <div class="timer-grid">
-            <div class="timer-box">
-                <span class="time-num" id="h">00</span>
-                <span class="time-label">ชั่วโมง</span>
+            <div class="timer-item">
+                <span class="val" id="h">00</span>
+                <span class="unit">Hours</span>
             </div>
-            <div class="timer-box">
-                <span class="time-num" id="m">00</span>
-                <span class="time-label">นาที</span>
+            <div class="timer-item">
+                <span class="val" id="m">00</span>
+                <span class="unit">Minutes</span>
             </div>
-            <div class="timer-box">
-                <span class="time-num" id="s">00</span>
-                <span class="time-label">วินาที</span>
+            <div class="timer-item">
+                <span class="val" id="s">00</span>
+                <span class="unit">Seconds</span>
             </div>
         </div>
 
-        <div class="footer-note">
-            คาดว่าจะกลับมาใช้งานได้ตามปกติในเวลา <strong>22:00 น.</strong> <br>
-            <a href="#" class="btn-contact">ติดต่อฝ่ายไอที</a>
+        <div class="footer">
+            คาดว่าจะเปิดให้บริการตามปกติในเวลา 22:00 น. ของวันนี้<br>
+            <div class="status-pill">
+                <span style="width:6px; height:6px; background:var(--uni-gold); border-radius:50%"></span>
+                System Maintenance in Progress
+            </div>
         </div>
     </div>
 
     <script>
-        function updateCountdown() {
+        function startTimer() {
             const target = new Date();
             target.setHours(22, 0, 0, 0);
 
-            function refresh() {
-                const diff = target - new Date();
-                
+            function update() {
+                const now = new Date();
+                const diff = target - now;
+
                 if (diff <= 0) {
-                    document.querySelector('.timer-grid').innerText = "ระบบกำลังจะกลับมาเร็วๆ นี้";
+                    document.querySelector('.timer-grid').innerHTML = "SYSTEM RESTORING";
                     return;
                 }
 
-                const h = Math.floor(diff / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000);
+                const h = Math.floor(diff / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
 
                 document.getElementById('h').innerText = h.toString().padStart(2, '0');
                 document.getElementById('m').innerText = m.toString().padStart(2, '0');
                 document.getElementById('s').innerText = s.toString().padStart(2, '0');
             }
-            
-            setInterval(refresh, 1000);
-            refresh();
+            setInterval(update, 1000);
+            update();
         }
-        updateCountdown();
+        startTimer();
     </script>
 </body>
 </html>
