@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ปิดปรับปรุงระบบชั่วคราว | Maintenance Mode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <title>ประกาศปิดปรับปรุงระบบชั่วคราว</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-color: #e74c3c;
+            --dark-blue: #2c3e50;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #f4f7f6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,84 +23,133 @@
             color: #333;
         }
 
-        .container {
+        .card {
             text-align: center;
-            padding: 2rem;
-            max-width: 600px;
+            padding: 3rem 2rem;
+            max-width: 700px;
+            width: 90%;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
         }
 
-        .icon {
-            font-size: 80px;
+        .icon-box {
+            font-size: 60px;
             margin-bottom: 20px;
+            color: var(--primary-color);
         }
 
         h1 {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.1rem;
-            color: #7f8c8d;
-            line-height: 1.6;
+            font-size: 1.8rem;
+            color: var(--dark-blue);
             margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
-        .status-badge {
-            display: inline-block;
-            background: #ffeaa7;
-            color: #d35400;
-            padding: 5px 15px;
-            border-radius: 50px;
+        .status-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: var(--primary-color);
             font-weight: 500;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
         }
 
-        .contact {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
-            padding-top: 1.5rem;
+        /* Countdown Style */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 2rem 0;
         }
 
-        .contact a {
-            color: #3498db;
-            text-decoration: none;
+        .time-block {
+            background: var(--dark-blue);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            min-width: 80px;
         }
 
-        /* Animation เล็กน้อย */
-        .container {
-            animation: fadeIn 0.8s ease-in-out;
+        .time-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .time-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .footer-note {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-top: 1rem;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="icon">🛠️</div>
-        <div class="status-badge">Under Maintenance</div>
-        <h1>ขออภัยในความไม่สะดวก</h1>
-        <p>
-            ขณะนี้เรากำลังปรับปรุงระบบเพื่อเพิ่มประสิทธิภาพในการใช้งาน <br>
-            คาดว่าจะกลับมาให้บริการได้อีกครั้งในเร็วๆ นี้
-        </p>
+    <div class="card">
+        <div class="icon-box">🛡️</div>
+        <h1>ปิดปรับปรุงระบบชั่วคราว</h1>
         
-        <div class="contact">
-            หากมีเรื่องด่วน สามารถติดต่อเราได้ที่ <br>
-            <a href="mailto:support@yourdomain.com">support@yourdomain.com</a> หรือ 
-            <a href="#">Line Official</a>
+        <p class="status-text">
+            ขออภัยในความไม่สะดวก เนื่องจาก <span class="highlight">ระบบฐานข้อมูลเกิดการขัดข้อง</span> <br>
+            ทีมงานกำลังเร่งดำเนินการแก้ไขและ <span class="highlight">เพิ่มระบบความปลอดภัย</span> ให้ดียิ่งขึ้น <br>
+            <strong>"แล้วเราจะกลับมาเปิดให้บริการอีกครั้ง"</strong>
+        </p>
+
+        <div class="countdown-container" id="countdown">
+            <div class="time-block">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label">ชั่วโมง</span>
+            </div>
+            <div class="time-block">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label">นาที</span>
+            </div>
+            <div class="time-block">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label">วินาที</span>
+            </div>
         </div>
+
+        <p class="footer-note">คาดว่าจะพร้อมใช้งานภายในเวลา 22:00 น. ของวันนี้</p>
     </div>
+
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const target = new Date();
+            
+            // ตั้งเวลาเป้าหมายเป็นวันนี้ตอน 22:00 น.
+            target.setHours(22, 0, 0, 0);
+
+            let diff = target - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = "<h3>ระบบกำลังจะกลับมาเปิดใช้งานเร็วๆ นี้</h3>";
+                return;
+            }
+
+            const h = Math.floor(diff / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 
 </body>
 </html>
