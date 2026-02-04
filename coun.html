@@ -3,85 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ขออภัย! ปิดปรับปรุงระบบชั่วคราว</title>
+    <title>Under Maintenance | กำลังปรับปรุงระบบ</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;600&family=Orbitron:wght@500&display=swap');
 
-        body {
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #3a7bd5;
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 100%;
             font-family: 'Sarabun', sans-serif;
-            color: #ffffff;
-            text-align: center;
+            overflow: hidden;
+        }
+
+        /* พื้นหลังกราฟิกแบบเคลื่อนไหว */
+        .background {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #00d2ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ตกแต่งรูปทรงกราฟิกลอยไปมา */
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 3rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            perspective: 1000px;
         }
 
-        .icon {
-            font-size: 80px;
+        /* การ์ดกระจกฝ้า (Glassmorphism) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 90%;
+            transform: translateZ(0);
+            transition: transform 0.3s ease;
+        }
+
+        .icon-box {
+            font-size: 70px;
             margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px var(--primary-color));
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            color: #fff;
+            font-size: 2.5rem;
+            margin: 10px 0;
+            letter-spacing: 1px;
         }
 
         p {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
             font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0.9;
+            margin-bottom: 30px;
         }
 
-        .timer {
+        /* ตัวนับเวลาสไตล์ Digital */
+        .countdown-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             margin-top: 20px;
-            padding: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            font-weight: 600;
         }
 
-        .status-badge {
-            display: inline-block;
-            background: #ffeb3b;
-            color: #333;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            font-weight: bold;
+        .time-unit {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 15px;
+            min-width: 70px;
+            border-bottom: 3px solid var(--primary-color);
         }
+
+        .time-unit span {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .time-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .footer-text {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="icon">🛠️</div>
-        <div class="status-badge">MAINTENANCE MODE</div>
-        <h1>ขออภัยในความไม่สะดวก</h1>
-        <p>ขณะนี้เรากำลังปรับปรุงระบบเพื่อเพิ่มประสิทธิภาพการใช้งาน <br>
-           และจะกลับมาให้บริการอีกครั้งในเร็วๆ นี้</p>
-        
-        <div class="timer">
-            คาดว่าจะเสร็จสิ้น: 18:00 น. (วันนี้)
-        </div>
+    <div class="background"></div>
+    
+    <div class="shape" style="width: 80px; height: 80px; left: 10%; bottom: -100px; animation-delay: 0s;"></div>
+    <div class="shape" style="width: 120px; height: 120px; left: 30%; bottom: -150px; animation-delay: 5s;"></div>
+    <div class="shape" style="width: 50px; height: 50px; left: 70%; bottom: -120px; animation-delay: 2s;"></div>
 
-        <p style="font-size: 0.8rem; margin-top: 30px; opacity: 0.6;">
-            ติดต่อสอบถามเพิ่มเติมได้ที่ support@yourdomain.com
-        </p>
+    <div class="container">
+        <div class="glass-card">
+            <div class="icon-box">⚙️</div>
+            <h1>MAINTENANCE</h1>
+            <p>เรากำลังอัปเกรดระบบเพื่อมอบประสบการณ์ที่ดีกว่าเดิม<br>อดใจรออีกไม่นาน แล้วพบกันใหม่เร็วๆ นี้</p>
+
+            <div class="countdown-wrapper">
+                <div class="time-unit">
+                    <span id="hours">00</span>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <span id="minutes">00</span>
+                    <div class="time-label">Min</div>
+                </div>
+                <div class="time-unit">
+                    <span id="seconds">00</span>
+                    <div class="time-label">Sec</div>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                ต้องการความช่วยเหลือ? ติดต่อ <span style="color: var(--primary-color);">admin@yourwebsite.com</span>
+            </div>
+        </div>
     </div>
 
+    <script>
+        // ตั้งค่าเวลาที่จะเปิดระบบ (เช่น อีก 5 ชม. จากตอนนี้)
+        let countdownDate = new Date().getTime() + (5 * 60 * 60 * 1000);
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector(".countdown-wrapper").innerHTML = "READY TO GO!";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
