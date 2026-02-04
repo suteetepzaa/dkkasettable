@@ -3,157 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ปิดปรับปรุงระบบ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>ขออภัย ระบบกำลังปิดปรับปรุง</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #ffffff;
-            --text-main: #1d1d1f;
-            --text-sub: #86868b;
-            --accent: #000000;
-            --line: #e5e5e5;
+            --bg: #0a0a0b;
+            --card-bg: #161618;
+            --accent: #3498db;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1a6;
+            --border: #2c2c2e;
         }
 
+        * { box-sizing: border-box; }
         body {
             margin: 0; padding: 0;
             background-color: var(--bg);
             font-family: 'Kanit', sans-serif;
-            color: var(--text-main);
+            color: var(--text-primary);
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh;
         }
 
-        .content {
-            width: 100%; 
-            max-width: 800px; /* ขยายความกว้างรวม */
-            padding: 40px; 
+        .main-card {
+            width: 90%; max-width: 900px;
+            background: var(--card-bg);
+            padding: 80px 40px;
+            border-radius: 32px;
+            border: 1px solid var(--border);
             text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
         }
 
-        .icon-box {
-            margin-bottom: 40px;
-            color: var(--accent);
-            font-size: 60px; /* ขยายไอคอน */
-            animation: slow-spin 12s linear infinite;
-            display: inline-block;
+        .gear-icon {
+            font-size: 64px; color: var(--accent);
+            margin-bottom: 30px; display: inline-block;
+            animation: spin 10s linear infinite;
         }
-        @keyframes slow-spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        h1 { 
-            font-size: 3rem; /* ขยายหัวข้อ */
-            font-weight: 500; 
-            letter-spacing: -0.03em; 
-            margin-bottom: 20px; 
-        }
-        p { 
-            font-size: 1.4rem; /* ขยายคำบรรยาย */
-            color: var(--text-sub); 
-            margin-bottom: 60px; 
-            font-weight: 300; 
-        }
+        h1 { font-size: 3.5rem; font-weight: 500; margin: 0 0 16px; letter-spacing: -0.04em; }
+        p { font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 60px; font-weight: 200; }
 
-        /* Countdown - ขยายให้เด่นชัด */
-        .timer {
-            display: flex; 
-            justify-content: center; 
-            gap: 60px; /* เพิ่มระยะห่างระหว่างตัวเลข */
-            margin-bottom: 80px;
+        /* Countdown Grid */
+        .countdown-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; max-width: 600px; margin: 0 auto 80px;
         }
-        .time-val { 
-            display: block; 
-            font-size: 4.5rem; /* ตัวเลขใหญ่ขึ้นมาก */
-            font-weight: 500; 
-            line-height: 1;
-            color: var(--text-main); 
+        .time-unit {
+            background: rgba(255,255,255,0.03);
+            padding: 30px 20px; border-radius: 20px;
+            border: 1px solid var(--border);
         }
-        .time-lab { 
-            font-size: 1.1rem; 
-            color: var(--text-sub); 
-            margin-top: 10px;
-            display: block;
-        }
+        .time-num { display: block; font-size: 4rem; font-weight: 500; line-height: 1; margin-bottom: 8px; }
+        .time-label { font-size: 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; }
 
-        /* Progress Bar - ขยายขนาดเส้นและจุด */
-        .progress-box {
-            position: relative; 
-            margin: 80px 0;
-            display: flex; 
-            justify-content: space-between;
+        /* Progress Path */
+        .progress-container {
+            max-width: 700px; margin: 0 auto 60px; position: relative;
+            padding: 0 20px;
         }
-        .p-line {
-            position: absolute; top: 12px; left: 0; right: 0;
-            height: 2px; background: var(--line); z-index: 1;
+        .track {
+            height: 4px; background: var(--border); width: 100%;
+            position: absolute; top: 18px; left: 0; border-radius: 2px;
         }
-        .p-fill {
-            position: absolute; top: 12px; left: 0; width: 66%; 
-            height: 2px; background: var(--accent); z-index: 2;
-            transition: width 1s ease;
+        .fill {
+            height: 4px; background: var(--accent); width: 66%; /* ปรับความคืบหน้า 0-100% */
+            position: absolute; top: 18px; left: 0; border-radius: 2px;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.4);
         }
-        .p-step {
-            position: relative; z-index: 3; background: var(--bg);
-            width: 26px; height: 26px;
+        .steps { display: flex; justify-content: space-between; position: relative; z-index: 2; }
+        .step { width: 40px; }
+        .node {
+            width: 14px; height: 14px; background: var(--bg);
+            border: 3px solid var(--border); border-radius: 50%;
+            margin: 13px auto 15px; transition: 0.3s;
         }
-        .p-dot {
-            width: 12px; height: 12px; background: var(--line);
-            border-radius: 50%; margin: 7px auto;
-        }
-        .p-step.active .p-dot { 
-            background: var(--accent); 
-            box-shadow: 0 0 0 6px var(--bg), 0 0 0 8px var(--accent); 
-        }
-        .p-step.done .p-dot { background: var(--accent); }
+        .step.done .node { background: var(--accent); border-color: var(--accent); }
+        .step.active .node { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 6px rgba(52,152,219,0.2); }
         
-        .p-label {
-            position: absolute; top: 35px; left: 50%; transform: translateX(-50%);
-            font-size: 1rem; color: var(--text-sub); white-space: nowrap;
-        }
-        .p-step.active .p-label { color: var(--text-main); font-weight: 500; }
+        .label { font-size: 1rem; color: var(--text-secondary); white-space: nowrap; }
+        .step.active .label, .step.done .label { color: var(--text-primary); }
 
         .footer {
-            margin-top: 100px; 
-            font-size: 1.1rem; 
-            color: var(--text-sub);
-            border-top: 1px solid var(--line); 
-            padding-top: 30px;
+            padding-top: 40px; border-top: 1px solid var(--border);
+            font-size: 1.2rem; color: var(--text-secondary);
+        }
+        strong { color: var(--accent); font-weight: 500; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .time-num { font-size: 2.5rem; }
+            .label { font-size: 0.8rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="content">
-    <div class="icon-box">⚙️</div>
-    <h1>กำลังปรับปรุงระบบ</h1>
-    <p>ขออภัยในความไม่สะดวก เราจะกลับมาให้บริการอีกครั้งในเร็วๆ นี้</p>
+<div class="main-card">
+    <div class="gear-icon">⚙️</div>
+    <h1>ระบบกำลังปิดปรับปรุง</h1>
+    <p>เรากำลังปรับปรุงประสิทธิภาพให้ดียิ่งขึ้น</p>
 
-    <div class="timer">
-        <div><span class="time-val" id="h">00</span><span class="time-lab">ชั่วโมง</span></div>
-        <div><span class="time-val" id="m">00</span><span class="time-lab">นาที</span></div>
-        <div><span class="time-val" id="s">00</span><span class="time-lab">วินาที</span></div>
+    <div class="countdown-grid">
+        <div class="time-unit"><span class="time-num" id="h">00</span><span class="time-label">ชั่วโมง</span></div>
+        <div class="time-unit"><span class="time-num" id="m">00</span><span class="time-label">นาที</span></div>
+        <div class="time-unit"><span class="time-num" id="s">00</span><span class="time-label">วินาที</span></div>
     </div>
 
-    <div class="progress-box">
-        <div class="p-line"></div>
-        <div class="p-fill"></div>
-        
-        <div class="p-step done"><div class="p-dot"></div><span class="p-label">ตรวจสอบ</span></div>
-        <div class="p-step done"><div class="p-dot"></div><span class="p-label">แก้ไข</span></div>
-        <div class="p-step active"><div class="p-dot"></div><span class="p-label">ทดสอบ</span></div>
-        <div class="p-step"><div class="p-dot"></div><span class="p-label">เสร็จสิ้น</span></div>
+    <div class="progress-container">
+        <div class="track"></div>
+        <div class="fill"></div>
+        <div class="steps">
+            <div class="step done"><div class="node"></div><div class="label">ตรวจสอบ</div></div>
+            <div class="step done"><div class="node"></div><div class="label">แก้ไขระบบ</div></div>
+            <div class="step active"><div class="node"></div><div class="label">ทดสอบ</div></div>
+            <div class="step"><div class="node"></div><div class="label">เปิดใช้งาน</div></div>
+        </div>
     </div>
 
     <div class="footer">
-        คาดว่าจะเสร็จสิ้นวันนี้ เวลา <strong>22:00 น.</strong>
+        คาดว่าจะกลับมาใช้งานได้ปกติเวลา <strong>22:00 น.</strong>
     </div>
 </div>
 
 <script>
-    function update() {
+    function updateCountdown() {
         const now = new Date();
         const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0);
-        const diff = target - now;
+        let diff = target - now;
 
         if (diff <= 0) {
-            document.querySelector(".timer").innerHTML = "<h2 style='font-size: 2.5rem;'>ระบบพร้อมให้บริการแล้ว</h2>";
+            document.querySelector(".countdown-grid").style.display = 'none';
+            document.querySelector("p").innerText = "ระบบกำลังทยอยกลับมาเปิดให้บริการ";
             return;
         }
 
@@ -165,8 +147,8 @@
         document.getElementById("m").innerText = m.toString().padStart(2, '0');
         document.getElementById("s").innerText = s.toString().padStart(2, '0');
     }
-    setInterval(update, 1000);
-    update();
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 </script>
 
 </body>
