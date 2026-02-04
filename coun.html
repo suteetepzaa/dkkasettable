@@ -3,165 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบกำลังปิดปรับปรุง</title>
+    <title>ปิดปรับปรุงระบบ</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3498db;
-            --orange-color: #f39c12;
-            --gray-light: #ecf0f1;
-            --text-main: #2c3e50;
+            --bg: #ffffff;
+            --text-main: #1d1d1f;
+            --text-sub: #86868b;
+            --accent: #000000;
+            --line: #e5e5e5;
         }
 
         body {
             margin: 0; padding: 0;
+            background-color: var(--bg);
+            font-family: 'Kanit', sans-serif;
+            color: var(--text-main);
             display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; background-color: #f8f9fa;
-            font-family: 'Kanit', sans-serif; color: var(--text-main);
+            min-height: 100vh;
         }
 
-        .card {
-            background: white; padding: 40px;
-            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 600px; width: 90%; text-align: center;
+        .content {
+            width: 100%; max-width: 480px;
+            padding: 20px; text-align: center;
         }
 
-        .gear-icon {
-            font-size: 50px; color: var(--orange-color);
-            margin-bottom: 15px; display: inline-block;
-            animation: spin 8s linear infinite;
+        /* Gear Icon - แบบเส้นบางเรียบๆ */
+        .icon-box {
+            margin-bottom: 30px;
+            color: var(--accent);
+            font-size: 40px;
+            animation: slow-spin 10s linear infinite;
+            display: inline-block;
         }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes slow-spin { 100% { transform: rotate(360deg); } }
 
-        .status-badge {
-            background: var(--orange-color); color: white;
-            padding: 4px 12px; border-radius: 4px;
-            font-size: 0.85rem; font-weight: 500;
-            display: inline-block; margin-bottom: 20px;
+        h1 { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 10px; }
+        p { font-size: 1rem; color: var(--text-sub); margin-bottom: 40px; font-weight: 300; }
+
+        /* Countdown - เรียบที่สุด */
+        .timer {
+            display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;
         }
+        .time-val { display: block; font-size: 2rem; font-weight: 500; color: var(--text-main); }
+        .time-lab { font-size: 0.75rem; color: var(--text-sub); }
 
-        h1 { font-size: 1.8rem; margin: 0 0 10px 0; }
-        p { color: #7f8c8d; margin-bottom: 30px; }
-
-        /* Countdown */
-        .countdown-container {
-            display: flex; justify-content: center; gap: 15px; margin-bottom: 40px;
-        }
-        .time-item {
-            background: var(--gray-light); padding: 10px;
-            border-radius: 8px; min-width: 70px;
-        }
-        .time-item b { display: block; font-size: 1.5rem; color: var(--text-main); }
-        .time-item span { font-size: 0.75rem; color: #95a5a6; }
-
-        /* Step Progress */
-        .progress-wrapper {
-            margin: 40px 0 60px; position: relative;
+        /* Progress - เส้นบางขีดจำกัด */
+        .progress-box {
+            position: relative; margin: 40px 0;
             display: flex; justify-content: space-between;
         }
-        .progress-line {
-            position: absolute; top: 15px; left: 0; right: 0;
-            height: 3px; background: var(--gray-light); z-index: 1;
+        .p-line {
+            position: absolute; top: 10px; left: 0; right: 0;
+            height: 1px; background: var(--line); z-index: 1;
         }
-        .progress-line-active {
-            position: absolute; top: 15px; left: 0; width: 66%; /* ปรับความคืบหน้าที่นี่ */
-            height: 3px; background: var(--primary-color); z-index: 2;
+        .p-fill {
+            position: absolute; top: 10px; left: 0; width: 66%; /* ปรับตามสถานะ */
+            height: 1.5px; background: var(--accent); z-index: 2;
+            transition: width 1s ease;
         }
-        .step {
-            position: relative; z-index: 3; background: white;
-            text-align: center; width: 40px;
+        .p-step {
+            position: relative; z-index: 3; background: var(--bg);
+            width: 20px; height: 20px;
         }
-        .step-dot {
-            width: 30px; height: 30px; border-radius: 50%;
-            background: white; border: 3px solid var(--gray-light);
-            margin: 0 auto 8px; display: flex; align-items: center;
-            justify-content: center; font-size: 12px; font-weight: bold;
-            color: #bdc3c7;
+        .p-dot {
+            width: 8px; height: 8px; background: var(--line);
+            border-radius: 50%; margin: 6px auto;
         }
-        .step.done .step-dot {
-            background: var(--primary-color); border-color: var(--primary-color);
-            color: white;
+        .p-step.active .p-dot { background: var(--accent); box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--accent); }
+        .p-step.done .p-dot { background: var(--accent); }
+        
+        .p-label {
+            position: absolute; top: 25px; left: 50%; transform: translateX(-50%);
+            font-size: 0.7rem; color: var(--text-sub); white-space: nowrap;
         }
-        .step.active .step-dot {
-            border-color: var(--primary-color); color: var(--primary-color);
-        }
-        .step-label {
-            position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
-            white-space: nowrap; font-size: 0.75rem; color: #95a5a6;
-        }
-        .step.active .step-label, .step.done .step-label { color: var(--text-main); }
+        .p-step.active .p-label { color: var(--text-main); font-weight: 500; }
 
-        .footer-note {
-            border-top: 1px solid #f1f1f1;
-            padding-top: 20px;
-            font-size: 0.85rem;
-            color: #bdc3c7;
+        .footer {
+            margin-top: 60px; font-size: 0.8rem; color: var(--text-sub);
+            border-top: 1px solid var(--line); padding-top: 20px;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="gear-icon">⚙️</div><br>
-    <div class="status-badge">ปิดปรับปรุงระบบ</div>
-    
-    <h1>ขออภัยในความไม่สะดวก</h1>
-    <p>เรากำลังปรับปรุงระบบให้ดียิ่งขึ้น และจะกลับมาในอีก...</p>
+<div class="content">
+    <div class="icon-box">⚙️</div>
+    <h1>กำลังปรับปรุงระบบ</h1>
+    <p>เราจะกลับมาให้บริการอีกครั้งในเร็วๆ นี้</p>
 
-    <div class="countdown-container" id="countdown">
-        <div class="time-item"><b id="h">00</b><span>ชั่วโมง</span></div>
-        <div class="time-item"><b id="m">00</b><span>นาที</span></div>
-        <div class="time-item"><b id="s">00</b><span>วินาที</span></div>
+    <div class="timer">
+        <div><span class="time-val" id="h">00</span><span class="time-lab">ชั่วโมง</span></div>
+        <div><span class="time-val" id="m">00</span><span class="time-lab">นาที</span></div>
+        <div><span class="time-val" id="s">00</span><span class="time-lab">วินาที</span></div>
     </div>
 
-    <div class="progress-wrapper">
-        <div class="progress-line"></div>
-        <div class="progress-line-active"></div> 
+    <div class="progress-box">
+        <div class="p-line"></div>
+        <div class="p-fill"></div>
         
-        <div class="step done">
-            <div class="step-dot">✓</div>
-            <div class="step-label">ตรวจสอบ</div>
-        </div>
-        <div class="step done">
-            <div class="step-dot">✓</div>
-            <div class="step-label">แก้ไข</div>
-        </div>
-        <div class="step active">
-            <div class="step-dot">3</div>
-            <div class="step-label">ทดสอบ</div>
-        </div>
-        <div class="step">
-            <div class="step-dot">4</div>
-            <div class="step-label">พร้อมใช้</div>
-        </div>
+        <div class="p-step done"><div class="p-dot"></div><span class="p-label">ตรวจสอบ</span></div>
+        <div class="p-step done"><div class="p-dot"></div><span class="p-label">แก้ไข</span></div>
+        <div class="p-step active"><div class="p-dot"></div><span class="p-label">ทดสอบ</span></div>
+        <div class="p-step"><div class="p-dot"></div><span class="p-label">เสร็จสิ้น</span></div>
     </div>
 
-    <div class="footer-note">
-        คาดว่าจะเสร็จสิ้น: <strong>วันนี้ 22:00 น.</strong>
+    <div class="footer">
+        คาดว่าจะเสร็จสิ้นวันนี้ เวลา 22:00 น.
     </div>
 </div>
 
 <script>
-    function updateCountdown() {
-        const now = new Date();
-        const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 22, 0, 0);
-        const diff = target - now;
+    function update() {
+        const target = new Date();
+        target.setHours(22, 0, 0, 0);
+        const diff = target - new Date();
 
         if (diff <= 0) {
-            document.getElementById("countdown").innerHTML = "<h3 style='color:#2ecc71'>ระบบพร้อมใช้งานแล้ว</h3>";
+            document.querySelector(".timer").innerHTML = "พร้อมให้บริการแล้ว";
             return;
         }
 
-        const hrs = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((diff / (1000 * 60)) % 60);
-        const secs = Math.floor((diff / 1000) % 60);
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
 
-        document.getElementById("h").innerText = hrs.toString().padStart(2, '0');
-        document.getElementById("m").innerText = mins.toString().padStart(2, '0');
-        document.getElementById("s").innerText = secs.toString().padStart(2, '0');
+        document.getElementById("h").innerText = h.toString().padStart(2, '0');
+        document.getElementById("m").innerText = m.toString().padStart(2, '0');
+        document.getElementById("s").innerText = s.toString().padStart(2, '0');
     }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    setInterval(update, 1000);
+    update();
 </script>
 
 </body>
