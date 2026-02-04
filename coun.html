@@ -3,209 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แจ้งปรับปรุงระบบ - School Update</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>ระบบกำลังปรับปรุง | Animated School Version</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #3b82f6; /* สีน้ำเงินสดใส */
-            --secondary-yellow: #facc15; /* สีเหลืองเสริม */
-            --text-dark: #1f2937;
-            --text-light: #4b5563;
-            --bg-light: #e0f2fe; /* พื้นหลังสีฟ้าอ่อน */
+            --bg-color: #f0f7ff;
+            --primary: #4f46e5;
+            --secondary: #fbbf24;
+            --white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: var(--bg-light);
-            min-height: 100vh;
+            background: var(--bg-color);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            overflow: hidden; /* ซ่อนส่วนเกินของกราฟิก */
+            overflow: hidden;
+            perspective: 1000px;
         }
 
-        .graphic-container {
-            position: relative;
-            background: #ffffff;
-            border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
-            width: 100%;
-            padding: 40px;
-            text-align: center;
-            z-index: 1; /* ให้เนื้อหาอยู่ด้านบนกราฟิกพื้นหลัง */
-            overflow: hidden; /* ซ่อนภาพประกอบที่ล้นขอบการ์ด */
-        }
-
-        /* ภาพประกอบตกแต่งด้านบน */
-        .illustration-top {
+        /* พื้นหลังเคลื่อนไหว (Floating Shapes) */
+        .shape {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: url('https://i.imgur.com/rN5G2sT.png') no-repeat center bottom / cover; /* เปลี่ยน URL รูปภาพตรงนี้ */
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
-            z-index: 0;
-            opacity: 0.8;
-            filter: grayscale(20%) brightness(1.1); /* ปรับแต่งเล็กน้อย */
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.2;
+            animation: float-bg 20s infinite alternate;
         }
-        
-        /* เนื้อหาที่อยู่เหนือภาพประกอบ */
-        .content-wrapper {
-            position: relative; /* เพื่อให้เนื้อหาอยู่เหนือ illustration-top */
-            z-index: 2;
-            padding-top: 60px; /* เว้นที่ว่างให้ illustration-top */
+        .shape-1 { width: 400px; height: 400px; top: -100px; left: -100px; }
+        .shape-2 { width: 300px; height: 300px; bottom: -50px; right: -50px; animation-delay: -5s; }
+
+        @keyframes float-bg {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(50px, 100px) rotate(30deg); }
         }
 
-        .status-badge {
-            display: inline-block;
-            background: var(--secondary-yellow);
-            color: var(--text-dark);
-            padding: 6px 18px;
+        /* Card Container */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 50px 40px;
             border-radius: 30px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 25px;
-            letter-spacing: 0.5px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            border: 2px solid white;
+            animation: scale-up 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* กราฟิกไอคอนเคลื่อนไหว */
+        .main-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         h1 {
-            font-size: 28px;
-            color: var(--primary-blue);
-            font-weight: 600;
+            color: var(--primary);
+            font-size: 26px;
             margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        p.info-text {
-            color: var(--text-light);
-            line-height: 1.7;
-            font-size: 16px;
-            margin-bottom: 35px;
+        p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
-        .highlight { color: var(--primary-blue); font-weight: 500; }
+        .highlight {
+            color: var(--primary);
+            font-weight: 500;
+            background: #eef2ff;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
 
-        /* Countdown */
-        .countdown-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        /* Animated Countdown */
+        .timer-grid {
+            display: flex;
+            justify-content: center;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
-        .time-box {
-            background: var(--primary-blue);
+        .timer-box {
+            background: var(--primary);
             color: white;
-            padding: 15px 10px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+            padding: 15px;
+            border-radius: 20px;
+            min-width: 85px;
+            transition: transform 0.3s;
         }
+
+        .timer-box:hover { transform: scale(1.05); }
 
         .time-num {
             display: block;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 600;
+            font-family: sans-serif;
         }
 
         .time-label {
-            font-size: 12px;
-            opacity: 0.8;
-            margin-top: 2px;
+            font-size: 11px;
+            opacity: 0.9;
         }
 
         .footer-note {
             font-size: 14px;
-            color: var(--text-light);
-            margin-top: 15px;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
         }
 
-        .contact-btn {
-            display: inline-block;
+        /* ปุ่มติดต่อแบบ Pulsing */
+        .btn-contact {
             margin-top: 20px;
+            display: inline-block;
             padding: 10px 25px;
-            background: var(--primary-blue);
+            background: var(--primary);
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 500;
-            transition: background 0.3s ease;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+            animation: pulse 2s infinite;
         }
-        .contact-btn:hover {
-            background: #2563eb;
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(79, 70, 229, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
         }
-        
-        /* ภาพประกอบตกแต่งด้านล่าง */
-        .illustration-bottom {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background: url('https://i.imgur.com/vHqB3qH.png') no-repeat center center / contain; /* เปลี่ยน URL รูปภาพตรงนี้ */
-            z-index: 0;
-            transform: rotate(-10deg);
-            opacity: 0.6;
-        }
+
     </style>
 </head>
 <body>
 
-    <div class="graphic-container">
-        <div class="illustration-top"></div>
-        <div class="illustration-bottom"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
 
-        <div class="content-wrapper">
-            <span class="status-badge">ประกาศสำคัญ</span>
-            <h1>การยกระดับระบบสารสนเทศของโรงเรียน</h1>
-            
-            <p class="info-text">
-                เรียน คณะครู นักเรียน และผู้ปกครอง <br>
-                เนื่องด้วยการพัฒนาอย่างต่อเนื่อง ขณะนี้ระบบกำลังดำเนินการแก้ไข <span class="highlight">ข้อขัดข้องในฐานข้อมูล</span> 
-                พร้อมกับ <span class="highlight">เสริมสร้างระบบความปลอดภัยใหม่</span> เพื่อประสบการณ์ที่ดีที่สุด
-            </p>
+    <div class="card">
+        <div class="main-icon">🏫</div>
+        <h1>ขออภัย ระบบกำลังปิดปรับปรุง</h1>
+        
+        <p>
+            เนื่องจาก <span class="highlight">ระบบฐานข้อมูลขัดข้อง</span> ทีมงานกำลังเร่งแก้ไข <br>
+            พร้อม <span class="highlight">เพิ่มมาตรการความปลอดภัย</span> ให้ดียิ่งขึ้น <br>
+            เรากำลังเร่งดำเนินการ และจะกลับมาให้บริการอีกครั้งในเร็วๆ นี้ครับ
+        </p>
 
-            <div class="countdown-grid">
-                <div class="time-box">
-                    <span class="time-num" id="hours">00</span>
-                    <span class="time-label">ชั่วโมง</span>
-                </div>
-                <div class="time-box">
-                    <span class="time-num" id="minutes">00</span>
-                    <span class="time-label">นาที</span>
-                </div>
-                <div class="time-box">
-                    <span class="time-num" id="seconds">00</span>
-                    <span class="time-label">วินาที</span>
-                </div>
+        <div class="timer-grid">
+            <div class="timer-box">
+                <span class="time-num" id="h">00</span>
+                <span class="time-label">ชั่วโมง</span>
             </div>
-
-            <div class="footer-note">
-                คาดว่าจะกลับมาให้บริการได้ในเวลา <strong>22:00 น.</strong> ของวันนี้<br>
-                ขออภัยในความไม่สะดวกมา ณ โอกาสนี้
+            <div class="timer-box">
+                <span class="time-num" id="m">00</span>
+                <span class="time-label">นาที</span>
             </div>
-            <a href="mailto:contact@school.edu" class="contact-btn">ติดต่อสอบถามเพิ่มเติม</a>
+            <div class="timer-box">
+                <span class="time-num" id="s">00</span>
+                <span class="time-label">วินาที</span>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            คาดว่าจะกลับมาใช้งานได้ตามปกติในเวลา <strong>22:00 น.</strong> <br>
+            <a href="#" class="btn-contact">ติดต่อฝ่ายไอที</a>
         </div>
     </div>
 
     <script>
-        function initCountdown() {
+        function updateCountdown() {
             const target = new Date();
-            // The current time is Wednesday, February 4, 2026 at 11:55:55 AM +07.
-            // ตั้งเวลาเป้าหมายเป็น 22:00:00 ของวันที่ 4 กุมภาพันธ์ 2569
-            target.setFullYear(2026, 1, 4); // เดือนกุมภาพันธ์คือ index 1
             target.setHours(22, 0, 0, 0);
 
-            function update() {
-                const now = new Date();
-                let diff = target - now;
-
+            function refresh() {
+                const diff = target - new Date();
+                
                 if (diff <= 0) {
-                    document.querySelector('.countdown-grid').innerHTML = "<p style='grid-column: span 3; color: var(--primary-blue); font-weight: 500;'>ระบบกำลังจะเปิดให้บริการแล้วครับ/ค่ะ</p>";
+                    document.querySelector('.timer-grid').innerText = "ระบบกำลังจะกลับมาเร็วๆ นี้";
                     return;
                 }
 
@@ -213,15 +209,15 @@
                 const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+                document.getElementById('h').innerText = h.toString().padStart(2, '0');
+                document.getElementById('m').innerText = m.toString().padStart(2, '0');
+                document.getElementById('s').innerText = s.toString().padStart(2, '0');
             }
-
-            setInterval(update, 1000);
-            update();
+            
+            setInterval(refresh, 1000);
+            refresh();
         }
-        initCountdown();
+        updateCountdown();
     </script>
 </body>
 </html>
