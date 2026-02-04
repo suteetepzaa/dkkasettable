@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f4f7f6;
+            background-color: #ffffff;
             font-family: 'Kanit', sans-serif;
             color: #333;
         }
@@ -25,77 +25,86 @@
         }
 
         .icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-            animation: gear-spin 4s linear infinite;
+            font-size: 70px;
+            margin-bottom: 25px;
             display: inline-block;
-        }
-
-        @keyframes gear-spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 500;
         }
 
         p {
             font-size: 1.1rem;
-            color: #7f8c8d;
-            line-height: 1.6;
-        }
-
-        .status-badge {
-            display: inline-block;
-            background-color: #e67e22;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.7;
             margin-bottom: 20px;
         }
 
+        .time-box {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 25px 0;
+            border: 1px dashed #ddd;
+        }
+
         .contact-info {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
+            margin-top: 40px;
+            font-size: 0.95rem;
+            color: #888;
         }
 
         .button {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            background-color: #3498db;
+            margin-top: 10px;
+            padding: 12px 30px;
+            background-color: #000;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border-radius: 8px;
+            font-weight: 300;
+            transition: transform 0.2s, opacity 0.2s;
         }
 
         .button:hover {
-            background-color: #2980b9;
+            transform: translateY(-2px);
+            opacity: 0.8;
+        }
+
+        /* อนิเมชั่นขยับไอคอนเบาๆ */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .icon {
+            animation: float 3s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="icon">⚙️</div>
-        <div class="status-badge">Under Maintenance</div>
+        <div class="icon">🛠️</div>
         <h1>ขออภัยในความไม่สะดวก</h1>
-        <p>เรากำลังปรับปรุงประสิทธิภาพของเว็บไซต์เพื่อให้คุณใช้งานได้ดียิ่งขึ้น คาดว่าจะกลับมาเปิดให้บริการอีกครั้งในเร็วๆ นี้</p>
+        <p>ขณะนี้เรากำลังดำเนินการปรับปรุงระบบชั่วคราว <br>เพื่อเพิ่มประสิทธิภาพการใช้งานให้ดียิ่งขึ้น</p>
         
-        <p><strong>คาดว่าจะเสร็จสิ้น:</strong> 4 กุมภาพันธ์ 2569 เวลา 18:00 น.</p>
-
-        <div class="contact-info">
-            หากมีเรื่องด่วน สามารถติดต่อเราได้ที่ <br>
-            <strong>Email:</strong> support@yourdomain.com | <strong>Line:</strong> @yourbrand
+        <div class="time-box">
+            <strong>คาดว่าจะกลับมาเปิดใช้งาน:</strong> <br>
+            4 กุมภาพันธ์ 2569 | เวลา 18:00 น.
         </div>
 
+        <div class="contact-info">
+            สอบถามข้อมูลเพิ่มเติม <br>
+            <strong>Email:</strong> support@yourdomain.com
+        </div>
+
+        <br>
         <a href="javascript:location.reload()" class="button">รีเฟรชหน้าเว็บ</a>
     </div>
 
