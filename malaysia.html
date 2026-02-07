@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Mario Learning World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #5C94FC; /* สีท้องฟ้ามาริโอ้ */
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ส่วนหัวข้อ */
+        .header {
+            text-align: center;
+            padding: 50px;
+            text-shadow: 4px 4px #000;
+        }
+
+        /* กล่องเนื้อหา (สไตล์กล่องข้อความในเกม) */
+        .content-box {
+            background: #f8f8f8;
+            border: 6px solid #000;
+            color: #000;
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            position: relative;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+        }
+
+        /* ปุ่มทางเลือก (Question Block) */
+        .lesson-node {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background-color: #f8b800;
+            border: 4px solid #000;
+            margin: 20px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 80px;
+            font-size: 40px;
+            transition: transform 0.1s;
+        }
+
+        .lesson-node:hover {
+            transform: translateY(-10px);
+            background-color: #ffcc33;
+        }
+
+        /* พื้นดินด้านล่าง */
+        .ground {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(45deg, #704010 25%, #8c5a2b 25%, #8c5a2b 50%, #704010 50%, #704010 75%, #8c5a2b 75%, #8c5a2b 100%);
+            background-size: 40px 40px;
+            border-top: 5px solid #00a000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>MARIO LEARN!</h1>
+        <p style="font-size: 12px;">ตะลุยด่านความรู้ไปกับเรา</p>
+    </div>
+
+    <div style="text-align: center;">
+        <div class="lesson-node" title="บทเรียนที่ 1">?</div>
+        <div class="lesson-node" title="บทเรียนที่ 2">?</div>
+        <div class="lesson-node" title="บทเรียนที่ 3">?</div>
+    </div>
+
+    <div class="content-box">
+        <h2>LEVEL 1-1: พื้นฐานการเขียนโค้ด</h2>
+        <p>ยินดีต้อนรับ! ในด่านนี้คุณจะได้เรียนรู้วิธีการเก็บเหรียญ (Data) และการหลบศัตรู (Bugs)...</p>
+    </div>
+
+    <div class="ground"></div>
+
+</body>
+</html>
