@@ -3,353 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malaysia Music Quest: The Rhythm Realm</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+    <title>Malaysia Music Quest: Pixel Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Kanit:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Global Reset & Body */
+        :root {
+            --my-blue: #0033AA;   /* สีน้ำเงินธงมาเลเซีย */
+            --my-yellow: #FFCC00; /* สีเหลืองพระจันทร์เสี้ยว */
+            --my-red: #CC0000;    /* สีแดงแถบธง */
+            --pixel-border: 5px solid #000;
+        }
+
         body {
             margin: 0;
-            background-color: #5C94FC; /* Classic Mario Blue Sky */
-            font-family: 'Noto Sans Thai', sans-serif;
-            color: #333;
+            background-color: #5C94FC; /* ท้องฟ้ามาริโอ้ */
+            font-family: 'Kanit', sans-serif;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            image-rendering: pixelated; /* สำคัญมากสำหรับ Pixel Art */
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
+            image-rendering: pixelated;
         }
 
-        /* Variables for easy color changes */
-        :root {
-            --pixel-border: 4px solid #000;
-            --main-bg: #E0E0E0; /* Lighter background for content */
-            --highlight-color: #FFD700; /* Gold/Coin like */
-            --brick-red: #E75926;
-            --grass-green: #00A000;
-        }
-
-        /* --- Status Bar (Top) --- */
+        /* --- Status Bar --- */
         .status-bar {
             background-color: #000;
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             font-family: 'Press Start 2P', cursive;
             font-size: 10px;
-            border-bottom: var(--pixel-border);
-            text-shadow: 2px 2px #E75926; /* Little shadow for pop */
-            box-shadow: 0 4px 0px rgba(0,0,0,0.5); /* Subtle depth */
+            border-bottom: 4px solid var(--my-yellow);
         }
 
-        /* --- Header / Title Section --- */
-        .header-section {
+        /* --- Background Scenery (ตึกแฝด Petronas แบบ Pixel) --- */
+        .scenery {
+            position: absolute;
+            bottom: 80px;
+            width: 100%;
+            height: 300px;
+            z-index: 1;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .twin-towers {
+            width: 120px;
+            height: 400px;
+            background: repeating-linear-gradient(#AAA 0%, #AAA 5%, #888 5%, #888 10%);
+            border: 4px solid #444;
+            position: relative;
+        }
+        .twin-towers::after {
+            content: "";
+            position: absolute;
+            top: 100px; left: -20px; width: 160px; height: 10px;
+            background: #888; border: 4px solid #444;
+        }
+
+        /* --- Header --- */
+        .header {
             text-align: center;
-            padding: 40px 20px;
-            color: #fff;
-            text-shadow: 6px 6px 0px #000; /* Stronger shadow */
+            padding: 50px 20px;
             position: relative;
             z-index: 10;
         }
-        .header-section h1 {
+        .header h1 {
             font-family: 'Press Start 2P', cursive;
-            font-size: 32px;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            font-size: 28px;
+            color: #fff;
+            text-shadow: 5px 5px 0px var(--my-blue), 8px 8px 0px #000;
+            margin: 0;
         }
-        .header-section p {
-            font-size: 16px;
-            font-weight: 700;
-            margin-top: 0;
-            letter-spacing: 1px;
+        .malaysia-flag-line {
+            height: 10px;
+            background: linear-gradient(to bottom, var(--my-red) 50%, white 50%);
+            background-size: 100% 20px;
+            border: 3px solid #000;
+            width: 200px;
+            margin: 15px auto;
         }
 
-        /* --- World Map / Level Selection --- */
-        .world-map-container {
-            flex-grow: 1; /* Make it take available space */
+        /* --- Map & Levels --- */
+        .map-container {
             position: relative;
-            padding: 50px 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" fill="%235C94FC"/><path d="M0 40 L40 0 L80 40 L40 80 Z" fill="%234A7AD1"/><circle cx="20" cy="20" r="10" fill="%23FFFFFF"/><circle cx="60" cy="60" r="10" fill="%23FFFFFF"/></svg>'); /* Simple cloud pattern */
-            background-repeat: repeat;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align levels to top of container */
-            min-height: 400px; /* Ensure map has height */
+            max-width: 1000px;
+            margin: 0 auto;
+            height: 450px;
             z-index: 5;
         }
 
-        .map-path {
+        .level-block {
             position: absolute;
-            height: 8px;
-            background-color: #A0522D; /* Brown path */
-            border: 2px solid #5A2C10;
-            z-index: 1;
-        }
-
-        /* Specific path segments (adjust these for complex map layouts) */
-        .path-segment-1 { width: 150px; top: 180px; left: calc(50% - 300px); }
-        .path-segment-2 { width: 100px; top: 180px; left: calc(50% - 150px); transform: rotate(45deg); transform-origin: left center; }
-        .path-segment-3 { width: 200px; top: 120px; left: calc(50% - 0px); } /* Example */
-
-        .level-node {
-            position: absolute;
-            width: 100px; /* Size of the block */
-            height: 100px;
-            background-color: var(--highlight-color); /* Yellow Question Block */
+            width: 110px;
+            height: 110px;
+            background-color: var(--my-yellow);
             border: var(--pixel-border);
-            text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-            font-family: 'Press Start 2P', cursive;
-            color: #000;
-            z-index: 10; /* Above path */
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.5); /* For depth */
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
+            transition: 0.1s;
         }
-        .level-node:hover {
-            transform: translateY(-5px); /* Jumps up */
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.5);
-        }
-        .level-node .icon {
-            font-size: 3em; /* Larger emoji/icon */
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-        .level-node .label {
-            font-size: 0.7em;
-            line-height: 1.2;
-        }
+        .level-block:hover { transform: translateY(-8px); background-color: #fff; }
+        .level-block.blue { background-color: var(--my-blue); color: #fff; }
+        
+        .level-1 { top: 200px; left: 10%; }
+        .level-2 { top: 50px; left: 45%; }
+        .level-3 { top: 220px; right: 10%; }
 
-        /* Example positioning for levels */
-        .level-1 { top: 150px; left: calc(50% - 350px); background-color: #F8B800; } /* Yellow block */
-        .level-2 { top: 100px; left: calc(50% - 150px); background-color: #C0C0C0; } /* Silver/Grey block */
-        .level-3 { top: 180px; left: calc(50% + 50px); background-color: #8B4513; } /* Brown block */
+        .icon { font-size: 40px; margin-bottom: 5px; }
+        .label { font-family: 'Press Start 2P', cursive; font-size: 8px; text-align: center; }
 
-        /* --- Content Display Area (Hidden by default, appears on click) --- */
-        #music-info-popup {
-            display: none; /* Hidden by default */
+        /* --- Popup Content --- */
+        .popup {
+            display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 800px;
-            background-color: var(--main-bg);
-            border: var(--pixel-border);
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.8);
-            z-index: 100;
-            padding: 30px;
-            animation: fadeIn 0.3s ease-out;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 85%; max-width: 600px;
+            background: #eee; border: var(--pixel-border);
+            padding: 30px; z-index: 100;
+            box-shadow: 15px 15px 0px rgba(0,0,0,0.5);
+        }
+        .popup h2 { font-family: 'Press Start 2P', cursive; color: var(--my-red); font-size: 16px; }
+        .btn-close { position: absolute; top: 10px; right: 10px; cursor: pointer; font-weight: bold; }
+        .btn-play {
+            display: inline-block; padding: 10px 20px;
+            background: var(--my-blue); color: white;
+            border: 3px solid #000; font-family: 'Press Start 2P', cursive;
+            font-size: 10px; cursor: pointer; margin-top: 15px;
         }
 
-        #music-info-popup .close-btn {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            background-color: var(--brick-red);
-            color: white;
-            border: var(--pixel-border);
-            width: 40px;
-            height: 40px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 20px;
-            line-height: 32px;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
-        }
-        #music-info-popup .close-btn:hover {
-            background-color: #FF0000;
-        }
-
-        #music-info-popup h2 {
-            font-family: 'Press Start 2P', cursive;
-            color: var(--brick-red);
-            border-bottom: 3px dashed #000;
-            padding-bottom: 10px;
-            margin-top: 0;
-            font-size: 1.5em;
-        }
-        #music-info-popup p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        #music-info-popup .play-button {
-            display: inline-block;
-            background-color: var(--grass-green);
-            color: #fff;
-            padding: 12px 25px;
-            border: var(--pixel-border);
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.9em;
-            cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.5);
-        }
-        #music-info-popup .play-button:hover {
-            background-color: #00CC00;
-        }
-
-        /* --- Ground (Bottom) --- */
-        .ground-section {
-            width: 100%;
-            height: 80px; /* Thicker ground */
-            background: linear-gradient(45deg, #704010 25%, #8c5a2b 25%, #8c5a2b 50%, #704010 50%, #704010 75%, #8c5a2b 75%, #8c5a2b 100%);
-            background-size: 40px 40px; /* Pixelated ground texture */
-            border-top: 6px solid var(--grass-green);
-            position: relative;
+        /* --- Ground --- */
+        .ground {
+            position: fixed;
+            bottom: 0; width: 100%; height: 80px;
+            background: #8c5a2b; border-top: 6px solid #00a000;
             z-index: 10;
         }
-        .mario-sprite {
-            position: absolute;
-            bottom: 20px;
-            left: 50%; /* Start in middle */
-            transform: translateX(-50%) scaleX(1); /* Ensure it faces right */
-            width: 60px; /* Size for pixel art sprite */
-            height: 60px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect x="0" y="0" width="16" height="16" fill="transparent"/><path d="M7 0h2v2H7zM6 1h1v1h1v1h1v1h1v1h1v2h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1V1h1zM5 4h1v1h1v1h1v1h1v1h1v1h1v1h1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1V4h1zM4 6h1v1h1v1h1v1h1v1h1v1h1v1h1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1V6h1zM3 8h1v1h1v1h1v1h1v1h1v-1h-1v-1h-1v-1h-1v-1h-1V8h1zM2 10h1v1h1v1h1v1h-1v-1h-1v-1h-1V10h1zM1 12h1v1h1v1h-1v-1h-1V12h1z" fill="%23FF0000"/><path d="M7 2h1v1h1v1h1v1h-1v-1h-1v-1h-1V2h1zM6 4h1v1h1v1h1v1h-1v-1h-1v-1h-1V4h1zM5 6h1v1h1v1h1v1h-1v-1h-1v-1h-1V6h1zM4 8h1v1h1v1h1v1h-1v-1h-1v-1h-1V8h1zM3 10h1v1h1v1h-1v-1h-1V10h1zM2 12h1v1h-1V12h1zM1 14h1v1h-1V14h1z" fill="%230000FF"/></svg>'); /* Simple Mario-like sprite */
-            background-size: contain;
-            background-repeat: no-repeat;
-            animation: marioWalk 4s steps(2) infinite alternate; /* Adjust steps for sprite sheet */
-            /* If you have a full sprite sheet, you'd use background-position-x */
+        .mario {
+            position: absolute; top: -50px; left: 50px;
+            font-size: 40px; animation: move 10s infinite alternate linear;
         }
-
-        @keyframes marioWalk {
-            0% { transform: translateX(-50%) scaleX(1); } /* Facing right */
-            50% { transform: translateX(50%) scaleX(-1); } /* Facing left */
-            100% { transform: translateX(-50%) scaleX(1); }
-        }
-
-        /* --- Keyframe Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        /* --- Responsive Design (Basic) --- */
-        @media (max-width: 768px) {
-            .header-section h1 { font-size: 24px; }
-            .header-section p { font-size: 14px; }
-            .level-node { width: 80px; height: 80px; font-size: 0.6em; }
-            .level-node .icon { font-size: 2.5em; }
-            .level-1 { top: 120px; left: calc(50% - 150px); }
-            .level-2 { top: 80px; left: calc(50% + 50px); }
-            .level-3 { top: 200px; left: calc(50% - 50px); }
-            .path-segment-1, .path-segment-2, .path-segment-3 { display: none; /* Hide paths for simplicity on small screens */ }
+        @keyframes move {
+            from { left: 50px; transform: scaleX(1); }
+            to { left: calc(100% - 100px); transform: scaleX(-1); }
         }
     </style>
 </head>
 <body>
 
     <div class="status-bar">
-        <span>QUEST: MALAYSIA</span>
-        <span>LEVEL: 01-01</span>
-        <span>COINS: 000</span>
+        <span>PLAYER: YOU</span>
+        <span>WORLD: MALAYSIA 🇲🇾</span>
+        <span>MUSIC: ON</span>
     </div>
 
-    <div class="header-section">
-        <h1>MALAYSIA MUSIC QUEST</h1>
-        <p>ออกสำรวจอาณาจักรแห่งเสียงดนตรี</p>
+    <div class="header">
+        <h1>MALAYSIA MUSIC</h1>
+        <div class="malaysia-flag-line"></div>
+        <p style="color: white; font-weight: bold;">สำรวจมนต์เสน่ห์แห่งเสียงดนตรีมลายู</p>
     </div>
 
-    <div class="world-map-container">
-        <div class="map-path path-segment-1"></div>
-        <div class="map-path path-segment-2"></div>
-        <div class="map-path path-segment-3"></div>
-
-        <div class="level-node level-1" data-level="kompang">
-            <span class="icon">🥁</span>
-            <span class="label">Kompang</span>
-        </div>
-        <div class="level-node level-2" data-level="sape">
-            <span class="icon">🎸</span>
-            <span class="label">Sape</span>
-        </div>
-        <div class="level-node level-3" data-level="gamelan">
-            <span class="icon">🎶</span>
-            <span class="label">Gamelan</span>
-        </div>
-        </div>
-
-    <div id="music-info-popup">
-        <div class="close-btn">X</div>
-        <h2 id="popup-title"></h2>
-        <p id="popup-description"></p>
-        <button class="play-button" id="popup-play-btn">PLAY SOUND</button>
-        <audio id="popup-audio" src="" preload="auto"></audio>
+    <div class="scenery">
+        <div class="twin-towers"></div>
+        <div style="font-size: 100px; filter: grayscale(1);">⛰️</div> <div class="twin-towers"></div>
     </div>
 
-    <div class="ground-section">
-        <div class="mario-sprite"></div>
+    <div class="map-container">
+        <div class="level-block" onclick="showInfo('Kompang', 'กลองมือที่มีอิทธิพลจากอิสลาม นิยมเล่นในงานแต่งงานและขบวนแห่สร้างจังหวะที่สนุกสนาน')">
+            <span class="icon">🐯</span>
+            <span class="label">KOMPANG</span>
+        </div>
+
+        <div class="level-block blue level-2" onclick="showInfo('Sape', 'เครื่องดนตรีประเภทดีดจากรัฐซาราวัก ทำจากไม้แกะสลัก เสียงนุ่มนวลเหมือนเสียงสวรรค์')">
+            <span class="icon">🌙</span>
+            <span class="label">SAPE</span>
+        </div>
+
+        <div class="level-block level-3" onclick="showInfo('Gamelan', 'ชุดเครื่องดนตรีประเภทเคาะที่ใช้ในพระราชพิธีสำคัญ มีเสียงดังกังวานและสง่างาม')">
+            <span class="icon">🌺</span>
+            <span class="label">GAMELAN</span>
+        </div>
+    </div>
+
+    <div id="infoPopup" class="popup">
+        <span class="btn-close" onclick="closePopup()">[ X ]</span>
+        <h2 id="title">Music Name</h2>
+        <p id="desc">Description here...</p>
+        <div class="btn-play">▶ PLAY SOUND</div>
+    </div>
+
+    <div class="ground">
+        <div class="mario">🇲🇾🏃‍♂️</div>
     </div>
 
     <script>
-        const levelNodes = document.querySelectorAll('.level-node');
-        const popup = document.getElementById('music-info-popup');
-        const closeBtn = document.querySelector('.close-btn');
-        const popupTitle = document.getElementById('popup-title');
-        const popupDescription = document.getElementById('popup-description');
-        const popupPlayBtn = document.getElementById('popup-play-btn');
-        const popupAudio = document.getElementById('popup-audio');
-
-        // Sample data for each level
-        const musicData = {
-            kompang: {
-                title: 'Kompang: กลองแห่งการเฉลิมฉลอง',
-                description: 'Kompang เป็นเครื่องดนตรีประเภทกลองมือที่นิยมที่สุดในมาเลเซีย มักใช้ในงานแต่งงาน เทศกาล และการต้อนรับแขกสำคัญ เสียงที่หนักแน่นและจังหวะที่เร้าใจทำให้เป็นหัวใจของดนตรีพื้นเมืองมลายู',
-                audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' // Replace with actual Kompang sound
-            },
-            sape: {
-                title: 'Sape: เสียงสะท้อนจากป่าบอร์เนียว',
-                description: 'Sape คือเครื่องดนตรีประเภทดีดคล้ายลูท มีสายและทำจากไม้แกะสลักอย่างสวยงาม เป็นของชนพื้นเมือง Kayan และ Kenyah ในรัฐซาราวัก เสียงของมันไพเราะและชวนฝัน เหมือนเสียงธรรมชาติในป่าฝน',
-                audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' // Replace with actual Sape sound
-            },
-            gamelan: {
-                title: 'Gamelan Melayu: วงดนตรีในราชสำนัก',
-                description: 'Gamelan ในมาเลเซียมีความแตกต่างจากของอินโดนีเซียเล็กน้อย โดยเฉพาะ Gamelan Melayu ที่เคยเป็นดนตรีในราชสำนักของรัฐตรังกานู ประกอบด้วยเครื่องตีโลหะหลายชนิด ให้เสียงที่สง่างามและมีมนต์ขลัง ใช้ในพิธีสำคัญและงานเฉลิมฉลองของชนชั้นสูง',
-                audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' // Replace with actual Gamelan sound
-            }
-        };
-
-        levelNodes.forEach(node => {
-            node.addEventListener('click', () => {
-                const levelId = node.dataset.level;
-                const data = musicData[levelId];
-                if (data) {
-                    popupTitle.textContent = data.title;
-                    popupDescription.textContent = data.description;
-                    popupAudio.src = data.audio;
-                    popup.style.display = 'block';
-                    popupAudio.pause(); // Reset audio on open
-                    popupAudio.currentTime = 0;
-                }
-            });
-        });
-
-        closeBtn.addEventListener('click', () => {
-            popup.style.display = 'none';
-            popupAudio.pause(); // Stop audio when closing
-            popupAudio.currentTime = 0;
-        });
-
-        popupPlayBtn.addEventListener('click', () => {
-            if (popupAudio.paused) {
-                popupAudio.play();
-                popupPlayBtn.textContent = 'PAUSE SOUND';
-            } else {
-                popupAudio.pause();
-                popupPlayBtn.textContent = 'PLAY SOUND';
-            }
-        });
-
-        popupAudio.addEventListener('ended', () => {
-            popupPlayBtn.textContent = 'PLAY SOUND'; // Reset button after playing
-        });
+        function showInfo(title, desc) {
+            document.getElementById('title').innerText = title;
+            document.getElementById('desc').innerText = desc;
+            document.getElementById('infoPopup').style.display = 'block';
+        }
+        function closePopup() {
+            document.getElementById('infoPopup').style.display = 'none';
+        }
     </script>
 </body>
 </html>
