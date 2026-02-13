@@ -30,7 +30,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 700px;
+            max-width: 800px; /* ขยายความกว้างเพื่อรองรับคอลัมน์ที่เพิ่มขึ้น */
         }
 
         .header-info {
@@ -88,7 +88,7 @@
             padding-left: 10px;
         }
 
-        /* ตารางสถานะ */
+        /* ตารางสถานะการสอบ */
         .status-table {
             width: 100%;
             border-collapse: collapse;
@@ -118,8 +118,9 @@
 
         .badge-success { background: #dcfce7; color: #15803d; }
         .badge-warning { background: #fff7ed; color: #9a3412; }
+        .channel-tag { color: #1e40af; font-weight: 600; font-size: 13px; }
 
-        /* ตารางคะแนน (จากรูป) */
+        /* ตารางคะแนนรายบท */
         .score-box {
             border: 1px solid #e2e8f0;
             border-radius: 12px;
@@ -163,6 +164,7 @@
                     <th>รายการสอบ</th>
                     <th>วันที่เข้าสอบ</th>
                     <th>การเข้าสอบ</th>
+                    <th>ช่องทางประกาศ</th>
                     <th>สถานะคะแนน</th>
                 </tr>
             </thead>
@@ -195,16 +197,16 @@
     const db = {
         "6720600494": {
             profile: {
-                name: "นายเมธี ใจสุขดี",
+                name: "สมชาย ใจดีมาก",
                 id: "6720600494",
-                year: "2",
-                faculty: "ศึกษาศาสตร์และพัฒนศาสตร์",
-                email: "methi.j@ku.th"
+                year: "1",
+                faculty: "วิศวกรรมศาสตร์",
+                email: "somchai.j@university.ac.th"
             },
             examStatus: [
-                { name: "สอบกลางภาค", date: "12 ม.ค. 2569", attend: "เข้าสอบ", status: "ประกาศคะแนนแล้ว", type: "success" },
-                { name: "สอบย่อยครั้งที่ 2", date: "13 ก.พ. 2569", attend: "เข้าสอบ", status: "ประกาศคะแนนแล้ว", type: "success" },
-                { name: "สอบไล่", date: "17 มี.ค. 2569", attend: "รอดำเนินการ", status: "รอดำเนินการ", type: "warning" }
+                { name: "สอบกลางภาค", date: "22 ธ.ค. 2568", attend: "เข้าสอบ", channel: "Google Classroom", status: "ประกาศคะแนนแล้ว", type: "success" },
+                { name: "สอบย่อยครั้งที่ 2", date: "13 ก.พ. 2569", attend: "เข้าสอบ", channel: "Website", status: "ประกาศคะแนนแล้ว", type: "success" },
+                { name: "สอบไล่", date: "รอกำหนดการ", attend: "รอดำเนินการ", channel: "Google Classroom", status: "รอดำเนินการ", type: "warning" }
             ],
             quiz2: { ch4: {max:15, get:2}, ch5: {max:15, get:9}, ch6: {max:15, get:9} }
         }
@@ -218,7 +220,7 @@
         if (data) {
             res.style.display = 'block';
             
-            // ข้อมูลส่วนตัว
+            // แสดงโปรไฟล์
             document.getElementById('profile').innerHTML = `
                 <div><small>ชื่อ-นามสกุล:</small><br><strong>${data.profile.name}</strong></div>
                 <div><small>รหัสนิสิต:</small><br><strong>${data.profile.id}</strong></div>
@@ -226,7 +228,7 @@
                 <div><small>ชั้นปี:</small><br><strong>ปีที่ ${data.profile.year}</strong></div>
             `;
 
-            // ตารางสถานะ + วันที่
+            // แสดงสถานะการสอบ (เพิ่มช่องทางการประกาศ)
             let statusHtml = '';
             data.examStatus.forEach(item => {
                 const badge = item.type === 'success' ? 'badge-success' : 'badge-warning';
@@ -235,13 +237,14 @@
                         <td><strong>${item.name}</strong></td>
                         <td>${item.date}</td>
                         <td>${item.attend}</td>
+                        <td class="channel-tag">${item.channel}</td>
                         <td><span class="badge ${badge}">${item.status}</span></td>
                     </tr>
                 `;
             });
             document.getElementById('statusBody').innerHTML = statusHtml;
 
-            // ตารางคะแนน
+            // แสดงตารางคะแนนจากภาพ
             document.getElementById('scoreBody').innerHTML = `
                 <tr>
                     <td style="background:#f1f5f9; font-weight:bold">คะแนน</td>
