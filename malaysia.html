@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบค้นหาข้อมูลและคะแนนนิสิต</title>
+    <title>ระบบตรวจสอบข้อมูลและสถานะการสอบ</title>
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
-            --secondary: #64748b;
             --success: #10b981;
-            --bg: #f1f5f9;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-main: #1e293b;
         }
 
         body {
@@ -26,14 +27,12 @@
 
         .container {
             background: rgba(255, 255, 255, 0.98);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 24px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
         }
-
-        h2 { text-align: center; color: #1e293b; margin-bottom: 1.5rem; }
 
         .search-group {
             display: flex;
@@ -48,10 +47,7 @@
             border-radius: 12px;
             font-size: 16px;
             outline: none;
-            transition: 0.3s;
         }
-
-        input:focus { border-color: var(--primary); }
 
         button {
             padding: 14px 25px;
@@ -64,75 +60,114 @@
             transition: 0.3s;
         }
 
-        button:hover { background: #1d4ed8; transform: translateY(-1px); }
+        button:hover { background: #1d4ed8; }
 
-        #result { display: none; animation: slideUp 0.4s ease-out; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .section-title {
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 1.5rem 0 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .profile-section {
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            border-left: 5px solid var(--primary);
-        }
-
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .label { color: #64748b; font-size: 14px; }
-        .value { color: #1e293b; font-weight: 600; }
-
-        /* ตารางคะแนน */
-        .score-table {
+        /* ตารางสถานะการสอบ */
+        .status-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-
-        .score-table th {
-            background: #1e293b;
-            color: white;
-            padding: 12px;
-            font-weight: 400;
+            margin-bottom: 2rem;
             font-size: 14px;
         }
 
-        .score-table td {
+        .status-table th {
+            background: #f8fafc;
+            color: #64748b;
+            text-align: left;
             padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #e2e8f0;
-            background: white;
+            border-bottom: 2px solid #e2e8f0;
         }
 
-        .sub-header { background: #f1f5f9 !important; color: #475569 !important; font-weight: 600 !important; }
-        .date-tag { font-size: 12px; color: #64748b; text-align: center; margin-bottom: 8px; }
-        
-        .error { color: #ef4444; text-align: center; padding: 1rem; }
+        .status-table td {
+            padding: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-success { background: #dcfce7; color: #15803d; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+
+        /* ตารางคะแนน (จากรูปภาพ) */
+        .score-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .score-table th { background: #1e293b; color: white; padding: 10px; font-size: 13px; border: 1px solid #334155; }
+        .score-table td { padding: 12px; text-align: center; border: 1px solid #e2e8f0; }
+        .bg-gray { background: #f1f5f9; font-weight: 600; }
+
+        #result { display: none; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>🔍 ระบบตรวจสอบคะแนน</h2>
+    <h2 style="text-align:center; margin-top:0;">🎓 ตรวจสอบข้อมูลนิสิต</h2>
     
     <div class="search-group">
-        <input type="text" id="studentID" placeholder="กรอกรหัสนิสิต เช่น 6720600494">
+        <input type="text" id="studentID" placeholder="กรอกรหัสนิสิต (เช่น 6720600494)">
         <button onclick="search()">ค้นหา</button>
     </div>
 
     <div id="result">
+        <div id="profileDisplay" style="background:#f8fafc; padding:20px; border-radius:16px; margin-bottom:20px;"></div>
+
+        <div class="section-title">📊 สถานะการดำเนินการสอบ</div>
+        <table class="status-table">
+            <thead>
+                <tr>
+                    <th>รายการสอบ</th>
+                    <th>การเข้าสอบ</th>
+                    <th>สถานะคะแนน</th>
+                </tr>
+            </thead>
+            <tbody id="statusBody"></tbody>
+        </table>
+
+        <div class="section-title">📝 รายละเอียดคะแนน: สอบย่อยครั้งที่ 2</div>
+        <div class="score-card">
+            <table class="score-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" style="background:#475569">13 ก.พ. 2569</th>
+                        <th colspan="2">บทที่ 4</th>
+                        <th colspan="2">บทที่ 5</th>
+                        <th colspan="2">บทที่ 6</th>
+                    </tr>
+                    <tr>
+                        <th style="background:#64748b">เต็ม</th><th style="background:#64748b">ได้</th>
+                        <th style="background:#64748b">เต็ม</th><th style="background:#64748b">ได้</th>
+                        <th style="background:#64748b">เต็ม</th><th style="background:#64748b">ได้</th>
+                    </tr>
+                </thead>
+                <tbody id="scoreBody"></tbody>
+            </table>
         </div>
+    </div>
 </div>
 
 <script>
@@ -145,15 +180,12 @@
                 faculty: "วิศวกรรมศาสตร์",
                 email: "somchai.j@university.ac.th"
             },
-            exams: {
-                title: "สอบย่อยครั้งที่ 2",
-                date: "13 กุมภาพันธ์ 2569",
-                scores: [
-                    { chapter: "บทที่ 4", max: 15, earned: 2 },
-                    { chapter: "บทที่ 5", max: 15, earned: 9 },
-                    { chapter: "บทที่ 6", max: 15, earned: 9 }
-                ]
-            }
+            examStatus: [
+                { name: "สอบกลางภาค", attend: "เข้าสอบ", status: "ประกาศคะแนนแล้ว", type: "success" },
+                { name: "สอบย่อยครั้งที่ 2", attend: "เข้าสอบ", status: "ประกาศคะแนนแล้ว", type: "success" },
+                { name: "สอบไล่", attend: "รอดำเนินการ", status: "รอดำเนินการ", type: "warning" }
+            ],
+            quiz2: { ch4: {max:15, get:2}, ch5: {max:15, get:9}, ch6: {max:15, get:9} }
         }
     };
 
@@ -164,45 +196,43 @@
 
         if (data) {
             res.style.display = 'block';
-            res.innerHTML = `
-                <div class="profile-section">
-                    <div class="profile-grid">
-                        <div><div class="label">ชื่อ-นามสกุล</div><div class="value">${data.profile.name}</div></div>
-                        <div><div class="label">รหัสนิสิต</div><div class="value">${data.profile.id}</div></div>
-                        <div><div class="label">ชั้นปี</div><div class="value">ปีที่ ${data.profile.year}</div></div>
-                        <div><div class="label">คณะ</div><div class="value">${data.profile.faculty}</div></div>
-                    </div>
-                    <div style="margin-top:10px">
-                        <div class="label">อีเมล</div><div class="value">${data.profile.email}</div>
-                    </div>
+            
+            // 1. แสดงโปรไฟล์
+            document.getElementById('profileDisplay').innerHTML = `
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                    <div><small style="color:#64748b">ชื่อ-นามสกุล</small><br><strong>${data.profile.name}</strong></div>
+                    <div><small style="color:#64748b">รหัสนิสิต</small><br><strong>${data.profile.id}</strong></div>
+                    <div><small style="color:#64748b">ชั้นปี</small><br><strong>ปีที่ ${data.profile.year}</strong></div>
+                    <div><small style="color:#64748b">คณะ</small><br><strong>${data.profile.faculty}</strong></div>
                 </div>
+            `;
 
-                <div class="date-tag">📌 ${data.exams.title} (${data.exams.date})</div>
-                <table class="score-table">
-                    <thead>
-                        <tr>
-                            <th colspan="2">บทที่ 4</th>
-                            <th colspan="2">บทที่ 5</th>
-                            <th colspan="2">บทที่ 6</th>
-                        </tr>
-                        <tr>
-                            <th class="sub-header">เต็ม</th><th class="sub-header">ได้</th>
-                            <th class="sub-header">เต็ม</th><th class="sub-header">ได้</th>
-                            <th class="sub-header">เต็ม</th><th class="sub-header">ได้</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>${data.exams.scores[0].max}</td><td style="color:red; font-weight:bold">${data.exams.scores[0].earned}</td>
-                            <td>${data.exams.scores[1].max}</td><td>${data.exams.scores[1].earned}</td>
-                            <td>${data.exams.scores[2].max}</td><td>${data.exams.scores[2].earned}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            // 2. แสดงสถานะการสอบ
+            let statusHtml = '';
+            data.examStatus.forEach(item => {
+                const badgeClass = item.type === 'success' ? 'badge-success' : 'badge-warning';
+                statusHtml += `
+                    <tr>
+                        <td><strong>${item.name}</strong></td>
+                        <td>${item.attend}</td>
+                        <td><span class="badge ${badgeClass}">${item.status}</span></td>
+                    </tr>
+                `;
+            });
+            document.getElementById('statusBody').innerHTML = statusHtml;
+
+            // 3. แสดงตารางคะแนนจากรูปภาพ
+            document.getElementById('scoreBody').innerHTML = `
+                <tr>
+                    <td class="bg-gray">คะแนน</td>
+                    <td>${data.quiz2.ch4.max}</td><td style="color:red; font-weight:bold">${data.quiz2.ch4.get}</td>
+                    <td>${data.quiz2.ch5.max}</td><td>${data.quiz2.ch5.get}</td>
+                    <td>${data.quiz2.ch6.max}</td><td>${data.quiz2.ch6.get}</td>
+                </tr>
             `;
         } else {
-            res.style.display = 'block';
-            res.innerHTML = `<div class="error">❌ ไม่พบข้อมูลรหัสประจำตัวนิสิตนี้</div>`;
+            alert("ไม่พบข้อมูลรหัสนิสิตนี้");
+            res.style.display = 'none';
         }
     }
 </script>
