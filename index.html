@@ -80,12 +80,42 @@
             </div>
         </div>
 
-        <div class="schedule-box p-4 mb-8 border-4 border-black shadow-[6px_6px_0px_#000]">
+        <div class="schedule-box p-4 mb-4 border-4 border-black shadow-[6px_6px_0px_#000]">
             <div class="flex flex-col md:flex-row md:items-center gap-3">
                 <div class="bg-green-700 text-white px-4 py-1.5 text-sm font-black uppercase tracking-wider self-start">กำหนดการสอบกลางภาค ภาคปลาย 2568</div>
                 <p class="text-sm font-bold text-gray-800">บางเขน / กำแพงแสน / ศรีราชา / เฉลิมพระเกียรติ จังหวัดสกลนคร</p>
             </div>
             <p class="mt-2 text-xl font-black text-green-800">วันเสาร์ที่ 10 - วันอาทิตย์ที่ 18 มกราคม 2569</p>
+        </div>
+
+        <div class="border-4 border-black p-4 mb-8 bg-blue-600 text-white shadow-[6px_6px_0px_#000] flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="bg-white text-blue-600 p-2 font-black text-2xl border-2 border-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                    <p class="font-black text-[10px] uppercase tracking-[0.2em] text-blue-200 leading-none mb-1">Countdown to Grade Release</p>
+                    <p class="text-xl md:text-2xl font-[900] uppercase leading-none">วันประกาศผลการเรียน: 7 เมษายน 2569</p>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <div class="bg-black px-4 py-2 text-center min-w-[70px] border-2 border-white">
+                    <p id="days" class="text-2xl font-black leading-none">00</p>
+                    <p class="text-[9px] uppercase font-bold text-blue-400">Days</p>
+                </div>
+                <div class="bg-black px-4 py-2 text-center min-w-[70px] border-2 border-white">
+                    <p id="hours" class="text-2xl font-black leading-none">00</p>
+                    <p class="text-[9px] uppercase font-bold text-blue-400">Hrs</p>
+                </div>
+                <div class="bg-black px-4 py-2 text-center min-w-[70px] border-2 border-white">
+                    <p id="minutes" class="text-2xl font-black leading-none">00</p>
+                    <p class="text-[9px] uppercase font-bold text-blue-400">Min</p>
+                </div>
+                <div class="bg-black px-4 py-2 text-center min-w-[70px] border-2 border-white">
+                    <p id="seconds" class="text-2xl font-black leading-none text-yellow-400">00</p>
+                    <p class="text-[9px] uppercase font-bold text-blue-400">Sec</p>
+                </div>
+            </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 border-4 border-black mb-8 bg-white shadow-[10px_10px_0px_rgba(0,0,0,1)]">
@@ -153,7 +183,6 @@
 </div>
 
 <script>
-    // สคริปต์ตัวนับผู้เข้าชม (ย้ายมาไว้ข้างปุ่มค้นหา)
     function initCounter() {
         let visits = localStorage.getItem('visitCount');
         if (!visits) {
@@ -163,6 +192,32 @@
         }
         localStorage.setItem('visitCount', visits);
         document.getElementById('totalCount').innerText = visits.toLocaleString();
+    }
+
+    // ฟังก์ชันนับถอยหลังวันเกรดออก
+    function initGradeCountdown() {
+        const targetDate = new Date("April 7, 2026 00:00:00").getTime();
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }, 1000);
     }
 
     const db = {
@@ -309,6 +364,9 @@
             renderTable('offCampusTableBody', student.offCampus);
             document.getElementById('offCampusContainer').classList.add('hidden');
             document.getElementById('btnOffCampus').innerText = "วิชานอกตารางวิทยาเขต";
+            
+            // เริ่มนับถอยหลังเมื่อแสดงผลการค้นหา
+            initGradeCountdown();
         } else {
             document.getElementById('errorMsg').classList.remove('hidden');
         }
@@ -348,16 +406,8 @@
         }
     }
 
-    // ฟังก์ชันเริ่มตัวนับ (จำลองเก็บใน LocalStorage)
     window.onload = function() {
-        let visits = localStorage.getItem('visitCount');
-        if (!visits) {
-            visits = 1248; 
-        } else {
-            visits = parseInt(visits) + 1;
-        }
-        localStorage.setItem('visitCount', visits);
-        document.getElementById('totalCount').innerText = visits.toLocaleString();
+        initCounter();
     };
 </script>
 
