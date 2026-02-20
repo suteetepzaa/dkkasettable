@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>exam Service System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { border-radius: 0 !important; font-family: 'Mitr', sans-serif; font-style: normal !important; }
+        * { border-radius: 0 !important; font-family: 'Kodchasan', sans-serif; font-style: normal !important; }
         body { background-color: #f8fafc; color: #1e293b; -webkit-font-smoothing: antialiased; }
         
         /* Input & Buttons */
-        .input-sharp { border: 2px solid #0f172a; padding: 0.75rem 1rem; font-size: 1.1rem; font-weight: 500; width: 100%; background-color: #fff; }
+        .input-sharp { border: 2px solid #0f172a; padding: 0.75rem 1rem; font-size: 1.1rem; font-weight: 600; width: 100%; background-color: #fff; }
         .input-locked { background-color: #f1f5f9; color: #64748b; border: 2px solid #0f172a; cursor: not-allowed; }
 
-        .btn-gov { background-color: #1e3a8a; color: #fff; padding: 1rem 2rem; font-weight: 600; font-size: 1.1rem; transition: 0.2s; cursor: pointer; border: 2px solid #0f172a; }
+        .btn-gov { background-color: #1e3a8a; color: #fff; padding: 1rem 2rem; font-weight: 700; font-size: 1.1rem; transition: 0.2s; cursor: pointer; border: 2px solid #0f172a; }
         .btn-gov:hover { background-color: #1d4ed8; transform: translateY(-2px); }
 
-        .btn-myku { background-color: #2563eb; color: #fff; border: 2px solid #0f172a; font-weight: 700; transition: 0.2s; }
-        .btn-summer { background-color: #fbbf24; color: #000; border: 2px solid #0f172a; font-weight: 700; transition: 0.2s; box-shadow: 4px 4px 0px #0f172a; }
+        .btn-myku { background-color: #2563eb; color: #fff; border: 2px solid #0f172a; font-weight: 800; transition: 0.2s; }
+        .btn-summer { background-color: #fbbf24; color: #000; border: 2px solid #0f172a; font-weight: 800; transition: 0.2s; box-shadow: 4px 4px 0px #0f172a; }
 
-        .btn-off-campus { background-color: #f97316; color: #fff; border: 2px solid #0f172a; box-shadow: 4px 4px 0px #0f172a; font-weight: 700; }
+        .btn-off-campus { background-color: #f97316; color: #fff; border: 2px solid #0f172a; box-shadow: 4px 4px 0px #0f172a; font-weight: 800; }
 
         /* Tables */
-        .exam-table th { background-color: #1e3a8a; color: #fff; padding: 0.85rem; text-align: left; font-size: 0.85rem; font-weight: 600; border: 1px solid #0f172a; text-transform: uppercase; }
+        .exam-table th { background-color: #1e3a8a; color: #fff; padding: 0.85rem; text-align: left; font-size: 0.85rem; font-weight: 700; border: 1px solid #0f172a; text-transform: uppercase; }
         .exam-table td { border: 1px solid #0f172a; padding: 0.75rem 1rem; vertical-align: middle; }
 
         /* Grade Card Custom */
@@ -31,7 +31,7 @@
         .timer-box { background: #ffffff; color: #1e3a8a; border: 2px solid #0f172a; padding: 10px; min-width: 70px; }
 
         /* Strip Styles */
-        .info-strip { border: 3px solid #0f172a; padding: 1rem; margin-bottom: 1rem; font-weight: 600; display: flex; align-items: center; box-shadow: 4px 4px 0px #0f172a; }
+        .info-strip { border: 3px solid #0f172a; padding: 1rem; margin-bottom: 1rem; font-weight: 800; display: flex; align-items: center; box-shadow: 4px 4px 0px #0f172a; }
         .strip-red { background-color: #fee2e2; color: #991b1b; border-color: #991b1b; } 
         .strip-green { background-color: #dcfce7; color: #166534; border-color: #166534; }
 
@@ -52,7 +52,7 @@
     <header class="border-b-8 border-blue-900 pb-6 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
             <div class="bg-blue-900 text-white px-3 py-0.5 text-[10px] font-bold tracking-[0.2em] inline-block mb-3 uppercase text-center">ชมรมผู้สูงอายุ TikTokKPS</div>
-            <h1 class="text-4xl md:text-5xl font-semibold tracking-tighter leading-none uppercase text-blue-900">
+            <h1 class="text-4xl md:text-6xl font-[900] tracking-tighter leading-none uppercase text-blue-900">
                 ค้นหา<span class="text-blue-500">ตารางสอบ</span>
             </h1>
         </div>
@@ -77,10 +77,6 @@
                     <label class="block font-bold text-xs uppercase tracking-widest mb-2 text-gray-400">ประเภทการสอบ</label>
                     <input type="text" class="input-sharp input-locked font-bold text-center" value="ปลายภาค" readonly>
                 </div>
-                <div class="md:col-span-2">
-                    <label class="block font-bold text-xs uppercase tracking-widest mb-2 text-gray-400">ชั้น-ปี</label>
-                    <input type="text" class="input-sharp input-locked font-bold text-center" value="F39-2" readonly>
-                </div>
             </div>
             <button onclick="handleSearch()" class="btn-gov w-full mt-8 uppercase tracking-widest font-bold">ค้นหาตารางสอบของคุณ →</button>
             <div class="mt-10 pt-6 border-t-2 border-slate-100 flex justify-center">
@@ -97,20 +93,20 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div class="info-strip strip-red">
-                <span class="bg-red-800 text-white px-2 py-1 text-xs mr-3 font-bold uppercase">Close</span>
-                วันปิดภาคเรียน ภาคปลาย 2568: <span class="ml-auto font-bold">30 มีนาคม 2569</span>
+                <span class="bg-red-800 text-white px-2 py-1 text-xs mr-3 font-black">CLOSE</span>
+                วันปิดภาคเรียน ภาคปลาย 2568: <span class="ml-auto font-black">30 มีนาคม 2569</span>
             </div>
             <div class="info-strip strip-green">
-                <span class="bg-green-700 text-white px-2 py-1 text-xs mr-3 font-bold uppercase">Open</span>
-                วันเปิดภาคเรียน ภาคต้น 2569: <span class="ml-auto font-bold">22 มิถุนายน 2569</span>
+                <span class="bg-green-700 text-white px-2 py-1 text-xs mr-3 font-black">OPEN</span>
+                วันเปิดภาคเรียน ภาคต้น 2569: <span class="ml-auto font-black">22 มิถุนายน 2569</span>
             </div>
         </div>
 
         <div class="eval-alert bg-yellow-300 p-4 mb-4 flex items-center gap-4 shadow-[6px_6px_0px_#000]">
             <div class="bg-black text-yellow-400 p-2 font-black text-2xl">!</div>
             <div class="text-sm md:text-base text-black">
-                <p class="font-bold uppercase tracking-tight text-lg leading-none">ประกาศเตือน: นิสิตต้องประเมินการสอน ครั้งที่ 2</p>
-                <p class="font-medium mt-1">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-bold">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
+                <p class="font-black uppercase tracking-tight">ประกาศเตือน: นิสิตประเมินการสอน ครั้งที่ 2</p>
+                <p class="font-bold">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-black">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
             </div>
         </div>
 
@@ -120,100 +116,232 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div>
-                    <p class="font-bold text-[10px] uppercase tracking-[0.2em] text-blue-200 leading-none mb-1">Official Grade Release</p>
-                    <h3 class="text-xl md:text-2xl font-bold uppercase text-white leading-none">วันส่งเกรด: 7 เมษายน 2569</h3>
+                    <p class="font-black text-[10px] uppercase tracking-[0.2em] text-blue-200 leading-none mb-1">วันสุดท้ายของการส่งเกรด</p>
+                    <h3 class="text-xl md:text-2xl font-[900] uppercase text-white leading-none">ไม่เกินเที่ยงคืนวันที่ 7 เมษายน 2569</h3>
                 </div>
             </div>
             <div class="flex gap-2">
-                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="days" class="text-2xl font-bold">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Days</p></div>
-                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="hours" class="text-2xl font-bold">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Hrs</p></div>
-                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="minutes" class="text-2xl font-bold">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Min</p></div>
-                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a] !bg-blue-500 !border-white text-white"><p id="seconds" class="text-2xl font-bold">00</p><p class="text-[9px] uppercase font-bold text-blue-200">Sec</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="days" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Days</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="hours" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Hrs</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="minutes" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Min</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a] !bg-blue-500 !border-white text-white"><p id="seconds" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-blue-200">Sec</p></div>
             </div>
         </div>
 
         <div class="border-4 border-blue-900 p-4 mb-4 bg-white shadow-[6px_6px_0px_#1e3a8a]">
-            <p class="font-bold text-blue-900 uppercase text-xs mb-1">กำหนดการสอบปลายภาค ภาคปลาย 2568</p>
-            <p class="text-xl font-bold text-blue-800 uppercase italic underline">16 - 27 มีนาคม 2569</p>
+            <div class="flex flex-col md:flex-row md:items-center gap-3">
+                <div class="bg-blue-900 text-white px-4 py-1.5 text-sm font-black uppercase tracking-wider self-start">กำหนดการสอบปลายภาค ภาคปลาย 2568</div>
+                <p class="text-sm font-bold text-slate-600">บางเขน / กำแพงแสน / ศรีราชา / เฉลิมพระเกียรติจังหวัดสกลนคร</p>
+            </div>
+            <p class="mt-2 text-xl font-black text-blue-800 uppercase italic underline leading-none">วันจันทร์ที่ 16 - วันศุกร์ที่ 27 มีนาคม 2569</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 border-4 border-blue-900 mb-8 bg-white shadow-[10px_10px_0px_#1e3a8a]">
             <div class="p-6 border-b-4 md:border-b-0 md:border-r-4 border-blue-900 bg-blue-50 col-span-3">
-                <h2 id="resName" class="text-3xl font-bold mb-1 leading-none uppercase text-blue-900">-</h2>
-                <p id="resId" class="text-xl font-semibold text-blue-500 tracking-tighter">-</p>
+                <p class="text-[10px] font-black text-blue-800 uppercase mb-2 tracking-widest">Student Information</p>
+                <h2 id="resName" class="text-3xl font-black mb-1 leading-none uppercase text-blue-900">-</h2>
+                <p id="resId" class="text-xl font-bold text-blue-500 tracking-tighter">-</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-sm border-t-2 border-blue-200 pt-4 mt-4">
-                    <p class="font-medium text-slate-400 text-[10px] uppercase">คณะ: <span id="resFaculty" class="text-slate-900 block text-sm font-bold"></span></p>
-                    <p class="font-medium text-slate-400 text-[10px] uppercase">ภาควิชา: <span id="resDept" class="text-slate-900 block text-sm font-bold"></span></p>
-                    <p class="font-medium text-slate-400 text-[10px] uppercase">สาขา: <span id="resMajor" class="text-slate-900 block text-sm font-bold"></span></p>
-                    <p class="font-medium text-slate-400 text-[10px] uppercase">ชั้นปี: <span id="resYear" class="text-slate-900 block text-sm font-bold"></span></p>
-                    <p class="font-medium text-blue-600 text-[10px] uppercase md:col-span-2">ประเภท: <span id="resAdvisor" class="text-slate-900 block text-sm font-bold"></span></p>
+                    <p class="font-bold text-slate-400 text-[10px] uppercase">คณะ: <span id="resFaculty" class="text-slate-900 block text-sm"></span></p>
+                    <p class="font-bold text-slate-400 text-[10px] uppercase">ภาควิชา: <span id="resDept" class="text-slate-900 block text-sm"></span></p>
+                    <p class="font-bold text-slate-400 text-[10px] uppercase">สาขา: <span id="resMajor" class="text-slate-900 block text-sm"></span></p>
+                    <p class="font-bold text-slate-400 text-[10px] uppercase">ชั้นปี: <span id="resYear" class="text-slate-900 block text-sm"></span></p>
+                    <p class="font-bold text-blue-600 text-[10px] uppercase md:col-span-2">ประเภทการสอบ: <span id="resAdvisor" class="text-slate-900 block text-sm"></span></p>
                 </div>
             </div>
-            <div class="p-6 flex flex-col justify-center gap-3 bg-white">
-                <button onclick="openSummerModal()" class="btn-summer py-3 uppercase text-sm">ปฏิทินซัมเมอร์</button>
-                <button onclick="window.print()" class="w-full text-sm font-bold border-2 border-blue-900 py-3 hover:bg-blue-900 hover:text-white transition">พิมพ์ตารางสอบ</button>
-                <button onclick="toggleOffCampus()" id="btnOffCampus" class="btn-off-campus py-3 uppercase">วิชานอกตาราง</button>
-                <button onclick="location.reload()" class="text-xs font-bold text-slate-400 underline uppercase mt-2">ค้นหาใหม่</button>
+            <div class="p-6 flex flex-col justify-center gap-3 bg-white text-center">
+                <a href="https://my.ku.th" target="_blank" class="w-full text-sm font-bold btn-myku py-3 uppercase block text-center">เข้าสู่ระบบ MYKU</a>
+                <button onclick="openSummerModal()" class="w-full text-sm font-bold btn-summer py-3 uppercase">ปฏิทินซัมเมอร์</button>
+                <button onclick="window.print()" class="w-full text-sm font-bold border-2 border-blue-900 py-3 hover:bg-blue-900 hover:text-white transition uppercase">พิมพ์ตารางสอบ</button>
+                <button onclick="toggleOffCampus()" id="btnOffCampus" class="btn-off-campus w-full text-sm py-4 uppercase font-black">วิชานอกตารางวิทยาเขต</button>
+                <button onclick="location.reload()" class="w-full text-sm font-bold text-slate-400 hover:underline transition uppercase">ค้นหาใหม่</button>
             </div>
         </div>
 
         <div class="overflow-x-auto border-4 border-blue-900 mb-10 shadow-[8px_8px_0px_#1e3a8a]">
             <table class="w-full exam-table border-collapse">
-                <thead><tr><th>รหัสวิชา</th><th>ชื่อวิชา</th><th>วันสอบ</th><th>เวลาสอบ</th><th>หมู่เรียน</th><th>ห้องสอบ</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th class="w-28 text-center font-bold">รหัสวิชา</th>
+                        <th class="font-bold">ชื่อวิชา</th>
+                        <th class="w-36 text-center font-bold">วันสอบ</th>
+                        <th class="w-36 text-center font-bold">เวลาสอบ</th>
+                        <th class="w-40 text-center font-bold">หมู่เรียน</th>
+                        <th class="w-32 text-center font-bold">ห้องสอบ</th>
+                    </tr>
+                </thead>
                 <tbody id="examTableBody"></tbody>
             </table>
         </div>
 
         <div id="offCampusContainer" class="hidden">
             <div class="overflow-x-auto border-4 border-orange-600 shadow-[8px_8px_0px_#f97316] mb-10">
-                <table class="w-full exam-table border-collapse"><tbody id="offCampusTableBody"></tbody></table>
+                <table class="w-full exam-table border-collapse">
+                    <thead class="bg-orange-600">
+                        <tr class="bg-orange-600">
+                            <th class="w-28 bg-orange-600 border-orange-700 text-center">รหัสวิชา</th>
+                            <th class="bg-orange-600 border-orange-700">ชื่อวิชา</th>
+                            <th class="w-36 bg-orange-600 border-orange-700 text-center">วันสอบ</th>
+                            <th class="w-36 bg-orange-600 border-orange-700 text-center">เวลาสอบ</th>
+                            <th class="w-40 bg-orange-600 border-orange-700 text-center">หมู่เรียน</th>
+                            <th class="w-32 bg-orange-600 border-orange-700 text-center">ห้องสอบ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="offCampusTableBody"></tbody>
+                </table>
             </div>
         </div>
     </section>
 </div>
 
 <div id="summerModal">
-    <div class="bg-white border-4 border-blue-900 p-8 max-w-lg w-full shadow-[12px_12px_0px_#000] relative">
-        <button onclick="closeSummerModal()" class="absolute top-4 right-4 font-bold text-2xl hover:text-red-600">✕</button>
-        <h3 class="text-3xl font-bold uppercase italic text-blue-900 mb-6 border-b-4 border-blue-900 pb-2 text-center">ปฏิทินซัมเมอร์ 2569</h3>
-        <div class="space-y-4 font-medium text-lg text-slate-700">
-            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>วันเปิดเรียน:</span> <span class="text-blue-700 font-bold">20 เม.ย. 69</span></p>
-            <p class="flex justify-between border-b-4 border-blue-900 pb-2 text-red-600"><span>สอบปลายภาค:</span> <span class="font-bold">30 พ.ค. - 1 มิ.ย. 69</span></p>
+    <div class="bg-white border-4 border-blue-900 p-8 max-w-lg w-full shadow-[12px_12px_0px_#000] relative text-center">
+        <button onclick="closeSummerModal()" class="absolute top-4 right-4 font-black text-2xl hover:text-red-600">✕</button>
+        <h3 class="text-3xl font-[900] uppercase italic text-blue-900 mb-6 border-b-4 border-blue-900 pb-2">ปฏิทินภาคฤดูร้อน พ.ศ. 2569</h3>
+        <div class="space-y-4 font-bold text-lg text-slate-700">
+            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>ชำระค่าธรรมเนียม:</span> <span class="text-black-700">7 - 10 เม.ย. 69</span></p>
+            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>ลงทะเบียนเรียน รหัส67:</span> <span class="text-black-700">17 เม.ย. 69</span></p>
+            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>วันเปิดเรียน:</span> <span class="text-black-700">20 เม.ย. 69</span></p>
+            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>ถอนไม่ติด W:</span> <span class="text-black-700">2 - 25 พ.ค. 69</span></p>
+            <p class="flex justify-between border-b-4 border-blue-900 pb-2 text-red-600"><span>สอบปลายภาค:</span> <span>30 พ.ค. - 1 มิ.ย. 69</span></p>
+            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>วันปิดเรียน:</span> <span class="text-black-700">2 มิ.ย. 69</span></p>
+            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>วันสุดท้ายของเกรดออก:</span> <span class="text-black-700">11 มิ.ย. 69</span></p>
         </div>
-        <button onclick="closeSummerModal()" class="btn-gov w-full mt-8 uppercase font-bold text-sm">ตกลง เข้าใจแล้ว</button>
+        <button onclick="closeSummerModal()" class="btn-gov w-full mt-8 uppercase font-black">ตกลง</button>
     </div>
 </div>
 
 <footer class="bg-blue-950 text-white w-full py-8 mt-12 border-t-4 border-blue-500 text-center">
     <p class="text-[11px] font-bold tracking-widest uppercase">© 2026 พัฒนาระบบโดยสุธี. All Rights Reserved.</p>
-    <p class="text-[10px] text-blue-300 font-medium uppercase tracking-tighter">Digital Exam Schedule Service System v1.0</p>
+    <p class="text-[10px] text-blue-300 font-bold uppercase tracking-tighter">Digital Exam Schedule Service System v1.0</p>
 </footer>
 
 <script>
-    /* DATABASE 11 คน (ครบถ้วน ห้ามหาย) */
+    /* DATABASE 11 คน ครบถ้วน (ห้ามหาย) */
     const db = {
-        "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "HR Community", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+        "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
             exams: [
                 { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
                 { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" },
                 { code: "01355102", titleEn: "English for University", titleTh: "ภาษาอังกฤษในมหาวิทยาลัย", date: "ส. 21 มี.ค. 69", time: "13:00 - 15:30", sec: "หมู่เรียน 710", room: "LH3-304" }
             ],
             offCampus: [
-                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษา", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
-                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตร", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
-                { code: "02033302", titleEn: "Livestock & Thai Way", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
+                { code: "02033302", titleEn: "Livestock and Thai Way of Life", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
             ]
         },
-        "6720600028": { name: "นางสาวกมลลักษณ์ ชาวบางงาม", id: "6720600028", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [ { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์พืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "700", room: "LH4-201" } ], offCampus: [] },
-        "6720600052": { name: "นางสาวกันยาพร พันธุเดช", id: "6720600052", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
-        "6720600133": { name: "นายชินพัธน์ อัครธัชกุลพัชร์", id: "6720600133", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
-        "6720600184": { name: "นายธนพัฒน์ สิงห์เหม", id: "6720600184", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
-        "6720600214": { name: "นางสาวนพรดา สระหงษ์ทอง", id: "6720600214", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
-        "6720600630": { name: "นายศุภเสกย์ นิลเทพา", id: "6720600630", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
-        "6720600656": { name: "นายสิทธิชาติ ทองนุ่น", id: "6720600656", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
-        "6720600753": { name: "นายอนพัทย์ เอี่ยมสำอางค์", id: "6720600753", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
-        "6720603647": { name: "นางสาวทรรณรต น้อยแนบ", id: "6720603647", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
-        "6720603728": { name: "นางสาวพชรพร ทัศนาลัย", id: "6720603728", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] }
+        "6720600028": { name: "นางสาวกมลลักษณ์ ชาวบางงาม", id: "6720600028", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
+                { code: "02033302", titleEn: "Livestock and Thai Way of Life", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
+            ]
+        },
+        "6720600052": { name: "นางสาวกันยาพร พันธุเดช", id: "6720600052", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "01419211", titleEn: "General Microbiology", titleTh: "จุลชีววิทยาทั่วไป", date: "พ. 18 มี.ค. 69", time: "09:00 - 12:00", sec: "หมู่เรียน 700", room: "LH3-211" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" }
+            ]
+        },
+        "6720600133": { name: "นายชินพัธน์ อัครธัชกุลพัชร์ ", id: "6720600133", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
+                { code: "02033302", titleEn: "Livestock and Thai Way of Life", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
+            ]
+        },
+        "6720600184": { name: "นายธนพัฒน์ สิงห์เหม ", id: "6720600184", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
+                { code: "02033302", titleEn: "Livestock and Thai Way of Life", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
+            ]  
+        },
+        "6720600214": { name: "นางสาวนพรดา สระหงษ์ทอง", id: "6720600214", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "01419211", titleEn: "General Microbiology", titleTh: "จุลชีววิทยาทั่วไป", date: "พ. 18 มี.ค. 69", time: "09:00 - 12:00", sec: "หมู่เรียน 700", room: "LH3-211" },
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" }
+            ]
+        },
+        "6720600630": { name: "นายศุภเสกย์ นิลเทพา", id: "6720600630", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "01419211", titleEn: "General Microbiology", titleTh: "จุลชีววิทยาทั่วไป", date: "พ. 18 มี.ค. 69", time: "09:00 - 12:00", sec: "หมู่เรียน 700", room: "LH3-211" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" }
+            ]
+        },
+        "6720600656": { name: "นายสิทธิชาติ ทองนุ่น", id: "6720600656", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "01419211", titleEn: "General Microbiology", titleTh: "จุลชีววิทยาทั่วไป", date: "พ. 18 มี.ค. 69", time: "09:00 - 12:00", sec: "หมู่เรียน 700", room: "LH3-211" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" },
+                { code: "01355102", titleEn: "English for University", titleTh: "ภาษาอังกฤษในมหาวิทยาลัย", date: "ส. 21 มี.ค. 69", time: "13:00 - 15:30", sec: "หมู่เรียน 710", room: "LH3-304" },
+                { code: "01419214", titleEn: "Lab in Fundamental Microbiology", titleTh: "จุลชีววิทยาพื้นฐานภาคปฏิบัติการ", date: "จ. 23 มี.ค. 69", time: "09:00 - 12:00", sec: "หมู่เรียน 715", room: "LH3-302" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" }
+            ]
+        },
+        "6720600753": { name: "นายอนพัทย์ เอี่ยมสำอางค์ ", id: "6720600753", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
+                { code: "02033302", titleEn: "Livestock and Thai Way of Life", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
+            ]
+        },
+        "6720603647": { name: "นางสาวทรรณรต น้อยแนบ ", id: "6720603647", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
+                { code: "02033302", titleEn: "Livestock and Thai Way of Life", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
+            ] 
+        },
+        "6720603728": { name: "นางสาวพชรพร ทัศนาลัย ", id: "6720603728", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
+            exams: [
+                { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
+                { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" }
+            ],
+            offCampus: [
+                { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษาทางเกษตรและสิ่งแวดล้อม", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตรและสิ่งแวดล้อมศึกษา", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
+                { code: "02033302", titleEn: "Livestock and Thai Way of Life", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
+            ] 
+        }
     };
 
     function initCounter() {
@@ -225,47 +353,55 @@
 
     function initGradeCountdown() {
         const targetDate = new Date("April 7, 2026 23:59:59").getTime();
-        setInterval(function() {
-            const distance = targetDate - new Date().getTime();
-            document.getElementById("days").innerText = Math.floor(distance / 86400000).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((distance % 86400000) / 3600000).toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = Math.floor((distance % 3600000) / 60000).toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = Math.floor((distance % 60000) / 1000).toString().padStart(2, '0');
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            if (distance < 0) clearInterval(timer);
         }, 1000);
     }
 
     function handleSearch() {
         const idInput = document.getElementById('studentId').value.trim();
-        const s = db[idInput];
-        if (s) {
+        const student = db[idInput];
+        if (student) {
             document.getElementById('searchView').classList.add('hidden');
             document.getElementById('resultView').classList.remove('hidden');
-            document.getElementById('resName').innerText = s.name;
-            document.getElementById('resId').innerText = "รหัสประจำตัวนิสิต: " + s.id;
-            document.getElementById('resFaculty').innerText = s.faculty;
-            document.getElementById('resMajor').innerText = s.major;
-            document.getElementById('resDept').innerText = s.dept || "-";
-            document.getElementById('resYear').innerText = s.year;
-            document.getElementById('resAdvisor').innerText = s.advisor;
-            renderTable('examTableBody', s.exams);
-            renderTable('offCampusTableBody', s.offCampus);
+            document.getElementById('resName').innerText = student.name;
+            document.getElementById('resId').innerText = "รหัสประจำตัวนิสิต: " + student.id;
+            document.getElementById('resFaculty').innerText = student.faculty;
+            document.getElementById('resMajor').innerText = student.major;
+            document.getElementById('resDept').innerText = student.dept;
+            document.getElementById('resYear').innerText = student.year;
+            document.getElementById('resAdvisor').innerText = student.advisor;
+            renderTable('examTableBody', student.exams);
+            renderTable('offCampusTableBody', student.offCampus);
             initGradeCountdown();
         } else {
             document.getElementById('errorMsg').classList.remove('hidden');
         }
     }
 
-    function renderTable(id, data) {
-        const tbody = document.getElementById(id);
-        if(!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6">--- ไม่พบข้อมูล ---</td></tr>'; return; }
+    function renderTable(targetId, data) {
+        const tbody = document.getElementById(targetId);
+        if(!data || data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6 text-slate-400 font-bold">--- NO EXAM SCHEDULE ---</td></tr>';
+            return;
+        }
         tbody.innerHTML = data.map(ex => `
-            <tr>
-                <td class="font-bold text-blue-800 text-sm">${ex.code}</td>
-                <td><b class="font-semibold">${ex.titleEn}</b><br><small class="text-slate-500">${ex.titleTh}</small></td>
-                <td class="text-center">${ex.date}</td>
-                <td class="text-center text-blue-600 font-bold">${ex.time}</td>
-                <td class="text-center bg-blue-50">${ex.sec}</td>
-                <td class="text-center font-bold">${ex.room}</td>
+            <tr class="hover:bg-blue-50 transition">
+                <td class="font-bold text-blue-800 text-sm text-center">${ex.code}</td>
+                <td class="py-3 px-4 font-bold">
+                    <div class="font-bold text-base leading-tight text-slate-900">${ex.titleEn}</div>
+                    <div class="text-[11px] text-blue-500 font-bold mt-1">${ex.titleTh}</div>
+                </td>
+                <td class="text-center text-[15px] font-semibold text-slate-800">${ex.date}</td>
+                <td class="text-center text-[15px] font-semibold text-blue-600">${ex.time}</td>
+                <td class="text-center text-[15px] font-semibold bg-blue-50 px-2">${ex.sec}</td>
+                <td class="text-center font-[900] text-lg bg-slate-100 px-2 uppercase">${ex.room}</td>
             </tr>
         `).join('');
     }
@@ -275,7 +411,7 @@
     function toggleOffCampus() {
         const container = document.getElementById('offCampusContainer');
         container.classList.toggle('hidden');
-        document.getElementById('btnOffCampus').innerText = container.classList.contains('hidden') ? "วิชานอกตาราง" : "ซ่อนวิชานอกตาราง";
+        document.getElementById('btnOffCampus').innerText = container.classList.contains('hidden') ? "วิชานอกตารางวิทยาเขต" : "ซ่อนวิชานอกตารางวิทยาเขต";
     }
 
     window.onload = initCounter;
