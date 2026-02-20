@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>exam Service System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { border-radius: 0 !important; font-family: 'Kanit', sans-serif; font-style: normal !important; }
+        * { border-radius: 0 !important; font-family: 'Kodchasan', sans-serif; font-style: normal !important; }
         body { background-color: #f8fafc; color: #1e293b; -webkit-font-smoothing: antialiased; }
         
         /* Input & Buttons */
         .input-sharp { border: 2px solid #0f172a; padding: 0.75rem 1rem; font-size: 1.1rem; font-weight: 600; width: 100%; background-color: #fff; }
-        .input-locked { background-color: #f1f5f9; color: #64748b; border: 2px solid #0f172a; cursor: not-allowed; pointer-events: none; }
+        .input-locked { background-color: #f1f5f9; color: #64748b; border: 2px solid #0f172a; cursor: not-allowed; }
 
         .btn-gov { background-color: #1e3a8a; color: #fff; padding: 1rem 2rem; font-weight: 700; font-size: 1.1rem; transition: 0.2s; cursor: pointer; border: 2px solid #0f172a; }
         .btn-gov:hover { background-color: #1d4ed8; transform: translateY(-2px); }
@@ -32,7 +32,7 @@
 
         /* Strip Styles */
         .info-strip { border: 3px solid #0f172a; padding: 1rem; margin-bottom: 1rem; font-weight: 800; display: flex; align-items: center; box-shadow: 4px 4px 0px #0f172a; }
-        .strip-red { background-color: #fee2e2; color: #991b1b; border-color: #991b1b; }
+        .strip-red { background-color: #fee2e2; color: #991b1b; border-color: #991b1b; } 
         .strip-green { background-color: #dcfce7; color: #166534; border-color: #166534; }
 
         /* แจ้งเตือนประเมินการสอน */
@@ -91,14 +91,6 @@
 
     <section id="resultView" class="hidden animate-in fade-in duration-500">
         
-        <div class="eval-alert bg-yellow-300 p-4 mb-4 flex items-center gap-4 shadow-[6px_6px_0px_#000]">
-            <div class="bg-black text-yellow-400 p-2 font-black text-2xl">!</div>
-            <div class="text-sm md:text-base text-black">
-                <p class="font-black uppercase tracking-tight">ประกาศเตือน: นิสิตต้องประเมินการสอน ครั้งที่ 2</p>
-                <p class="font-bold">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-black">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
-            </div>
-        </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div class="info-strip strip-red">
                 <span class="bg-red-800 text-white px-2 py-1 text-xs mr-3 font-black">CLOSE</span>
@@ -107,6 +99,14 @@
             <div class="info-strip strip-green">
                 <span class="bg-green-700 text-white px-2 py-1 text-xs mr-3 font-black">OPEN</span>
                 วันเปิดภาคเรียน ภาคต้น 2569: <span class="ml-auto font-black">22 มิถุนายน 2569</span>
+            </div>
+        </div>
+
+        <div class="eval-alert bg-yellow-300 p-4 mb-4 flex items-center gap-4 shadow-[6px_6px_0px_#000]">
+            <div class="bg-black text-yellow-400 p-2 font-black text-2xl">!</div>
+            <div class="text-sm md:text-base text-black">
+                <p class="font-black uppercase tracking-tight">ประกาศเตือน: นิสิตประเมินการสอน ครั้งที่ 2</p>
+                <p class="font-bold">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-black">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
             </div>
         </div>
 
@@ -217,7 +217,7 @@
 </footer>
 
 <script>
-    /* DATABASE 11 คน ครบถ้วน */
+    /* DATABASE 11 คน ครบถ้วน (ห้ามหาย) */
     const db = {
         "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
             exams: [
