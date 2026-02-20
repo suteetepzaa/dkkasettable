@@ -32,8 +32,16 @@
 
         /* Strip Styles */
         .info-strip { border: 3px solid #0f172a; padding: 1rem; margin-bottom: 1rem; font-weight: 800; display: flex; align-items: center; box-shadow: 4px 4px 0px #0f172a; }
-        .strip-red { background-color: #fee2e2; color: #991b1b; border-color: #991b1b; } /* สีแดงที่ขอ */
+        .strip-red { background-color: #fee2e2; color: #991b1b; border-color: #991b1b; }
         .strip-green { background-color: #dcfce7; color: #166534; border-color: #166534; }
+
+        /* แจ้งเตือนประเมินการสอน */
+        .eval-alert { border: 4px solid #000; animation: pulse-border 2s infinite; }
+        @keyframes pulse-border {
+            0% { border-color: #000; }
+            50% { border-color: #2563eb; }
+            100% { border-color: #000; }
+        }
 
         #summerModal { background-color: rgba(15, 23, 42, 0.9); display: none; position: fixed; inset: 0; z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
     </style>
@@ -43,7 +51,7 @@
 <div class="max-w-6xl mx-auto min-h-screen">
     <header class="border-b-8 border-blue-900 pb-6 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
-            <div class="bg-blue-900 text-white px-3 py-0.5 text-[10px] font-bold tracking-[0.2em] inline-block mb-3 uppercase">ชมรมผู้สูงอายุ TikTokKPS</div>
+            <div class="bg-blue-900 text-white px-3 py-0.5 text-[10px] font-bold tracking-[0.2em] inline-block mb-3 uppercase text-center">ชมรมผู้สูงอายุ TikTokKPS</div>
             <h1 class="text-4xl md:text-6xl font-[900] tracking-tighter leading-none uppercase text-blue-900">
                 ค้นหา<span class="text-blue-500">ตารางสอบ</span>
             </h1>
@@ -82,6 +90,15 @@
     </section>
 
     <section id="resultView" class="hidden animate-in fade-in duration-500">
+        
+        <div class="eval-alert bg-yellow-300 p-4 mb-4 flex items-center gap-4 shadow-[6px_6px_0px_#000]">
+            <div class="bg-black text-yellow-400 p-2 font-black text-2xl">!</div>
+            <div class="text-sm md:text-base text-black">
+                <p class="font-black uppercase tracking-tight">ประกาศเตือน: นิสิตต้องประเมินการสอน ครั้งที่ 2</p>
+                <p class="font-bold">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-black">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div class="info-strip strip-red">
                 <span class="bg-red-800 text-white px-2 py-1 text-xs mr-3 font-black">CLOSE</span>
@@ -200,7 +217,7 @@
 </footer>
 
 <script>
-    /* DATABASE 11 คน */
+    /* DATABASE 11 คน ครบถ้วน */
     const db = {
         "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
             exams: [
@@ -354,7 +371,7 @@
             document.getElementById('searchView').classList.add('hidden');
             document.getElementById('resultView').classList.remove('hidden');
             document.getElementById('resName').innerText = student.name;
-            document.getElementById('resId').innerText = "Student ID: " + student.id;
+            document.getElementById('resId').innerText = "รหัสประจำตัวนิสิต: " + student.id;
             document.getElementById('resFaculty').innerText = student.faculty;
             document.getElementById('resMajor').innerText = student.major;
             document.getElementById('resDept').innerText = student.dept;
@@ -384,7 +401,7 @@
                 <td class="text-center text-[15px] font-semibold text-slate-800">${ex.date}</td>
                 <td class="text-center text-[15px] font-semibold text-blue-600">${ex.time}</td>
                 <td class="text-center text-[15px] font-semibold bg-blue-50 px-2">${ex.sec}</td>
-                <td class="text-center font-[900] text-lg bg-slate-100 px-2">${ex.room}</td>
+                <td class="text-center font-[900] text-lg bg-slate-100 px-2 uppercase">${ex.room}</td>
             </tr>
         `).join('');
     }
