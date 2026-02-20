@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>exam Service System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { border-radius: 0 !important; font-family: 'Playpen Sans', cursive; font-style: normal !important; }
+        * { border-radius: 0 !important; font-family: 'Mitr', sans-serif; font-style: normal !important; }
         body { background-color: #f8fafc; color: #1e293b; -webkit-font-smoothing: antialiased; }
         
         /* Input & Buttons */
-        .input-sharp { border: 2px solid #0f172a; padding: 0.75rem 1rem; font-size: 1.1rem; font-weight: 600; width: 100%; background-color: #fff; }
+        .input-sharp { border: 2px solid #0f172a; padding: 0.75rem 1rem; font-size: 1.1rem; font-weight: 500; width: 100%; background-color: #fff; }
         .input-locked { background-color: #f1f5f9; color: #64748b; border: 2px solid #0f172a; cursor: not-allowed; }
 
-        .btn-gov { background-color: #1e3a8a; color: #fff; padding: 1rem 2rem; font-weight: 700; font-size: 1.1rem; transition: 0.2s; cursor: pointer; border: 2px solid #0f172a; }
+        .btn-gov { background-color: #1e3a8a; color: #fff; padding: 1rem 2rem; font-weight: 600; font-size: 1.1rem; transition: 0.2s; cursor: pointer; border: 2px solid #0f172a; }
         .btn-gov:hover { background-color: #1d4ed8; transform: translateY(-2px); }
 
-        .btn-myku { background-color: #2563eb; color: #fff; border: 2px solid #0f172a; font-weight: 800; transition: 0.2s; }
-        .btn-summer { background-color: #fbbf24; color: #000; border: 2px solid #0f172a; font-weight: 800; transition: 0.2s; box-shadow: 4px 4px 0px #0f172a; }
+        .btn-myku { background-color: #2563eb; color: #fff; border: 2px solid #0f172a; font-weight: 700; transition: 0.2s; }
+        .btn-summer { background-color: #fbbf24; color: #000; border: 2px solid #0f172a; font-weight: 700; transition: 0.2s; box-shadow: 4px 4px 0px #0f172a; }
 
-        .btn-off-campus { background-color: #f97316; color: #fff; border: 2px solid #0f172a; box-shadow: 4px 4px 0px #0f172a; font-weight: 800; }
+        .btn-off-campus { background-color: #f97316; color: #fff; border: 2px solid #0f172a; box-shadow: 4px 4px 0px #0f172a; font-weight: 700; }
 
         /* Tables */
-        .exam-table th { background-color: #1e3a8a; color: #fff; padding: 0.85rem; text-align: left; font-size: 0.85rem; font-weight: 700; border: 1px solid #0f172a; text-transform: uppercase; }
+        .exam-table th { background-color: #1e3a8a; color: #fff; padding: 0.85rem; text-align: left; font-size: 0.85rem; font-weight: 600; border: 1px solid #0f172a; text-transform: uppercase; }
         .exam-table td { border: 1px solid #0f172a; padding: 0.75rem 1rem; vertical-align: middle; }
 
         /* Grade Card Custom */
@@ -31,7 +31,7 @@
         .timer-box { background: #ffffff; color: #1e3a8a; border: 2px solid #0f172a; padding: 10px; min-width: 70px; }
 
         /* Strip Styles */
-        .info-strip { border: 3px solid #0f172a; padding: 1rem; margin-bottom: 1rem; font-weight: 800; display: flex; align-items: center; box-shadow: 4px 4px 0px #0f172a; }
+        .info-strip { border: 3px solid #0f172a; padding: 1rem; margin-bottom: 1rem; font-weight: 600; display: flex; align-items: center; box-shadow: 4px 4px 0px #0f172a; }
         .strip-red { background-color: #fee2e2; color: #991b1b; border-color: #991b1b; } 
         .strip-green { background-color: #dcfce7; color: #166534; border-color: #166534; }
 
@@ -52,7 +52,7 @@
     <header class="border-b-8 border-blue-900 pb-6 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div>
             <div class="bg-blue-900 text-white px-3 py-0.5 text-[10px] font-bold tracking-[0.2em] inline-block mb-3 uppercase text-center">ชมรมผู้สูงอายุ TikTokKPS</div>
-            <h1 class="text-4xl md:text-6xl font-[900] tracking-tighter leading-none uppercase text-blue-900">
+            <h1 class="text-4xl md:text-5xl font-semibold tracking-tighter leading-none uppercase text-blue-900">
                 ค้นหา<span class="text-blue-500">ตารางสอบ</span>
             </h1>
         </div>
@@ -78,8 +78,8 @@
                     <input type="text" class="input-sharp input-locked font-bold text-center" value="ปลายภาค" readonly>
                 </div>
                 <div class="md:col-span-2">
-                    <label class="block font-bold text-xs uppercase tracking-widest mb-2 text-gray-400">ชั้น-ปี</label>
-                    <input type="text" class="input-sharp input-locked font-bold text-center" value="F39-2" readonly>
+                    <label class="block font-bold text-xs uppercase tracking-widest mb-2 text-gray-400">ชั้นปี</label>
+                    <input type="text" class="input-sharp input-locked font-bold text-center" value="ชั้นปีที่ 1" readonly>
                 </div>
             </div>
             <button onclick="handleSearch()" class="btn-gov w-full mt-8 uppercase tracking-widest font-bold">ค้นหาตารางสอบของคุณ →</button>
@@ -97,20 +97,20 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div class="info-strip strip-red">
-                <span class="bg-red-800 text-white px-2 py-1 text-xs mr-3 font-black uppercase">Close</span>
-                วันปิดภาคเรียน ภาคปลาย 2568: <span class="ml-auto font-black">30 มีนาคม 2569</span>
+                <span class="bg-red-800 text-white px-2 py-1 text-xs mr-3 font-bold uppercase">Close</span>
+                วันปิดภาคเรียน ภาคปลาย 2568: <span class="ml-auto font-bold">30 มีนาคม 2569</span>
             </div>
             <div class="info-strip strip-green">
-                <span class="bg-green-700 text-white px-2 py-1 text-xs mr-3 font-black uppercase">Open</span>
-                วันเปิดภาคเรียน ภาคต้น 2569: <span class="ml-auto font-black">22 มิถุนายน 2569</span>
+                <span class="bg-green-700 text-white px-2 py-1 text-xs mr-3 font-bold uppercase">Open</span>
+                วันเปิดภาคเรียน ภาคต้น 2569: <span class="ml-auto font-bold">22 มิถุนายน 2569</span>
             </div>
         </div>
 
         <div class="eval-alert bg-yellow-300 p-4 mb-4 flex items-center gap-4 shadow-[6px_6px_0px_#000]">
             <div class="bg-black text-yellow-400 p-2 font-black text-2xl">!</div>
             <div class="text-sm md:text-base text-black">
-                <p class="font-black uppercase tracking-tight text-lg">ประกาศเตือน: นิสิตต้องประเมินการสอน ครั้งที่ 2</p>
-                <p class="font-bold">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-black">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
+                <p class="font-bold uppercase tracking-tight text-lg leading-none">ประกาศเตือน: นิสิตต้องประเมินการสอน ครั้งที่ 2</p>
+                <p class="font-medium mt-1">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-bold">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
             </div>
         </div>
 
@@ -120,40 +120,40 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div>
-                    <p class="font-black text-[10px] uppercase tracking-[0.2em] text-blue-200 leading-none mb-1">Official Grade Release</p>
-                    <h3 class="text-xl md:text-2xl font-[900] uppercase text-white leading-none">วันส่งเกรด: 7 เมษายน 2569</h3>
+                    <p class="font-bold text-[10px] uppercase tracking-[0.2em] text-blue-200 leading-none mb-1">Official Grade Release</p>
+                    <h3 class="text-xl md:text-2xl font-bold uppercase text-white leading-none">วันส่งเกรด: 7 เมษายน 2569</h3>
                 </div>
             </div>
             <div class="flex gap-2">
-                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="days" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Days</p></div>
-                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="hours" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Hrs</p></div>
-                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="minutes" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Min</p></div>
-                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a] !bg-blue-500 !border-white text-white"><p id="seconds" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-blue-200">Sec</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="days" class="text-2xl font-bold">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Days</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="hours" class="text-2xl font-bold">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Hrs</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a]"><p id="minutes" class="text-2xl font-bold">00</p><p class="text-[9px] uppercase font-bold text-slate-400">Min</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#0f172a] !bg-blue-500 !border-white text-white"><p id="seconds" class="text-2xl font-bold">00</p><p class="text-[9px] uppercase font-bold text-blue-200">Sec</p></div>
             </div>
         </div>
 
         <div class="border-4 border-blue-900 p-4 mb-4 bg-white shadow-[6px_6px_0px_#1e3a8a]">
-            <p class="font-black text-blue-900 uppercase text-xs mb-1">กำหนดการสอบปลายภาค ภาคปลาย 2568</p>
-            <p class="text-xl font-black text-blue-800 uppercase italic underline">16 - 27 มีนาคม 2569</p>
+            <p class="font-bold text-blue-900 uppercase text-xs mb-1">กำหนดการสอบปลายภาค ภาคปลาย 2568</p>
+            <p class="text-xl font-bold text-blue-800 uppercase italic underline">16 - 27 มีนาคม 2569</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 border-4 border-blue-900 mb-8 bg-white shadow-[10px_10px_0px_#1e3a8a]">
             <div class="p-6 border-b-4 md:border-b-0 md:border-r-4 border-blue-900 bg-blue-50 col-span-3">
-                <h2 id="resName" class="text-3xl font-black mb-1 leading-none uppercase text-blue-900">-</h2>
-                <p id="resId" class="text-xl font-bold text-blue-500 tracking-tighter">-</p>
+                <h2 id="resName" class="text-3xl font-bold mb-1 leading-none uppercase text-blue-900">-</h2>
+                <p id="resId" class="text-xl font-semibold text-blue-500 tracking-tighter">-</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-sm border-t-2 border-blue-200 pt-4 mt-4">
-                    <p class="font-bold text-slate-400 text-[10px] uppercase">คณะ: <span id="resFaculty" class="text-slate-900 block text-sm font-black"></span></p>
-                    <p class="font-bold text-slate-400 text-[10px] uppercase">ภาควิชา: <span id="resDept" class="text-slate-900 block text-sm font-black"></span></p>
-                    <p class="font-bold text-slate-400 text-[10px] uppercase">สาขา: <span id="resMajor" class="text-slate-900 block text-sm font-black"></span></p>
-                    <p class="font-bold text-slate-400 text-[10px] uppercase">ชั้นปี: <span id="resYear" class="text-slate-900 block text-sm font-black"></span></p>
-                    <p class="font-bold text-blue-600 text-[10px] uppercase md:col-span-2">ประเภท: <span id="resAdvisor" class="text-slate-900 block text-sm font-black"></span></p>
+                    <p class="font-medium text-slate-400 text-[10px] uppercase">คณะ: <span id="resFaculty" class="text-slate-900 block text-sm font-bold"></span></p>
+                    <p class="font-medium text-slate-400 text-[10px] uppercase">ภาควิชา: <span id="resDept" class="text-slate-900 block text-sm font-bold"></span></p>
+                    <p class="font-medium text-slate-400 text-[10px] uppercase">สาขา: <span id="resMajor" class="text-slate-900 block text-sm font-bold"></span></p>
+                    <p class="font-medium text-slate-400 text-[10px] uppercase">ชั้นปี: <span id="resYear" class="text-slate-900 block text-sm font-bold"></span></p>
+                    <p class="font-medium text-blue-600 text-[10px] uppercase md:col-span-2">ประเภท: <span id="resAdvisor" class="text-slate-900 block text-sm font-bold"></span></p>
                 </div>
             </div>
             <div class="p-6 flex flex-col justify-center gap-3 bg-white">
                 <button onclick="openSummerModal()" class="btn-summer py-3 uppercase text-sm">ปฏิทินซัมเมอร์</button>
-                <button onclick="window.print()" class="w-full text-sm font-bold border-2 border-blue-900 py-3">พิมพ์ตารางสอบ</button>
+                <button onclick="window.print()" class="w-full text-sm font-bold border-2 border-blue-900 py-3 hover:bg-blue-900 hover:text-white transition">พิมพ์ตารางสอบ</button>
                 <button onclick="toggleOffCampus()" id="btnOffCampus" class="btn-off-campus py-3 uppercase">วิชานอกตาราง</button>
-                <button onclick="location.reload()" class="text-xs font-bold text-slate-400 underline">ค้นหาใหม่</button>
+                <button onclick="location.reload()" class="text-xs font-bold text-slate-400 underline uppercase mt-2">ค้นหาใหม่</button>
             </div>
         </div>
 
@@ -174,20 +174,25 @@
 
 <div id="summerModal">
     <div class="bg-white border-4 border-blue-900 p-8 max-w-lg w-full shadow-[12px_12px_0px_#000] relative">
-        <button onclick="closeSummerModal()" class="absolute top-4 right-4 font-black text-2xl hover:text-red-600">✕</button>
-        <h3 class="text-3xl font-[900] uppercase italic text-blue-900 mb-6 border-b-4 border-blue-900 pb-2">ปฏิทินซัมเมอร์ 2569</h3>
-        <div class="space-y-4 font-bold text-lg text-slate-700">
-            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>วันเปิดเรียน:</span> <span class="text-blue-700 font-black">20 เม.ย. 69</span></p>
-            <p class="flex justify-between border-b-4 border-blue-900 pb-2 text-red-600"><span>สอบปลายภาค:</span> <span class="font-black">30 พ.ค. - 1 มิ.ย. 69</span></p>
+        <button onclick="closeSummerModal()" class="absolute top-4 right-4 font-bold text-2xl hover:text-red-600">✕</button>
+        <h3 class="text-3xl font-bold uppercase italic text-blue-900 mb-6 border-b-4 border-blue-900 pb-2 text-center">ปฏิทินซัมเมอร์ 2569</h3>
+        <div class="space-y-4 font-medium text-lg text-slate-700">
+            <p class="flex justify-between border-b-2 border-slate-100 pb-2"><span>วันเปิดเรียน:</span> <span class="text-blue-700 font-bold">20 เม.ย. 69</span></p>
+            <p class="flex justify-between border-b-4 border-blue-900 pb-2 text-red-600"><span>สอบปลายภาค:</span> <span class="font-bold">30 พ.ค. - 1 มิ.ย. 69</span></p>
         </div>
-        <button onclick="closeSummerModal()" class="btn-gov w-full mt-8">เข้าใจแล้ว</button>
+        <button onclick="closeSummerModal()" class="btn-gov w-full mt-8 uppercase font-bold text-sm">ตกลง เข้าใจแล้ว</button>
     </div>
 </div>
 
+<footer class="bg-blue-950 text-white w-full py-8 mt-12 border-t-4 border-blue-500 text-center">
+    <p class="text-[11px] font-bold tracking-widest uppercase">© 2026 พัฒนาระบบโดยสุธี. All Rights Reserved.</p>
+    <p class="text-[10px] text-blue-300 font-medium uppercase tracking-tighter">Digital Exam Schedule Service System v1.0</p>
+</footer>
+
 <script>
-    /* DATABASE 11 คน (ห้ามหายเด็ดขาด) */
+    /* DATABASE 11 คน (ครบถ้วน ห้ามหาย) */
     const db = {
-        "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "HR", year: "F39-2", advisor: "ปลายภาค/2568",
+        "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "HR Community", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
             exams: [
                 { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์และเทคโนโลยีด้านพืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "หมู่เรียน 700", room: "LH4-201" },
                 { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ทางดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "หมู่เรียน 700", room: "LH3-210" },
@@ -195,11 +200,11 @@
             ],
             offCampus: [
                 { code: "02181351", titleEn: "Evaluation of Agri-Env Ed", titleTh: "การประเมินการจัดการศึกษา", date: "พฤ. 12 มี.ค. 69", time: "10.30 - 12.30", sec: "หมู่เรียน 700/711", room: "EDS3-307" },
-                { code: "02181331", titleEn: "Agri-Env Communication", titleTh: "การสื่อสารทางเกษตร", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
+                { code: "02181331", titleEn: "Communication in Agri-Env", titleTh: "การสื่อสารทางเกษตร", date: "ศ. 13 มี.ค. 69", time: "10.30 - 12.00", sec: "หมู่เรียน 700/711", room: "EDS3-301" },
                 { code: "02033302", titleEn: "Livestock & Thai Way", titleTh: "ปศุสัตว์กับวิถีชีวิตไทย", date: "พ. 18 มี.ค. 69", time: "16.30 - 18.00", sec: "หมู่เรียน 700", room: "LH4-102" }
             ]
         },
-        "6720600028": { name: "นางสาวกมลลักษณ์ ชาวบางงาม", id: "6720600028", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [ { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์พืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "700", room: "LH4-201" }, { code: "02036261", titleEn: "Soil Science", titleTh: "วิทยาศาสตร์ดิน", date: "พฤ. 19 มี.ค. 69", time: "13:00 - 15:00", sec: "700", room: "LH3-210" } ], offCampus: [ { code: "02181351", titleEn: "Evaluation", titleTh: "การประเมิน", date: "พฤ. 12 มี.ค. 69", time: "10.30-12.30", sec: "700/711", room: "EDS3-307" }, { code: "02181331", titleEn: "Communication", titleTh: "การสื่อสาร", date: "ศ. 13 มี.ค. 69", time: "10.30-12.00", sec: "700/711", room: "EDS3-301" } ] },
+        "6720600028": { name: "นางสาวกมลลักษณ์ ชาวบางงาม", id: "6720600028", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [ { code: "02036271", titleEn: "Horticultural Science", titleTh: "วิทยาศาสตร์พืชสวน", date: "อ. 17 มี.ค. 69", time: "16:30 - 18:30", sec: "700", room: "LH4-201" } ], offCampus: [] },
         "6720600052": { name: "นางสาวกันยาพร พันธุเดช", id: "6720600052", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
         "6720600133": { name: "นายชินพัธน์ อัครธัชกุลพัชร์", id: "6720600133", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
         "6720600184": { name: "นายธนพัฒน์ สิงห์เหม", id: "6720600184", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
@@ -210,6 +215,13 @@
         "6720603647": { name: "นางสาวทรรณรต น้อยแนบ", id: "6720603647", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] },
         "6720603728": { name: "นางสาวพชรพร ทัศนาลัย", id: "6720603728", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", year: "F39-2", advisor: "ปลายภาค/2568", exams: [], offCampus: [] }
     };
+
+    function initCounter() {
+        let visits = localStorage.getItem('visitCount') || 1248;
+        visits = parseInt(visits) + 1;
+        localStorage.setItem('visitCount', visits);
+        document.getElementById('totalCount').innerText = visits.toLocaleString();
+    }
 
     function initGradeCountdown() {
         const targetDate = new Date("April 7, 2026 23:59:59").getTime();
@@ -224,35 +236,36 @@
 
     function handleSearch() {
         const idInput = document.getElementById('studentId').value.trim();
-        const student = db[idInput];
-        if (student) {
+        const s = db[idInput];
+        if (s) {
             document.getElementById('searchView').classList.add('hidden');
             document.getElementById('resultView').classList.remove('hidden');
-            document.getElementById('resName').innerText = student.name;
-            document.getElementById('resId').innerText = "ID: " + student.id;
-            document.getElementById('resFaculty').innerText = student.faculty;
-            document.getElementById('resMajor').innerText = student.major;
-            document.getElementById('resYear').innerText = student.year;
-            document.getElementById('resAdvisor').innerText = student.advisor;
-            renderTable('examTableBody', student.exams);
-            renderTable('offCampusTableBody', student.offCampus);
+            document.getElementById('resName').innerText = s.name;
+            document.getElementById('resId').innerText = "รหัสประจำตัวนิสิต: " + s.id;
+            document.getElementById('resFaculty').innerText = s.faculty;
+            document.getElementById('resMajor').innerText = s.major;
+            document.getElementById('resDept').innerText = s.dept || "-";
+            document.getElementById('resYear').innerText = s.year;
+            document.getElementById('resAdvisor').innerText = s.advisor;
+            renderTable('examTableBody', s.exams);
+            renderTable('offCampusTableBody', s.offCampus);
             initGradeCountdown();
         } else {
             document.getElementById('errorMsg').classList.remove('hidden');
         }
     }
 
-    function renderTable(targetId, data) {
-        const tbody = document.getElementById(targetId);
-        if(!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6">--- No Data ---</td></tr>'; return; }
+    function renderTable(id, data) {
+        const tbody = document.getElementById(id);
+        if(!data || data.length === 0) { tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6">--- ไม่พบข้อมูล ---</td></tr>'; return; }
         tbody.innerHTML = data.map(ex => `
             <tr>
-                <td class="font-bold text-blue-800 text-sm center">${ex.code}</td>
-                <td><b>${ex.titleEn}</b><br><small>${ex.titleTh}</small></td>
+                <td class="font-bold text-blue-800 text-sm">${ex.code}</td>
+                <td><b class="font-semibold">${ex.titleEn}</b><br><small class="text-slate-500">${ex.titleTh}</small></td>
                 <td class="text-center">${ex.date}</td>
                 <td class="text-center text-blue-600 font-bold">${ex.time}</td>
                 <td class="text-center bg-blue-50">${ex.sec}</td>
-                <td class="text-center font-black">${ex.room}</td>
+                <td class="text-center font-bold">${ex.room}</td>
             </tr>
         `).join('');
     }
@@ -264,6 +277,8 @@
         container.classList.toggle('hidden');
         document.getElementById('btnOffCampus').innerText = container.classList.contains('hidden') ? "วิชานอกตาราง" : "ซ่อนวิชานอกตาราง";
     }
+
+    window.onload = initCounter;
 </script>
 
 </body>
