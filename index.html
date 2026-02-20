@@ -32,9 +32,11 @@
         @keyframes border-pulse { 0% { border-color: #000; } 50% { border-color: #2563eb; } 100% { border-color: #000; } }
 
         .schedule-box { border: 4px solid #000; background-color: #f0fdf4; }
-        .timer-unit { background: #000; color: #fff; padding: 10px; min-width: 70px; border: 2px solid #fff; }
+        
+        /* ตกแต่ง Countdown ใหม่ */
+        .grade-card { background: #1e293b; color: #fff; border: 4px solid #000; box-shadow: 8px 8px 0px #fbbf24; }
+        .timer-box { background: #ffffff; color: #000000; border: 2px solid #fbbf24; padding: 10px; min-width: 70px; }
 
-        /* Modal สำหรับปฏิทินซัมเมอร์ */
         #summerModal { background-color: rgba(0,0,0,0.8); display: none; position: fixed; inset: 0; z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
     </style>
 </head>
@@ -78,28 +80,36 @@
     <section id="resultView" class="hidden animate-in fade-in duration-500">
         <div class="alert-flash bg-yellow-300 p-4 mb-4 flex items-center gap-4 shadow-[6px_6px_0px_#000]">
             <div class="bg-black text-yellow-300 p-2 font-black text-2xl">!</div>
-            <div class="text-sm md:text-base">
-                <p class="font-black text-black uppercase tracking-tight">ประกาศเตือน: นิสิตประเมินการสอน ครั้งที่ 2</p>
-                <p class="font-bold text-black">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-black">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
+            <div class="text-sm md:text-base text-black">
+                <p class="font-black uppercase tracking-tight">ประกาศเตือน: นิสิตประเมินการสอน ครั้งที่ 2</p>
+                <p class="font-bold">วันที่ 9 - 13 มีนาคม 2569 ผ่านระบบ <span class="underline decoration-2 font-black">MYKU</span> ก่อนเข้าสอบปลายภาค</p>
             </div>
         </div>
 
-        <div class="border-4 border-black p-5 mb-8 bg-white shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row items-center justify-between gap-6 border-l-[16px] border-l-blue-600">
+        <div class="grade-card p-5 mb-4 flex flex-col md:flex-row items-center justify-between gap-6 border-l-[16px] border-l-fbbf24">
             <div class="flex items-center gap-4">
-                <div class="bg-black text-white p-3">
+                <div class="bg-fbbf24 text-black p-3 bg-yellow-400 border-2 border-black">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div>
-                    <p class="font-black text-[10px] uppercase tracking-[0.2em] text-gray-400 leading-none mb-1">Grade Release Countdown</p>
-                    <p class="text-xl md:text-2xl font-[900] uppercase text-black leading-none">วันส่งเกรด: 7 เมษายน 2569 (23:59)</p>
+                    <p class="font-black text-[10px] uppercase tracking-[0.2em] text-yellow-400 leading-none mb-1">Grade Release Countdown</p>
+                    <h3 class="text-xl md:text-2xl font-[900] uppercase text-white leading-none">วันสุดท้ายของการส่งเกรด: 7 เม.ย. 69</h3>
                 </div>
             </div>
             <div class="flex gap-2">
-                <div class="timer-unit text-center shadow-[3px_3px_0px_#2563eb]"><p id="days" class="text-2xl font-black text-white">00</p><p class="text-[9px] uppercase font-bold text-blue-400">Days</p></div>
-                <div class="timer-unit text-center shadow-[3px_3px_0px_#2563eb]"><p id="hours" class="text-2xl font-black text-white">00</p><p class="text-[9px] uppercase font-bold text-blue-400">Hrs</p></div>
-                <div class="timer-unit text-center shadow-[3px_3px_0px_#2563eb]"><p id="minutes" class="text-2xl font-black text-white">00</p><p class="text-[9px] uppercase font-bold text-blue-400">Min</p></div>
-                <div class="timer-unit text-center shadow-[3px_3px_0px_#2563eb] !bg-blue-600"><p id="seconds" class="text-2xl font-black text-yellow-300">00</p><p class="text-[9px] uppercase font-bold text-white">Sec</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#000]"><p id="days" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-gray-400">Days</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#000]"><p id="hours" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-gray-400">Hrs</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#000]"><p id="minutes" class="text-2xl font-black">00</p><p class="text-[9px] uppercase font-bold text-gray-400">Min</p></div>
+                <div class="timer-box text-center shadow-[4px_4px_0px_#000] !bg-yellow-400 border-black"><p id="seconds" class="text-2xl font-black text-black">00</p><p class="text-[9px] uppercase font-bold text-black opacity-50">Sec</p></div>
             </div>
+        </div>
+
+        <div class="schedule-box p-4 mb-4 border-4 border-black shadow-[6px_6px_0px_#000]">
+            <div class="flex flex-col md:flex-row md:items-center gap-3">
+                <div class="bg-green-700 text-white px-4 py-1.5 text-sm font-black uppercase tracking-wider self-start">กำหนดการสอบปลายภาค ภาคปลาย 2568</div>
+                <p class="text-sm font-bold text-gray-800">บางเขน / กำแพงแสน / ศรีราชา / เฉลิมพระเกียรติ จังหวัดสกลนคร</p>
+            </div>
+            <p class="mt-2 text-xl font-black text-green-800 uppercase">วันจันทร์ที่ 16 - วันศุกร์ที่ 27 มีนาคม 2569</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 border-4 border-black mb-8 bg-white shadow-[10px_10px_0px_rgba(0,0,0,1)]">
@@ -122,14 +132,6 @@
                 <button onclick="toggleOffCampus()" id="btnOffCampus" class="btn-off-campus w-full text-sm py-4 uppercase font-black">วิชานอกตารางวิทยาเขต</button>
                 <button onclick="location.reload()" class="w-full text-sm font-bold text-gray-500 hover:underline transition uppercase">ค้นหาใหม่</button>
             </div>
-        </div>
-
-        <div class="schedule-box p-4 mb-4 border-4 border-black shadow-[6px_6px_0px_#000]">
-            <div class="flex flex-col md:flex-row md:items-center gap-3">
-                <div class="bg-green-700 text-white px-4 py-1.5 text-sm font-black uppercase tracking-wider self-start">กำหนดการสอบปลายภาค ภาคปลาย 2568</div>
-                <p class="text-sm font-bold text-gray-800">บางเขน / กำแพงแสน / ศรีราชา / เฉลิมพระเกียรติ จังหวัดสกลนคร</p>
-            </div>
-            <p class="mt-2 text-xl font-black text-green-800">วันจันทร์ที่ 16 - วันศุกร์ที่ 27 มีนาคม 2569</p>
         </div>
 
         <div class="overflow-x-auto border-4 border-black mb-10 shadow-[8px_8px_0px_#000]">
@@ -180,18 +182,19 @@
             <p class="flex justify-between border-b-2 border-gray-100 pb-2"><span>สอบกลางภาค:</span> <span class="text-blue-700">12-14 พ.ค. 69</span></p>
             <p class="flex justify-between border-b-4 border-black pb-2 text-red-600"><span>สอบปลายภาค:</span> <span>8-10 มิ.ย. 69</span></p>
         </div>
-        <button onclick="closeSummerModal()" class="btn-gov w-full mt-8">เข้าใจแล้ว</button>
+        <button onclick="closeSummerModal()" class="btn-gov w-full mt-8 uppercase font-black">ตกลง</button>
     </div>
 </div>
 
-<div class="bg-black text-white w-full py-6 mt-12">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+<footer class="bg-black text-white w-full py-6 mt-12">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
         <p class="text-[11px] font-bold tracking-widest uppercase">© 2026 พัฒนาระบบโดยสุธี. All Rights Reserved.</p>
         <p class="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">Digital Exam Schedule Service System v1.0</p>
     </div>
-</div>
+</footer>
 
 <script>
+    /* DATABASE (ข้อมูลนิสิตครบทุกคนตามไฟล์ต้นฉบับ) */
     const db = {
         "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "กลางภาค ภาคปลาย/2568",
             exams: [
