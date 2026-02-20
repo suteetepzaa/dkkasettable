@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>exam Service System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kodchasan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * { border-radius: 0 !important; font-family: 'Kodchasan', sans-serif; font-style: normal !important; }
+        * { border-radius: 0 !important; font-family: 'Prompt', sans-serif; font-style: normal !important; }
         body { background-color: #f8fafc; color: #1e293b; -webkit-font-smoothing: antialiased; }
         
         /* Input & Buttons */
@@ -78,8 +78,8 @@
                     <input type="text" class="input-sharp input-locked font-bold text-center" value="ปลายภาค" readonly>
                 </div>
                 <div class="md:col-span-2">
-                    <label class="block font-bold text-xs uppercase tracking-widest mb-2 text-gray-400">ชั้น-ปี</label>
-                    <input type="text" class="input-sharp input-locked font-bold text-center" value="F39-2" readonly>
+                    <label class="block font-bold text-xs uppercase tracking-widest mb-2 text-gray-400">ชั้นปี</label>
+                    <input type="text" class="input-sharp input-locked font-bold text-center" value="ชั้นปีที่ 1" readonly>
                 </div>
             </div>
             <button onclick="handleSearch()" class="btn-gov w-full mt-8 uppercase tracking-widest font-bold">ค้นหาตารางสอบของคุณ →</button>
@@ -120,8 +120,8 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div>
-                    <p class="font-black text-[10px] uppercase tracking-[0.2em] text-blue-200 leading-none mb-1">วันสุดท้ายของการส่งเกรด</p>
-                    <h3 class="text-xl md:text-2xl font-[900] uppercase text-white leading-none">ไม่เกินเที่ยงคืนวันที่ 7 เมษายน 2569</h3>
+                    <p class="font-black text-[10px] uppercase tracking-[0.2em] text-blue-200 leading-none mb-1">Official Grade Release</p>
+                    <h3 class="text-xl md:text-2xl font-[900] uppercase text-white leading-none">วันสุดท้ายของการส่งเกรด: ไม่เกินเที่ยงคืนวันที่ 7 เมษายน 2569</h3>
                 </div>
             </div>
             <div class="flex gap-2">
@@ -391,12 +391,12 @@
     function renderTable(targetId, data) {
         const tbody = document.getElementById(targetId);
         if(!data || data.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6 text-slate-400 font-bold">--- ไม่พบข้อมูลการสอบ ---</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6 text-slate-400 font-bold">--- NO EXAM SCHEDULE ---</td></tr>';
             return;
         }
         tbody.innerHTML = data.map(ex => `
             <tr class="hover:bg-blue-50 transition">
-                <td class="font-bold text-blue-800 text-sm text-center font-bold">${ex.code}</td>
+                <td class="font-bold text-blue-800 text-sm text-center">${ex.code}</td>
                 <td class="py-3 px-4 font-bold">
                     <div class="font-bold text-base leading-tight text-slate-900">${ex.titleEn}</div>
                     <div class="text-[11px] text-blue-500 font-bold mt-1">${ex.titleTh}</div>
