@@ -77,6 +77,10 @@
                     <label class="block font-bold text-xs uppercase tracking-widest mb-2 text-gray-400">ประเภทการสอบ</label>
                     <input type="text" class="input-sharp input-locked font-bold text-center" value="ปลายภาค" readonly>
                 </div>
+                <div class="md:col-span-2">
+                    <label class="block font-bold text-xs uppercase tracking-widest mb-2 text-gray-400">ชั้นปี</label>
+                    <input type="text" class="input-sharp input-locked font-bold text-center" value="ชั้นปีที่ 1" readonly>
+                </div>
             </div>
             <button onclick="handleSearch()" class="btn-gov w-full mt-8 uppercase tracking-widest font-bold">ค้นหาตารางสอบของคุณ →</button>
             <div class="mt-10 pt-6 border-t-2 border-slate-100 flex justify-center">
@@ -217,7 +221,6 @@
 </footer>
 
 <script>
-    /* DATABASE 11 คน ครบถ้วน (ห้ามหาย) */
     const db = {
         "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "ปลายภาค ภาคปลาย/2568",
             exams: [
@@ -388,12 +391,12 @@
     function renderTable(targetId, data) {
         const tbody = document.getElementById(targetId);
         if(!data || data.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6 text-slate-400 font-bold">--- NO EXAM SCHEDULE ---</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6 text-slate-400 font-bold">--- ไม่พบข้อมูลการสอบ ---</td></tr>';
             return;
         }
         tbody.innerHTML = data.map(ex => `
             <tr class="hover:bg-blue-50 transition">
-                <td class="font-bold text-blue-800 text-sm text-center">${ex.code}</td>
+                <td class="font-bold text-blue-800 text-sm text-center font-bold">${ex.code}</td>
                 <td class="py-3 px-4 font-bold">
                     <div class="font-bold text-base leading-tight text-slate-900">${ex.titleEn}</div>
                     <div class="text-[11px] text-blue-500 font-bold mt-1">${ex.titleTh}</div>
