@@ -19,7 +19,6 @@
 
         .btn-myku { background-color: #2563eb; color: #fff; border: 2px solid #0f172a; font-weight: 800; transition: 0.2s; }
         .btn-summer { background-color: #fbbf24; color: #000; border: 2px solid #0f172a; font-weight: 800; transition: 0.2s; box-shadow: 4px 4px 0px #0f172a; }
-        .btn-summer:hover { background-color: #f59e0b; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #0f172a; }
 
         .btn-off-campus { background-color: #f97316; color: #fff; border: 2px solid #0f172a; box-shadow: 4px 4px 0px #0f172a; font-weight: 800; }
 
@@ -31,7 +30,10 @@
         .grade-card { background: #1e3a8a; color: #fff; border: 4px solid #0f172a; box-shadow: 8px 8px 0px #93c5fd; }
         .timer-box { background: #ffffff; color: #1e3a8a; border: 2px solid #0f172a; padding: 10px; min-width: 70px; }
 
+        /* Strip Styles */
         .info-strip { border: 3px solid #0f172a; padding: 1rem; margin-bottom: 1rem; font-weight: 800; display: flex; align-items: center; box-shadow: 4px 4px 0px #0f172a; }
+        .strip-red { background-color: #fee2e2; color: #991b1b; border-color: #991b1b; } /* สีแดงที่ขอ */
+        .strip-green { background-color: #dcfce7; color: #166534; border-color: #166534; }
 
         #summerModal { background-color: rgba(15, 23, 42, 0.9); display: none; position: fixed; inset: 0; z-index: 100; align-items: center; justify-content: center; padding: 1.5rem; }
     </style>
@@ -81,11 +83,11 @@
 
     <section id="resultView" class="hidden animate-in fade-in duration-500">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div class="info-strip bg-blue-100 text-blue-900 border-blue-900">
-                <span class="bg-blue-900 text-white px-2 py-1 text-xs mr-3 font-black">CLOSE</span>
+            <div class="info-strip strip-red">
+                <span class="bg-red-800 text-white px-2 py-1 text-xs mr-3 font-black">CLOSE</span>
                 วันปิดภาคเรียน ภาคปลาย 2568: <span class="ml-auto font-black">30 มี.ค. 69</span>
             </div>
-            <div class="info-strip bg-green-100 text-green-900 border-green-900">
+            <div class="info-strip strip-green">
                 <span class="bg-green-700 text-white px-2 py-1 text-xs mr-3 font-black">OPEN</span>
                 วันเปิดภาคเรียน ภาคต้น 2569: <span class="ml-auto font-black">22 มิ.ย. 69</span>
             </div>
@@ -195,7 +197,7 @@
 </footer>
 
 <script>
-    /* DATABASE ครบถ้วนตามข้อมูลต้นฉบับ 11 คน */
+    /* DATABASE 11 คน */
     const db = {
         "6720600494": { name: "นายเมธี ใจสุขดี", id: "6720600494", faculty: "ศึกษาศาสตร์และพัฒนศาสตร์", major: "เกษตรและสิ่งแวดล้อมศึกษา", dept: "การพัฒนาทรัพยากรมนุษย์และชุมชน", year: "F39-2", advisor: "กลางภาค ภาคปลาย/2568",
             exams: [
