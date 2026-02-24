@@ -3,153 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจองห้องประชุม - Mitr Style</title>
+    <title>ระบบจองพื้นที่ - ฟาร์มภาควิชา HRD</title>
     <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Mitr', sans-serif; background-color: #f8fafc; }
-        .modal { transition: opacity 0.25s ease; }
-        body.modal-active { overflow: hidden; }
+        body { font-family: 'Mitr', sans-serif; background-color: #f0f4f0; }
+        .bg-hrd { background-color: #2d5a27; } /* สีเขียวเข้มแบบฟาร์ม */
+        .text-hrd { color: #2d5a27; }
     </style>
 </head>
 <body>
 
     <div class="min-h-screen flex flex-col">
-        <nav class="bg-white shadow-sm px-8 py-4 flex justify-between items-center border-b border-blue-100">
-            <h1 class="text-2xl font-500 text-blue-600">Meeting<span class="text-slate-700">Reserve</span></h1>
-            <div class="text-slate-500">ห้องประชุมที่จองแล้ว: <span id="bookingCount" class="font-500 text-blue-600">0</span></div>
-        </nav>
+        <header class="bg-hrd text-white shadow-lg px-8 py-6">
+            <div class="max-w-6xl mx-auto flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-500">Farm Resource Booking</h1>
+                    <p class="text-sm opacity-80 font-300">ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</p>
+                </div>
+                <div class="text-right">
+                    <span id="bookingCount" class="bg-yellow-400 text-green-900 px-3 py-1 rounded-full text-sm font-500">0 รายการจองวันนี้</span>
+                </div>
+            </div>
+        </header>
 
-        <main class="p-8 max-w-6xl mx-auto w-full">
-            <h2 class="text-2xl font-500 text-slate-800 mb-6">เลือกห้องที่ต้องการจอง</h2>
+        <main class="p-6 max-w-6xl mx-auto w-full flex-1">
+            <div class="mb-8">
+                <h2 class="text-xl font-500 text-slate-700 border-l-4 border-green-600 pl-3">พื้นที่และห้องประชุมภายในฟาร์ม</h2>
+            </div>
             
-            <div id="roomGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="roomGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 </div>
         </main>
+
+        <footer class="p-6 text-center text-slate-400 text-sm">
+            © 2026 Department of Human and Community Resource Development
+        </footer>
     </div>
 
-    <div id="bookingModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
-        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-        
-        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-2xl shadow-lg z-50 overflow-y-auto">
-            <div class="modal-content py-6 text-left px-8">
-                <div class="flex justify-between items-center pb-3 border-b">
-                    <p class="text-xl font-500 text-slate-800" id="modalRoomName">รายละเอียดการจอง</p>
-                    <button onclick="toggleModal()" class="modal-close cursor-pointer z-50 text-slate-400 hover:text-slate-600">
-                        <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path></svg>
-                    </button>
-                </div>
-
-                <form id="bookingForm" class="mt-4 space-y-4">
-                    <input type="hidden" id="targetRoomId">
-                    <div>
-                        <label class="block text-sm text-slate-500 mb-1">ชื่อผู้จอง</label>
-                        <input type="text" id="userName" required class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm text-slate-500 mb-1">วัตถุประสงค์</label>
-                        <input type="text" id="purpose" required class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 outline-none" placeholder="เช่น ประชุมวางแผนงาน">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm text-slate-500 mb-1">เริ่ม</label>
-                            <input type="time" id="startTime" required class="w-full border rounded-lg px-4 py-2 outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-sm text-slate-500 mb-1">สิ้นสุด</label>
-                            <input type="time" id="endTime" required class="w-full border rounded-lg px-4 py-2 outline-none">
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-xl font-500 hover:bg-blue-700 transition duration-200 mt-4">ยืนยันการจอง</button>
-                </form>
+    <div id="bookingModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden">
+            <div class="bg-hrd p-4 text-white flex justify-between">
+                <h3 id="modalTitle" class="font-500">จองพื้นที่</h3>
+                <button onclick="closeModal()" class="text-white opacity-70 hover:opacity-100">✕</button>
             </div>
+            <form id="bookingForm" class="p-6 space-y-4">
+                <input type="hidden" id="roomId">
+                <div>
+                    <label class="block text-sm text-slate-500 mb-1">ชื่อผู้ติดต่อ / หน่วยงาน</label>
+                    <input type="text" id="userName" required class="w-full border-2 border-slate-100 rounded-lg px-4 py-2 focus:border-green-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm text-slate-500 mb-1">กิจกรรม</label>
+                    <select id="activityType" class="w-full border-2 border-slate-100 rounded-lg px-4 py-2 outline-none">
+                        <option>ประชุมกลุ่มย่อย</option>
+                        <option>บรรยาย/สัมมนา</option>
+                        <option>ลงพื้นที่ปฏิบัติการ</option>
+                        <option>ต้อนรับคณะดูงาน</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-slate-500 mb-1">เริ่ม (น.)</label>
+                        <input type="time" id="startTime" required class="w-full border-2 border-slate-100 rounded-lg px-4 py-2 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-500 mb-1">ถึง (น.)</label>
+                        <input type="time" id="endTime" required class="w-full border-2 border-slate-100 rounded-lg px-4 py-2 outline-none">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-xl font-500 hover:bg-green-700 transition shadow-lg shadow-green-200">ยืนยันการบันทึกข้อมูล</button>
+            </form>
         </div>
     </div>
 
     <script>
-        // ข้อมูลจำลองของห้องประชุม
-        const rooms = [
-            { id: 1, name: 'ห้องมรกต (Emerald)', capacity: '8-10 คน', floor: 'ชั้น 2', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=500', isAvailable: true },
-            { id: 2, name: 'ห้องไพลิน (Sapphire)', capacity: '4-6 คน', floor: 'ชั้น 1', image: 'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=500', isAvailable: true },
-            { id: 3, name: 'ห้องประชุมใหญ่ (Grand)', capacity: '20-30 คน', floor: 'ชั้น 5', image: 'https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=500', isAvailable: true }
+        const areas = [
+            { id: 1, name: 'ห้องประชุมแปลงสาธิต', info: 'แอร์, โปรเจคเตอร์', cap: '15-20 ท่าน', img: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=500', bookedBy: null },
+            { id: 2, name: 'ศาลาเรียนรู้ชุมชน', info: 'Open Air, กระดานไวท์บอร์ด', cap: '30-40 ท่าน', img: 'https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?auto=format&fit=crop&w=500', bookedBy: null },
+            { id: 3, name: 'ห้องปฏิบัติการ HRD', info: 'คอมพิวเตอร์, ระบบเสียง', cap: '10-12 ท่าน', img: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500', bookedBy: null }
         ];
 
-        let bookings = [];
-
-        function renderRooms() {
+        function render() {
             const grid = document.getElementById('roomGrid');
             grid.innerHTML = '';
-            
-            rooms.forEach(room => {
+            let count = 0;
+
+            areas.forEach(area => {
+                if(area.bookedBy) count++;
                 const card = document.createElement('div');
-                card.className = `bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden transition ${!room.isAvailable ? 'opacity-70' : 'hover:shadow-md'}`;
-                
+                card.className = "bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-100";
                 card.innerHTML = `
-                    <div class="h-44 bg-cover bg-center" style="background-image: url('${room.image}')"></div>
-                    <div class="p-6">
+                    <img src="${area.img}" class="h-40 w-full object-cover">
+                    <div class="p-5">
                         <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-500 text-slate-800">${room.name}</h3>
-                            <span class="${room.isAvailable ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'} text-xs px-2 py-1 rounded-full font-500">
-                                ${room.isAvailable ? 'ว่าง' : 'จองแล้ว'}
+                            <h3 class="font-500 text-lg text-slate-800">${area.name}</h3>
+                            <span class="text-xs px-2 py-1 rounded-md ${area.bookedBy ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-600'}">
+                                ${area.bookedBy ? 'ใช้งานอยู่' : 'ว่าง'}
                             </span>
                         </div>
-                        <p class="text-slate-500 text-sm mb-6">${room.floor} • ${room.capacity}</p>
-                        <button onclick="${room.isAvailable ? `openBookingModal(${room.id}, '${room.name}')` : ''}" 
-                                class="w-full py-3 rounded-xl font-400 transition duration-200 ${room.isAvailable ? 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}">
-                            ${room.isAvailable ? 'กดจองห้องนี้' : 'จองโดย: ' + findBooker(room.id)}
+                        <p class="text-slate-400 text-sm mb-4">${area.info} • ${area.cap}</p>
+                        ${area.bookedBy ? 
+                            `<div class="bg-slate-50 p-3 rounded-lg text-sm text-slate-600 mb-2 border-l-4 border-red-400">
+                                <b>ผู้จอง:</b> ${area.bookedBy}<br>
+                                <b>เวลา:</b> ${area.time}
+                             </div>` : ''
+                        }
+                        <button onclick="${!area.bookedBy ? `openModal(${area.id}, '${area.name}')` : ''}" 
+                                class="w-full py-2.5 rounded-lg font-500 transition ${!area.bookedBy ? 'bg-green-50 text-green-700 hover:bg-green-600 hover:text-white border border-green-200' : 'bg-slate-100 text-slate-400 cursor-not-allowed'}">
+                            ${!area.bookedBy ? 'จองพื้นที่นี้' : 'ไม่สามารถจองได้'}
                         </button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
-            document.getElementById('bookingCount').innerText = bookings.length;
+            document.getElementById('bookingCount').innerText = `${count} รายการจองวันนี้`;
         }
 
-        function findBooker(roomId) {
-            const b = bookings.find(x => x.roomId === roomId);
-            return b ? b.userName : '';
+        function openModal(id, name) {
+            document.getElementById('roomId').value = id;
+            document.getElementById('modalTitle').innerText = 'แบบฟอร์มจอง: ' + name;
+            document.getElementById('bookingModal').classList.remove('hidden');
         }
 
-        function openBookingModal(id, name) {
-            document.getElementById('targetRoomId').value = id;
-            document.getElementById('modalRoomName').innerText = 'จอง' + name;
-            toggleModal();
+        function closeModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
         }
 
-        function toggleModal() {
-            const modal = document.getElementById('bookingModal');
-            modal.classList.toggle('opacity-0');
-            modal.classList.toggle('pointer-events-none');
-            document.body.classList.toggle('modal-active');
-        }
-
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        document.getElementById('bookingForm').onsubmit = function(e) {
             e.preventDefault();
-            const roomId = parseInt(document.getElementById('targetRoomId').value);
-            const userName = document.getElementById('userName').value;
+            const id = document.getElementById('roomId').value;
+            const index = areas.findIndex(a => a.id == id);
             
-            // บันทึกข้อมูลลงใน Array
-            bookings.push({
-                roomId: roomId,
-                userName: userName,
-                purpose: document.getElementById('purpose').value,
-                start: document.getElementById('startTime').value,
-                end: document.getElementById('endTime').value
-            });
+            areas[index].bookedBy = document.getElementById('userName').value;
+            areas[index].time = document.getElementById('startTime').value + ' - ' + document.getElementById('endTime').value;
 
-            // อัปเดตสถานะห้อง
-            const roomIndex = rooms.findIndex(r => r.id === roomId);
-            rooms[roomIndex].isAvailable = false;
-
-            // Reset ฟอร์มและปิด Modal
             this.reset();
-            toggleModal();
-            renderRooms();
-            alert('บันทึกการจองสำเร็จ!');
-        });
+            closeModal();
+            render();
+            alert('บันทึกข้อมูลการจองลงระบบฟาร์มแล้ว');
+        };
 
-        // เริ่มต้นแสดงผล
-        renderRooms();
+        render();
     </script>
 </body>
 </html>
