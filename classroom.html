@@ -114,18 +114,18 @@
             margin-bottom: 40px;
         }
 
-        /* --- Feature Grid (Square Style - Optimized) --- */
+        /* --- Feature Grid (Square Style - No Description) --- */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
             margin-bottom: 40px;
         }
 
         .feature-card {
             background: white;
-            aspect-ratio: 1 / 1; /* ทรงสี่เหลี่ยมจัตุรัส */
-            padding: 25px;
+            aspect-ratio: 1 / 1;
+            padding: 20px;
             border: 1px solid #eee;
             cursor: pointer;
             display: flex;
@@ -144,27 +144,16 @@
         }
 
         .feature-card i {
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: #006633;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #222;
-            white-space: nowrap; /* บรรทัดเดียว */
-            margin-bottom: 12px;
-            width: 100%;
-        }
-
-        .feature-card p {
-            font-size: 0.9rem;
-            color: #777;
-            white-space: nowrap; /* บรรทัดเดียว */
-            overflow: hidden;
-            text-overflow: ellipsis; /* ถ้าเกินให้มีจุดไข่ปลา */
-            width: 100%;
-            letter-spacing: 0.2px;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
         }
 
         /* --- Developer Info Section --- */
@@ -230,25 +219,21 @@
             <div class="feature-card">
                 <i class="fas fa-calendar-check"></i>
                 <h3>จองห้องประชุม</h3>
-                <p>ตรวจสอบวันเวลาว่างและทำรายการจองออนไลน์</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-search"></i>
                 <h3>ตรวจสอบสถานะ</h3>
-                <p>ติดตามความคืบหน้าและประวัติการจองย้อนหลัง</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-hotel"></i>
                 <h3>ห้องประชุมทั้งหมด</h3>
-                <p>รายละเอียดอุปกรณ์และจำนวนที่นั่งแต่ละห้อง</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-book"></i>
                 <h3>คู่มือการใช้</h3>
-                <p>ขั้นตอนการใช้งานและข้อปฏิบัติการใช้ห้องประชุม</p>
             </div>
         </div>
 
