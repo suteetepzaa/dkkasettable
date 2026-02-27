@@ -2,103 +2,52 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Booking - Orange & Grey Edition</title>
-    
+    <title>Room Booking - Industrial Sharp</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Kanit', sans-serif; 
-            background-color: #f4f4f5; /* Light Grey Background */
-        }
-        
-        /* Custom Orange Palette */
-        :root {
-            --primary-orange: #f97316;
-            --dark-grey: #3f3f46;
-        }
-
-        /* ปรับแต่ง FullCalendar ให้คุมโทน */
-        .fc { 
-            max-width: 500px; 
-            margin: 0 auto;
-        }
-        .fc-toolbar-title {
-            font-size: 1.1rem !important;
-            color: var(--dark-grey);
-            font-weight: 500;
-        }
-        .fc-button-primary {
-            background-color: var(--dark-grey) !important;
-            border: none !important;
-            border-radius: 0px !important; /* ขอบเหลี่ยมตามความชอบ */
-            font-size: 0.75rem !important;
-        }
-        .fc-button-primary:hover {
-            background-color: var(--primary-orange) !important;
-        }
-        /* เส้นตาราง */
-        .fc-theme-standard td, .fc-theme-standard th {
-            border: 1px solid #e4e4e7 !important;
-        }
-        /* แถบเวลาปัจจุบัน */
-        .fc-timegrid-now-indicator-line {
-            border-color: var(--primary-orange) !important;
-        }
+        body { font-family: 'Kanit', sans-serif; background-color: #18181b; color: #e4e4e7; }
+        .fc { max-width: 450px; background: #27272a; padding: 15px; border: 1px solid #3f3f46; }
+        .fc-header-toolbar { margin-bottom: 0.5rem !important; }
+        .fc-toolbar-title { font-size: 0.9rem !important; text-transform: uppercase; letter-spacing: 1px; }
+        .fc-button { border-radius: 0 !important; background: #3f3f46 !important; border: none !important; font-size: 0.7rem !important; }
+        .fc-button-active { background: #f97316 !important; }
+        .fc-theme-standard td, .fc-theme-standard th { border-color: #3f3f46 !important; }
+        .fc-timegrid-slot { height: 30px !important; } /* บีบให้เล็กลง */
     </style>
 </head>
-<body class="min-h-screen">
+<body class="p-0 m-0">
 
-    <nav class="bg-[#3f3f46] text-white px-8 py-4 flex justify-between items-center shadow-lg border-b-4 border-[#f97316]">
+    <nav class="border-b border-zinc-800 bg-zinc-900 px-6 py-3 flex justify-between items-center">
         <div class="flex items-center space-x-4">
-            <div class="bg-white p-1">
-                <img src="https://via.placeholder.com/45x45/FFFFFF/f97316?text=LOGO" alt="Logo" class="w-10 h-10">
+            <div class="border-2 border-orange-500 p-1">
+                <div class="w-8 h-8 bg-orange-500 text-zinc-900 flex items-center justify-center font-bold">KU</div>
             </div>
-            <div>
-                <h1 class="text-lg font-medium leading-none tracking-wide">ROOM BOOKING</h1>
-                <p class="text-[10px] text-orange-400 uppercase mt-1">Faculty of Education - KPS</p>
-            </div>
+            <span class="text-sm font-medium tracking-tighter uppercase">Department Booking</span>
         </div>
-
-        <button class="bg-[#f97316] hover:bg-orange-600 text-white px-6 py-2 text-sm font-medium transition-all duration-300 shadow-md">
-            LOGIN
+        <button class="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-6 py-1 text-xs transition-all uppercase">
+            Login
         </button>
     </nav>
 
-    <main class="container mx-auto mt-12 px-4 flex flex-col items-center">
-        <div class="w-full max-w-xl bg-white border border-gray-200 shadow-sm relative">
-            <div class="absolute top-0 left-0 w-full h-1 bg-[#f97316]"></div>
-            
-            <div class="p-8">
-                <div class="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
-                    <h2 class="text-xl font-medium text-[#3f3f46]">ตารางการจองวันนี้</h2>
-                    <div class="text-[11px] bg-gray-100 px-3 py-1 text-gray-500 uppercase">Daily View</div>
-                </div>
+    <main class="flex flex-col items-center pt-12">
+        <div class="bg-zinc-900 border-l-4 border-orange-500 shadow-2xl p-6 w-full max-w-md">
+            <div class="mb-4">
+                <h2 class="text-lg font-light uppercase tracking-widest text-zinc-400">Daily Schedule</h2>
+                <div class="h-px bg-zinc-800 w-full mt-2"></div>
+            </div>
 
-                <div id="calendar"></div>
-                
-                <div class="mt-8 flex items-center justify-between border-t border-gray-100 pt-6">
-                    <div class="flex space-x-4 text-xs">
-                        <div class="flex items-center">
-                            <span class="w-3 h-3 bg-orange-100 border border-orange-500 mr-2"></span> 
-                            <span class="text-gray-600">จองแล้ว</span>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="w-3 h-3 bg-white border border-gray-300 mr-2"></span> 
-                            <span class="text-gray-600">ว่าง</span>
-                        </div>
-                    </div>
-                    <p class="text-[10px] text-gray-400 italic">*คลิกช่วงเวลาที่ต้องการเพื่อจอง</p>
+            <div id="calendar"></div>
+
+            <div class="mt-4 flex justify-between items-center text-[10px] text-zinc-500 uppercase tracking-widest">
+                <div class="flex space-x-3">
+                    <span class="flex items-center"><span class="w-2 h-2 bg-orange-500 mr-1"></span> Booked</span>
+                    <span class="flex items-center"><span class="w-2 h-2 bg-zinc-700 mr-1"></span> Available</span>
                 </div>
+                <span>Agri-Edu KPS</span>
             </div>
         </div>
-
-        <p class="mt-8 text-gray-400 text-[11px] uppercase tracking-widest">
-            Agricultural and Environmental Education
-        </p>
     </main>
 
     <script>
@@ -108,33 +57,10 @@
                 initialView: 'timeGridDay',
                 locale: 'th',
                 slotMinTime: '08:00:00',
-                slotMaxTime: '19:00:00',
+                slotMaxTime: '18:00:00',
                 allDaySlot: false,
-                slotLabelFormat: {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                },
-                headerToolbar: {
-                    left: 'prev,next',
-                    center: 'title',
-                    right: 'today'
-                },
-                height: 'auto',
-                events: [
-                    {
-                        title: 'Reserved',
-                        start: '2026-02-27T10:00:00',
-                        end: '2026-02-27T12:00:00',
-                        backgroundColor: '#fff7ed', // Orange-50
-                        borderColor: '#f97316',    // Orange-500
-                        textColor: '#c2410c'       // Orange-700
-                    }
-                ],
-                // เมื่อคลิกที่ปฏิทิน
-                dateClick: function(info) {
-                    alert('โปรดเข้าสู่ระบบเพื่อดำเนินการจอง');
-                }
+                headerToolbar: { left: 'prev,next', center: 'title', right: 'today' },
+                events: [{ title: 'BUSY', start: '2026-02-27T13:00:00', end: '2026-02-27T15:00:00', color: '#f97316' }]
             });
             calendar.render();
         });
