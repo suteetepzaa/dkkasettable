@@ -55,6 +55,7 @@
         .dept-name p {
             font-size: 1rem;
             color: #555;
+            line-height: 1.6; /* เพิ่มช่องว่างระหว่างบรรทัด */
         }
 
         .nav-right {
@@ -67,6 +68,7 @@
             text-align: right;
             font-size: 0.95rem;
             color: #333;
+            line-height: 1.5; /* เพิ่มช่องว่างระหว่างบรรทัด */
         }
 
         .login-btn {
@@ -81,6 +83,7 @@
             align-items: center;
             gap: 10px;
             font-size: 1.1rem;
+            transition: background-color 0.3s ease;
         }
 
         /* --- Main Content --- */
@@ -91,19 +94,18 @@
             width: 90%;
         }
 
-        /* ขยายแถบพัฒนาขึ้นตามคำสั่ง */
         .dev-status-tag {
             background-color: #ffc107;
             color: #000;
-            padding: 12px 30px; /* เพิ่ม Padding */
+            padding: 15px 30px;
             font-weight: 600;
-            font-size: 1.1rem; /* ขยายขนาดตัวอักษร */
+            font-size: 1.1rem;
             border: 2px solid #e0a800;
             margin-bottom: 30px;
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            width: 100%; /* ให้ยาวเต็มพื้นที่เพื่อความเด่นชัด */
+            width: 100%;
             justify-content: center;
         }
 
@@ -112,54 +114,84 @@
             margin: 40px 0;
         }
 
+        .welcome-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .welcome-header p {
+            line-height: 1.8; /* เพิ่มช่องว่างระหว่างบรรทัด */
+            color: #666;
+        }
+
+        /* --- Feature Grid (ปรับให้สมูทขึ้น) --- */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 50px;
         }
 
         .feature-card {
             background: white;
-            padding: 40px 20px;
+            padding: 45px 25px;
             border: 1px solid #eee;
-            transition: 0.3s;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
+            /* ปรับ Transition ให้สมูทขึ้น */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: #006633;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 15px 35px rgba(0, 102, 51, 0.1);
         }
 
         .feature-card i {
-            font-size: 3rem;
+            font-size: 3.2rem;
             color: #006633;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
         }
 
-        /* --- Developer Info Section (ย้ายมาไว้ด้านล่าง) --- */
+        .feature-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.7; /* เพิ่มช่องว่างระหว่างบรรทัด */
+        }
+
+        /* --- Developer Info Section --- */
         .developer-footer-card {
             background: #ffffff;
             border-left: 6px solid #006633;
-            padding: 20px 30px;
+            padding: 25px 35px;
             margin-top: 40px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             border-top: 1px solid #eee;
             border-right: 1px solid #eee;
             border-bottom: 1px solid #eee;
         }
 
         .dev-text {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #444;
-            line-height: 1.6;
+            line-height: 1.8; /* เพิ่มช่องว่างระหว่างบรรทัด */
         }
 
         .dev-text b {
@@ -206,32 +238,32 @@
 
         <div class="welcome-header">
             <h2>ยินดีต้อนรับสู่ระบบจัดการห้องประชุม</h2>
-            <p>กรุณาเลือกฟีเจอร์ที่ต้องการใช้งาน</p>
+            <p>กรุณาเลือกฟีเจอร์ที่ต้องการใช้งาน เพื่อความสะดวกและรวดเร็ว</p>
         </div>
 
         <div class="feature-grid">
             <div class="feature-card">
                 <i class="fas fa-calendar-check"></i>
                 <h3>จองห้องประชุม</h3>
-                <p>ทำรายการจองห้องออนไลน์ได้ทันที</p>
+                <p>ตรวจสอบวันเวลาว่างและทำรายการจองห้อง<br>ผ่านระบบออนไลน์ได้ทันที</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-search"></i>
                 <h3>ตรวจสอบสถานะ</h3>
-                <p>เช็กประวัติและผลการอนุมัติการจอง</p>
+                <p>ติดตามความคืบหน้าการอนุมัติ<br>และเรียกดูประวัติการจองย้อนหลัง</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-hotel"></i>
                 <h3>ห้องประชุมทั้งหมด</h3>
-                <p>ข้อมูลสิ่งอำนวยความสะดวกในแต่ละห้อง</p>
+                <p>รายละเอียดสิ่งอำนวยความสะดวก<br>และจำนวนที่รองรับของแต่ละห้อง</p>
             </div>
 
             <div class="feature-card">
                 <i class="fas fa-book"></i>
                 <h3>คู่มือการใช้</h3>
-                <p>ขั้นตอนและระเบียบการใช้ห้องประชุม</p>
+                <p>เรียนรู้ขั้นตอนการใช้งานระบบ<br>และข้อปฏิบัติในการเข้าใช้ห้องประชุม</p>
             </div>
         </div>
 
