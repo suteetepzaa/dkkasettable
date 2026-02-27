@@ -13,7 +13,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Kanit', sans-serif;
-            border-radius: 0 !important; /* ขอบเหลี่ยมทั้งหมด */
+            border-radius: 0 !important; /* ขอบเหลี่ยมสไตล์ Modern Industrial */
         }
 
         body {
@@ -88,15 +88,14 @@
 
         .welcome-card {
             background: white;
-            padding: 0 0 50px 0; /* เว้นด้านล่างไว้ */
+            padding: 0 0 30px 0; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid #eee;
             max-width: 600px;
             width: 100%;
-            overflow: hidden; /* เพื่อให้แถบ dev อยู่ในกรอบ */
+            overflow: hidden;
         }
 
-        /* --- แถบแจ้งเตือนภายใน Card --- */
         .dev-badge {
             background-color: #ffc107;
             color: #000;
@@ -111,22 +110,33 @@
             gap: 8px;
         }
 
+        .card-content {
+            padding: 0 40px;
+        }
+
         .welcome-card h2 {
             font-size: 2.2rem;
             margin-bottom: 15px;
             color: #333;
-            padding: 0 40px;
         }
 
         .welcome-card p {
             color: #666;
             margin-bottom: 35px;
             font-weight: 300;
-            padding: 0 40px;
         }
 
-        .card-content {
-            padding: 0 40px;
+        /* --- ผู้พัฒนาระบบ --- */
+        .developer-info {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .developer-info b {
+            color: #555;
         }
 
         /* --- Footer --- */
@@ -142,7 +152,7 @@
 
     <nav>
         <div class="logo-section">
-            <img src="https://via.placeholder.com/70x70?text=LOGO" alt="ตราภาควิชา" class="dept-logo">
+            <img src="HCRD.png" alt="ตราภาควิชา" class="dept-logo">
             <div class="dept-name">
                 <h1>ระบบจองห้องประชุม AG-ED | HCRD</h1>
                 <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
@@ -169,6 +179,11 @@
                     <button class="login-btn" style="width: 100%; justify-content: center; font-size: 1.1rem;">
                         เริ่มต้นใช้งาน
                     </button>
+                </div>
+
+                <div class="developer-info">
+                    <i class="fas fa-code"></i> พัฒนาโดย: <b>ชื่อ-นามสกุล ของคุณ</b> <br>
+                    <span>นิสิตภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</span>
                 </div>
             </div>
         </div>
