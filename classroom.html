@@ -13,7 +13,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Kanit', sans-serif;
-            border-radius: 0 !important; /* Sharp Edges Style */
+            border-radius: 0 !important;
         }
 
         body {
@@ -57,6 +57,20 @@
             color: #555;
         }
 
+        /* ส่วนแสดงวันเวลา */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .datetime-info {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.4;
+        }
+
         .login-btn {
             background-color: #006633;
             color: white;
@@ -65,16 +79,10 @@
             font-weight: 500;
             border: none;
             cursor: pointer;
-            transition: 0.2s;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 1.1rem;
-        }
-
-        .login-btn:hover {
-            background-color: #004d26;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         /* --- Main Content --- */
@@ -85,16 +93,18 @@
             width: 90%;
         }
 
-        /* แถบแจ้งเตือนสถานะการพัฒนา (ย้ายมาไว้ด้านบนกรอบผู้พัฒนา) */
-        .dev-status-banner {
+        /* แยกแถบแจ้งสถานะออกมาด้านบนสุดของเนื้อหา */
+        .dev-status-tag {
             background-color: #ffc107;
             color: #000;
             padding: 8px 20px;
             font-weight: 600;
             font-size: 0.9rem;
             border: 1px solid #e0a800;
-            display: inline-block;
-            margin-bottom: 0; /* ติดกับกรอบผู้พัฒนา */
+            margin-bottom: 15px; /* เว้นระยะห่างจากกรอบข้างล่าง */
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* --- Developer Info Section --- */
@@ -178,24 +188,30 @@
         }
     </style>
 </head>
-<body>
+<body onload="startTime()">
 
     <nav>
         <div class="logo-section">
             <img src="HCRD.png" alt="ตราภาควิชา" class="dept-logo">
             <div class="dept-name">
-                <h1>ระบบจองห้องประชุม</h1>
+                <h1>ระบบจองห้องประชุม AG-ED | HCRD</h1>
                 <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
             </div>
         </div>
-        <button class="login-btn" onclick="location.href='#login'">
-            <i class="fas fa-user-lock"></i> เข้าสู่ระบบ
-        </button>
+        <div class="nav-right">
+            <div class="datetime-info">
+                <div id="date-now"></div>
+                <div id="time-now" style="font-weight: 600; color: #006633; font-size: 1.1rem;"></div>
+            </div>
+            <button class="login-btn" onclick="location.href='#login'">
+                <i class="fas fa-user-lock"></i> เข้าสู่ระบบ
+            </button>
+        </div>
     </nav>
 
     <div class="main-content">
         
-        <div class="dev-status-banner">
+        <div class="dev-status-tag">
             <i class="fas fa-tools"></i> ระบบอยู่ระหว่างการพัฒนาและทดสอบ
         </div>
 
@@ -236,12 +252,21 @@
                 <p>ขั้นตอนและระเบียบการใช้ห้องประชุม</p>
             </div>
         </div>
-
     </div>
 
     <footer>
         &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน คณะศึกษาศาสตร์และพัฒนศาสตร์ มก.กพส.
     </footer>
+
+    <script>
+        function startTime() {
+            const now = new Date();
+            const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('date-now').innerHTML = now.toLocaleDateString('th-TH', dateOptions);
+            document.getElementById('time-now').innerHTML = now.toLocaleTimeString('th-TH');
+            setTimeout(startTime, 1000);
+        }
+    </script>
 
 </body>
 </html>
