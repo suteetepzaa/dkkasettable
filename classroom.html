@@ -40,9 +40,8 @@
             gap: 25px;
         }
 
-        /* ขยายขนาดตราภาควิชาตามคำขอ */
         .dept-logo {
-            height: 100px; /* เพิ่มขนาดจาก 70px เป็น 100px */
+            height: 100px; 
             width: auto;
         }
 
@@ -86,16 +85,28 @@
             width: 90%;
         }
 
-        /* --- Developer Info Section (ย้ายขึ้นมาด้านบน) --- */
+        /* แถบแจ้งเตือนสถานะการพัฒนา (ย้ายมาไว้ด้านบนกรอบผู้พัฒนา) */
+        .dev-status-banner {
+            background-color: #ffc107;
+            color: #000;
+            padding: 8px 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #e0a800;
+            display: inline-block;
+            margin-bottom: 0; /* ติดกับกรอบผู้พัฒนา */
+        }
+
+        /* --- Developer Info Section --- */
         .developer-header {
             background: #ffffff;
             border-left: 6px solid #006633;
             padding: 20px 30px;
             margin-bottom: 25px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
         }
 
         .dev-text {
@@ -107,14 +118,6 @@
         .dev-text b {
             color: #006633;
             font-size: 1.1rem;
-        }
-
-        .dev-status-tag {
-            background-color: #ffc107;
-            padding: 5px 15px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border: 1px solid #e0a800;
         }
 
         /* --- Feature Grid --- */
@@ -192,13 +195,14 @@
 
     <div class="main-content">
         
+        <div class="dev-status-banner">
+            <i class="fas fa-tools"></i> ระบบอยู่ระหว่างการพัฒนาและทดสอบ
+        </div>
+
         <div class="developer-header">
             <div class="dev-text">
                 <i class="fas fa-code-branch"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b><br>
                 <span>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</span>
-            </div>
-            <div class="dev-status-tag">
-                <i class="fas fa-tools"></i> อยู่ระหว่างการพัฒนา
             </div>
         </div>
 
