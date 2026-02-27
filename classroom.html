@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจองห้องประชุม - AG-ED | HCRD</title>
+    <title>ระบบจองห้องประชุม - ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -17,24 +17,22 @@
         }
 
         body {
-            background-color: #f4f6f9;
+            background-color: #f8f9fa;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* --- แถบสถานะแยกส่วนด้านบนสุด --- */
-        .top-dev-bar {
+        /* แถบระบบอยู่ระหว่างการพัฒนาและทดสอบ แยกออกมา */
+        .dev-status-bar {
             background-color: #ffc107;
             color: #000;
             text-align: center;
-            padding: 6px 0;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-bottom: 1px solid #e0a800;
+            padding: 5px 0;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
-        /* --- Navigation Bar --- */
         nav {
             background-color: #ffffff;
             display: flex;
@@ -42,7 +40,7 @@
             align-items: center;
             padding: 15px 8%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            border-bottom: 5px solid #006633;
+            border-bottom: 4px solid #006633;
         }
 
         .logo-section {
@@ -51,119 +49,101 @@
             gap: 20px;
         }
 
+        /* ขยายตราให้ใหญ่ขึ้น */
         .dept-logo {
-            height: 90px;
+            height: 120px;
             width: auto;
         }
 
         .dept-name h1 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #006633;
-            font-weight: 600;
         }
 
-        /* --- ส่วนแสดงวันเวลา --- */
-        .datetime-display {
-            text-align: right;
-            color: #444;
-            font-size: 0.95rem;
-            border-right: 3px solid #006633;
-            padding-right: 15px;
-            margin-right: 20px;
-        }
-
-        .datetime-display b {
-            color: #006633;
-            font-size: 1.1rem;
-            display: block;
+        .dept-name p {
+            font-size: 0.9rem;
+            color: #555;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
+            gap: 20px;
+        }
+
+        /* วันและเวลาปัจจุบัน */
+        .current-datetime {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #333;
         }
 
         .login-btn {
             background-color: #006633;
             color: white;
-            padding: 12px 25px;
+            padding: 12px 30px;
             text-decoration: none;
             font-weight: 500;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
-        /* --- Main Content --- */
-        .main-content {
+        .hero {
             flex-grow: 1;
-            max-width: 1100px;
-            margin: 30px auto;
-            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        .developer-header {
-            background: #ffffff;
-            border-left: 6px solid #006633;
-            padding: 20px 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .dev-text {
-            font-size: 0.95rem;
-            color: #444;
-        }
-
-        .dev-text b {
-            color: #006633;
-            font-size: 1.1rem;
-        }
-
-        /* --- Grid Menu --- */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-
-        .feature-card {
+        .welcome-card {
             background: white;
-            padding: 40px 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border: 1px solid #eee;
-            transition: 0.3s;
-            cursor: pointer;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* ข้อมูลผู้พัฒนาไว้ข้างบน */
+        .developer-info {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+        }
+
+        .welcome-content {
             text-align: center;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #006633;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        .welcome-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
         }
 
-        .feature-card i {
-            font-size: 3rem;
-            color: #006633;
-            margin-bottom: 20px;
+        .welcome-content p {
+            margin-bottom: 30px;
+            color: #666;
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            font-size: 0.85rem;
-            color: #888;
-            background: #fff;
+            font-size: 0.8rem;
+            color: #999;
         }
     </style>
 </head>
-<body onload="updateClock()">
+<body>
 
-    <div class="top-dev-bar">
-        <i class="fas fa-tools"></i> SYSTEM UNDER DEVELOPMENT & TESTING
+    <div class="dev-status-bar">
+        ระบบอยู่ระหว่างการพัฒนาและทดสอบ
     </div>
 
     <nav>
@@ -174,11 +154,10 @@
                 <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
             </div>
         </div>
-        
         <div class="nav-right">
-            <div class="datetime-display">
-                <span id="current-date">วันศุกร์ที่ 27 กุมภาพันธ์ 2569</span>
-                <b id="current-time">00:00:00</b>
+            <div class="current-datetime">
+                <div id="date"></div>
+                <div id="time" style="font-weight: bold; color: #006633;"></div>
             </div>
             <button class="login-btn" onclick="location.href='#login'">
                 <i class="fas fa-user-lock"></i> เข้าสู่ระบบ
@@ -186,57 +165,37 @@
         </div>
     </nav>
 
-    <div class="main-content">
-        
-        <div class="developer-header">
-            <div class="dev-text">
-                <i class="fas fa-code-branch"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b><br>
-                <span>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</span>
+    <main class="hero">
+        <div class="welcome-card">
+            <div class="developer-info">
+                <i class="fas fa-code"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา</b> <br>
+                <span>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</span>
             </div>
-        </div>
 
-        <div class="feature-grid">
-            <div class="feature-card">
-                <i class="fas fa-calendar-check"></i>
-                <h3>จองห้องประชุม</h3>
-                <p>ทำรายการจองห้องออนไลน์</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-search"></i>
-                <h3>ตรวจสอบสถานะ</h3>
-                <p>เช็กประวัติและผลการอนุมัติ</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-hotel"></i>
-                <h3>ห้องประชุมทั้งหมด</h3>
-                <p>ข้อมูลสิ่งอำนวยความสะดวก</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-book"></i>
-                <h3>คู่มือการใช้</h3>
-                <p>ขั้นตอนและระเบียบการใช้</p>
+            <div class="welcome-content">
+                <i class="fas fa-door-open" style="font-size: 3rem; color: #006633; margin-bottom: 20px;"></i>
+                <h2>ยินดีต้อนรับ</h2>
+                <p>กรุณาเข้าสู่ระบบเพื่อดำเนินการจองห้องประชุม <br> หรือตรวจสอบสถานะการจองของท่าน</p>
+                <button class="login-btn" style="width: 100%; justify-content: center;">เริ่มต้นใช้งาน</button>
             </div>
         </div>
-    </div>
+    </main>
 
     <footer>
-        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน คณะศึกษาศาสตร์และพัฒนศาสตร์ มก.กพส.
+        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.
     </footer>
 
     <script>
-        function updateClock() {
+        function updateDateTime() {
             const now = new Date();
+            const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
             
-            // ปรับแต่งการแสดงวันที่
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('current-date').textContent = now.toLocaleDateString('th-TH', options);
-            
-            // ปรับแต่งการแสดงเวลา
-            const timeString = now.toLocaleTimeString('th-TH', { hour12: false });
-            document.getElementById('current-time').textContent = timeString;
-            
-            setTimeout(updateClock, 1000);
+            document.getElementById('date').innerText = now.toLocaleDateString('th-TH', dateOptions);
+            document.getElementById('time').innerText = now.toLocaleTimeString('th-TH', timeOptions);
         }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
     </script>
 </body>
 </html>
