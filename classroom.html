@@ -57,7 +57,6 @@
             color: #555;
         }
 
-        /* ส่วนแสดงวันเวลา */
         .nav-right {
             display: flex;
             align-items: center;
@@ -66,9 +65,8 @@
 
         .datetime-info {
             text-align: right;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #333;
-            line-height: 1.4;
         }
 
         .login-btn {
@@ -93,44 +91,22 @@
             width: 90%;
         }
 
-        /* แยกแถบแจ้งสถานะออกมาด้านบนสุดของเนื้อหา */
+        /* ขยายแถบพัฒนาขึ้นตามคำสั่ง */
         .dev-status-tag {
             background-color: #ffc107;
             color: #000;
-            padding: 8px 20px;
+            padding: 12px 30px; /* เพิ่ม Padding */
             font-weight: 600;
-            font-size: 0.9rem;
-            border: 1px solid #e0a800;
-            margin-bottom: 15px; /* เว้นระยะห่างจากกรอบข้างล่าง */
+            font-size: 1.1rem; /* ขยายขนาดตัวอักษร */
+            border: 2px solid #e0a800;
+            margin-bottom: 30px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            width: 100%; /* ให้ยาวเต็มพื้นที่เพื่อความเด่นชัด */
+            justify-content: center;
         }
 
-        /* --- Developer Info Section --- */
-        .developer-header {
-            background: #ffffff;
-            border-left: 6px solid #006633;
-            padding: 20px 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border-top: 1px solid #eee;
-            border-right: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-
-        .dev-text {
-            font-size: 0.95rem;
-            color: #444;
-            line-height: 1.6;
-        }
-
-        .dev-text b {
-            color: #006633;
-            font-size: 1.1rem;
-        }
-
-        /* --- Feature Grid --- */
         .welcome-header {
             text-align: center;
             margin: 40px 0;
@@ -167,15 +143,28 @@
             margin-bottom: 20px;
         }
 
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #222;
+        /* --- Developer Info Section (ย้ายมาไว้ด้านล่าง) --- */
+        .developer-footer-card {
+            background: #ffffff;
+            border-left: 6px solid #006633;
+            padding: 20px 30px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
         }
 
-        .feature-card p {
+        .dev-text {
             font-size: 0.95rem;
-            color: #777;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .dev-text b {
+            color: #006633;
+            font-size: 1.1rem;
         }
 
         footer {
@@ -215,13 +204,6 @@
             <i class="fas fa-tools"></i> ระบบอยู่ระหว่างการพัฒนาและทดสอบ
         </div>
 
-        <div class="developer-header">
-            <div class="dev-text">
-                <i class="fas fa-code-branch"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b><br>
-                <span>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</span>
-            </div>
-        </div>
-
         <div class="welcome-header">
             <h2>ยินดีต้อนรับสู่ระบบจัดการห้องประชุม</h2>
             <p>กรุณาเลือกฟีเจอร์ที่ต้องการใช้งาน</p>
@@ -252,6 +234,14 @@
                 <p>ขั้นตอนและระเบียบการใช้ห้องประชุม</p>
             </div>
         </div>
+
+        <div class="developer-footer-card">
+            <div class="dev-text">
+                <i class="fas fa-code-branch"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b><br>
+                <span>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</span>
+            </div>
+        </div>
+
     </div>
 
     <footer>
