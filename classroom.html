@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจองห้องประชุม - ภาควิชาการศึกษาเกษตรและสิ่งแวดล้อม</title>
+    <title>ระบบจองห้องประชุม - ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -23,6 +23,21 @@
             min-height: 100vh;
         }
 
+        /* --- Maintenance Banner --- */
+        .dev-banner {
+            background-color: #ffc107; /* สีเหลืองแจ้งเตือน */
+            color: #000;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 1px solid #e0a800;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
         /* --- Navigation Bar --- */
         nav {
             background-color: #ffffff;
@@ -31,7 +46,7 @@
             align-items: center;
             padding: 15px 8%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            border-bottom: 4px solid #006633; /* สีเขียวนนทรี */
+            border-bottom: 4px solid #006633;
         }
 
         .logo-section {
@@ -107,12 +122,6 @@
             font-weight: 300;
         }
 
-        .action-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
         /* --- Footer --- */
         footer {
             text-align: center;
@@ -124,12 +133,17 @@
 </head>
 <body>
 
+    <div class="dev-banner">
+        <i class="fas fa-tools"></i> 
+        <span>ระบบอยู่ระหว่างการพัฒนาและทดสอบ (Development Phase)</span>
+    </div>
+
     <nav>
         <div class="logo-section">
             <img src="https://via.placeholder.com/70x70?text=LOGO" alt="ตราภาควิชา" class="dept-logo">
             <div class="dept-name">
-                <h1>ระบบจองห้องประชุมออนไลน์</h1>
-                <p>ภาควิชาการศึกษาเกษตรและสิ่งแวดล้อม</p>
+                <h1>ระบบจองห้องประชุม AG-ED | HCRD</h1>
+                <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
             </div>
         </div>
         <button class="login-btn" onclick="location.href='#login'">
@@ -143,7 +157,7 @@
             <h2>ยินดีต้อนรับ</h2>
             <p>กรุณาเข้าสู่ระบบเพื่อดำเนินการจองห้องประชุม <br> หรือตรวจสอบสถานะการจองของท่าน</p>
             
-            <div class="action-container">
+            <div style="display: flex; justify-content: center;">
                 <button class="login-btn" style="width: 100%; justify-content: center;">
                     เริ่มต้นใช้งาน
                 </button>
@@ -152,7 +166,7 @@
     </main>
 
     <footer>
-        &copy; 2026 ภาควิชาการศึกษาเกษตรและสิ่งแวดล้อม คณะศึกษาศาสตร์และพัฒนศาสตร์
+        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.
     </footer>
 
 </body>
