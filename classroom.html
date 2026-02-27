@@ -3,80 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจองห้องประชุม - ภาควิชา</title>
+    <title>Room Booking - Orange & Grey Edition</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Sarabun', sans-serif; }
-        #calendar { max-width: 1000px; margin: 20px auto; padding: 10px; background: white; border-radius: 8px; shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        body { 
+            font-family: 'Kanit', sans-serif; 
+            background-color: #f4f4f5; /* Light Grey Background */
+        }
+        
+        /* Custom Orange Palette */
+        :root {
+            --primary-orange: #f97316;
+            --dark-grey: #3f3f46;
+        }
+
+        /* ปรับแต่ง FullCalendar ให้คุมโทน */
+        .fc { 
+            max-width: 500px; 
+            margin: 0 auto;
+        }
+        .fc-toolbar-title {
+            font-size: 1.1rem !important;
+            color: var(--dark-grey);
+            font-weight: 500;
+        }
+        .fc-button-primary {
+            background-color: var(--dark-grey) !important;
+            border: none !important;
+            border-radius: 0px !important; /* ขอบเหลี่ยมตามความชอบ */
+            font-size: 0.75rem !important;
+        }
+        .fc-button-primary:hover {
+            background-color: var(--primary-orange) !important;
+        }
+        /* เส้นตาราง */
+        .fc-theme-standard td, .fc-theme-standard th {
+            border: 1px solid #e4e4e7 !important;
+        }
+        /* แถบเวลาปัจจุบัน */
+        .fc-timegrid-now-indicator-line {
+            border-color: var(--primary-orange) !important;
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="min-h-screen">
 
-    <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <nav class="bg-[#3f3f46] text-white px-8 py-4 flex justify-between items-center shadow-lg border-b-4 border-[#f97316]">
         <div class="flex items-center space-x-4">
-            <img src="https://via.placeholder.com/50" alt="Logo" class="w-12 h-12 object-contain">
+            <div class="bg-white p-1">
+                <img src="https://via.placeholder.com/45x45/FFFFFF/f97316?text=LOGO" alt="Logo" class="w-10 h-10">
+            </div>
             <div>
-                <h1 class="text-xl font-bold text-gray-800">ระบบจองห้องประชุม</h1>
-                <p class="text-sm text-gray-500">ภาควิชาวิศวกรรมคอมพิวเตอร์</p>
+                <h1 class="text-lg font-medium leading-none tracking-wide">ROOM BOOKING</h1>
+                <p class="text-[10px] text-orange-400 uppercase mt-1">Faculty of Education - KPS</p>
             </div>
         </div>
 
-        <div class="flex items-center space-x-3">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition duration-200 shadow-sm">
-                เข้าสู่ระบบ (Login)
-            </button>
-        </div>
+        <button class="bg-[#f97316] hover:bg-orange-600 text-white px-6 py-2 text-sm font-medium transition-all duration-300 shadow-md">
+            LOGIN
+        </button>
     </nav>
 
-    <main class="container mx-auto mt-10 px-4">
-        <div class="bg-white p-6 rounded-xl shadow-lg">
-            <div class="mb-6 flex justify-between items-center">
-                <h2 class="text-lg font-semibold text-gray-700">📅 ตารางการใช้ห้องประชุม</h2>
-                <div class="text-sm text-gray-500">
-                    <span class="inline-block w-3 h-3 bg-blue-500 rounded-full mr-1"></span> จองแล้ว
+    <main class="container mx-auto mt-12 px-4 flex flex-col items-center">
+        <div class="w-full max-w-xl bg-white border border-gray-200 shadow-sm relative">
+            <div class="absolute top-0 left-0 w-full h-1 bg-[#f97316]"></div>
+            
+            <div class="p-8">
+                <div class="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
+                    <h2 class="text-xl font-medium text-[#3f3f46]">ตารางการจองวันนี้</h2>
+                    <div class="text-[11px] bg-gray-100 px-3 py-1 text-gray-500 uppercase">Daily View</div>
+                </div>
+
+                <div id="calendar"></div>
+                
+                <div class="mt-8 flex items-center justify-between border-t border-gray-100 pt-6">
+                    <div class="flex space-x-4 text-xs">
+                        <div class="flex items-center">
+                            <span class="w-3 h-3 bg-orange-100 border border-orange-500 mr-2"></span> 
+                            <span class="text-gray-600">จองแล้ว</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="w-3 h-3 bg-white border border-gray-300 mr-2"></span> 
+                            <span class="text-gray-600">ว่าง</span>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-gray-400 italic">*คลิกช่วงเวลาที่ต้องการเพื่อจอง</p>
                 </div>
             </div>
-            
-            <div id="calendar"></div>
         </div>
+
+        <p class="mt-8 text-gray-400 text-[11px] uppercase tracking-widest">
+            Agricultural and Environmental Education
+        </p>
     </main>
 
-    <footer class="mt-10 py-6 text-center text-gray-400 text-sm">
-        © 2026 ระบบจองห้องประชุมออนไลน์ - พัฒนาโดยหน่วยไอทีภาควิชา
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                locale: 'th', // ตั้งค่าภาษาไทย
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                initialView: 'timeGridDay',
+                locale: 'th',
+                slotMinTime: '08:00:00',
+                slotMaxTime: '19:00:00',
+                allDaySlot: false,
+                slotLabelFormat: {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
                 },
+                headerToolbar: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: 'today'
+                },
+                height: 'auto',
                 events: [
-                    // ตัวอย่างข้อมูลการจอง
                     {
-                        title: 'ประชุมภาควิชา (ห้อง A1)',
+                        title: 'Reserved',
                         start: '2026-02-27T10:00:00',
                         end: '2026-02-27T12:00:00',
-                        color: '#3b82f6'
-                    },
-                    {
-                        title: 'สอบวิทยานิพนธ์ (ห้องประชุมเล็ก)',
-                        start: '2026-02-28',
-                        color: '#3b82f6'
+                        backgroundColor: '#fff7ed', // Orange-50
+                        borderColor: '#f97316',    // Orange-500
+                        textColor: '#c2410c'       // Orange-700
                     }
                 ],
+                // เมื่อคลิกที่ปฏิทิน
                 dateClick: function(info) {
-                    alert('กรุณาเข้าสู่ระบบก่อนทำการจองวันที่: ' + info.dateStr);
+                    alert('โปรดเข้าสู่ระบบเพื่อดำเนินการจอง');
                 }
             });
             calendar.render();
