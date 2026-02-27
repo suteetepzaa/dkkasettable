@@ -3,212 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HRD Farm - Room Booking System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>ระบบจองห้องประชุม - ภาควิชา</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Mitr', sans-serif; background-color: #f4f7f5; }
-        .time-slot { height: 60px; border-bottom: 1px solid #edf2f7; }
-        .booking-bar { 
-            position: absolute; 
-            left: 4px; 
-            right: 4px; 
-            border-radius: 6px;
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        body { font-family: 'Sarabun', sans-serif; }
+        #calendar { max-width: 1000px; margin: 20px auto; padding: 10px; background: white; border-radius: 8px; shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
     </style>
 </head>
-<body class="text-slate-700">
+<body class="bg-gray-50">
 
-    <div class="flex min-h-screen">
-        <aside class="w-80 bg-white border-r border-slate-200 p-6 hidden lg:block">
-            <div class="flex items-center space-x-3 mb-10">
-                <div class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center text-white font-bold">HRD</div>
-                <h1 class="text-xl font-500 text-green-800 leading-tight">ระบบจองพื้นที่<br><span class="text-sm font-300">ฟาร์มภาควิชาฯ</span></h1>
+    <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <img src="https://via.placeholder.com/50" alt="Logo" class="w-12 h-12 object-contain">
+            <div>
+                <h1 class="text-xl font-bold text-gray-800">ระบบจองห้องประชุม</h1>
+                <p class="text-sm text-gray-500">ภาควิชาวิศวกรรมคอมพิวเตอร์</p>
             </div>
-
-            <button onclick="openModal()" class="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-500 shadow-lg shadow-green-100 transition-all mb-8 flex items-center justify-center">
-                <span class="mr-2 text-xl">+</span> จองห้องประชุมใหม่
-            </button>
-
-            <div class="space-y-4">
-                <p class="text-xs font-500 uppercase tracking-wider text-slate-400">เลือกพื้นที่</p>
-                <div id="roomSelectors" class="space-y-2">
-                    </div>
-            </div>
-        </aside>
-
-        <main class="flex-1 p-8">
-            <header class="flex justify-between items-center mb-8">
-                <div>
-                    <h2 id="currentRoomTitle" class="text-2xl font-500">ตารางการใช้งาน: ห้องประชุมแปลงสาธิต</h2>
-                    <p class="text-slate-400">วันอังคารที่ 24 กุมภาพันธ์ 2569</p>
-                </div>
-                <div class="flex space-x-2">
-                    <div class="flex items-center space-x-2 px-4 py-2 bg-white rounded-lg border border-slate-100 shadow-sm text-sm">
-                        <span class="w-3 h-3 bg-blue-500 rounded-full"></span>
-                        <span>มีการจองแล้ว</span>
-                    </div>
-                </div>
-            </header>
-
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
-                <div class="grid grid-cols-[100px_1fr] border-b border-slate-100 bg-slate-50 py-4 px-6 font-500 text-sm">
-                    <div>เวลา</div>
-                    <div>กิจกรรมการจอง</div>
-                </div>
-                
-                <div class="relative overflow-y-auto" style="max-height: 600px;" id="scheduleGrid">
-                    <div id="timeRows"></div>
-                    <div id="bookingLayer" class="absolute top-0 right-0 left-[100px] h-full pointer-events-none"></div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div id="bookingModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-            <div class="p-6 border-b flex justify-between items-center">
-                <h3 class="text-lg font-500">สร้างการจองใหม่</h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600">✕</button>
-            </div>
-            <form id="bookingForm" class="p-6 space-y-4">
-                <div>
-                    <label class="block text-sm text-slate-500 mb-1">เลือกห้อง</label>
-                    <select id="roomSelect" class="w-full bg-slate-50 border-0 rounded-xl px-4 py-3 outline-none ring-1 ring-slate-200 focus:ring-2 focus:ring-green-500"></select>
-                </div>
-                <div>
-                    <label class="block text-sm text-slate-500 mb-1">ชื่อผู้จอง / หน่วยงาน</label>
-                    <input type="text" id="userName" required class="w-full bg-slate-50 border-0 rounded-xl px-4 py-3 outline-none ring-1 ring-slate-200 focus:ring-2 focus:ring-green-500">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm text-slate-500 mb-1">เริ่ม (น.)</label>
-                        <input type="time" id="startTime" step="1800" required class="w-full bg-slate-50 border-0 rounded-xl px-4 py-3 ring-1 ring-slate-200">
-                    </div>
-                    <div>
-                        <label class="block text-sm text-slate-500 mb-1">สิ้นสุด (น.)</label>
-                        <input type="time" id="endTime" step="1800" required class="w-full bg-slate-50 border-0 rounded-xl px-4 py-3 ring-1 ring-slate-200">
-                    </div>
-                </div>
-                <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-2xl font-500 hover:bg-green-700 transition mt-4 shadow-lg shadow-green-100">ยืนยันการจอง</button>
-            </form>
         </div>
-    </div>
 
+        <div class="flex items-center space-x-3">
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition duration-200 shadow-sm">
+                เข้าสู่ระบบ (Login)
+            </button>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-10 px-4">
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-lg font-semibold text-gray-700">📅 ตารางการใช้ห้องประชุม</h2>
+                <div class="text-sm text-gray-500">
+                    <span class="inline-block w-3 h-3 bg-blue-500 rounded-full mr-1"></span> จองแล้ว
+                </div>
+            </div>
+            
+            <div id="calendar"></div>
+        </div>
+    </main>
+
+    <footer class="mt-10 py-6 text-center text-gray-400 text-sm">
+        © 2026 ระบบจองห้องประชุมออนไลน์ - พัฒนาโดยหน่วยไอทีภาควิชา
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
     <script>
-        const rooms = [
-            { id: 1, name: 'ห้องประชุมแปลงสาธิต', color: '#3b82f6' },
-            { id: 2, name: 'ศาลาเรียนรู้ชุมชน', color: '#10b981' },
-            { id: 3, name: 'ห้องปฏิบัติการ HRD', color: '#8b5cf6' }
-        ];
-
-        let bookings = [
-            { id: 101, roomId: 1, user: 'อ.สมชาย (กม.ชุมชน)', start: '09:00', end: '11:00' },
-            { id: 102, roomId: 1, user: 'กลุ่มเกษตรกรดูงาน', start: '13:00', end: '15:30' }
-        ];
-
-        let activeRoomId = 1;
-
-        function init() {
-            renderRoomSelectors();
-            renderTimeRows();
-            renderBookings();
-            updateRoomTitle();
-        }
-
-        function renderRoomSelectors() {
-            const container = document.getElementById('roomSelectors');
-            const selectEl = document.getElementById('roomSelect');
-            container.innerHTML = '';
-            selectEl.innerHTML = '';
-
-            rooms.forEach(room => {
-                const btn = document.createElement('button');
-                btn.className = `w-full flex items-center p-4 rounded-2xl transition ${activeRoomId === room.id ? 'bg-green-50 text-green-700 ring-1 ring-green-200' : 'hover:bg-slate-50'}`;
-                btn.onclick = () => { activeRoomId = room.id; init(); };
-                btn.innerHTML = `<span class="w-3 h-3 rounded-full mr-3" style="background:${room.color}"></span> ${room.name}`;
-                container.appendChild(btn);
-
-                const opt = document.createElement('option');
-                opt.value = room.id;
-                opt.innerText = room.name;
-                selectEl.appendChild(opt);
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'th', // ตั้งค่าภาษาไทย
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    // ตัวอย่างข้อมูลการจอง
+                    {
+                        title: 'ประชุมภาควิชา (ห้อง A1)',
+                        start: '2026-02-27T10:00:00',
+                        end: '2026-02-27T12:00:00',
+                        color: '#3b82f6'
+                    },
+                    {
+                        title: 'สอบวิทยานิพนธ์ (ห้องประชุมเล็ก)',
+                        start: '2026-02-28',
+                        color: '#3b82f6'
+                    }
+                ],
+                dateClick: function(info) {
+                    alert('กรุณาเข้าสู่ระบบก่อนทำการจองวันที่: ' + info.dateStr);
+                }
             });
-        }
-
-        function renderTimeRows() {
-            const container = document.getElementById('timeRows');
-            container.innerHTML = '';
-            for(let i = 8; i <= 18; i++) {
-                const hour = i < 10 ? '0'+i : i;
-                container.innerHTML += `
-                    <div class="grid grid-cols-[100px_1fr] time-slot px-6 items-center">
-                        <div class="text-slate-400 text-sm font-300">${hour}:00</div>
-                        <div class="h-full w-full"></div>
-                    </div>
-                `;
-            }
-        }
-
-        function timeToMinutes(timeStr) {
-            const [h, m] = timeStr.split(':').map(Number);
-            return (h - 8) * 60 + m; // Start counting from 08:00
-        }
-
-        function renderBookings() {
-            const layer = document.getElementById('bookingLayer');
-            layer.innerHTML = '';
-            
-            const currentBookings = bookings.filter(b => b.roomId === activeRoomId);
-            const slotHeight = 60; // 1 hour = 60px
-
-            currentBookings.forEach(booking => {
-                const startMin = timeToMinutes(booking.start);
-                const endMin = timeToMinutes(booking.end);
-                const duration = endMin - startMin;
-                
-                const bar = document.createElement('div');
-                bar.className = 'booking-bar bg-blue-500 border-l-4 border-blue-700 flex flex-col justify-center';
-                bar.style.top = `${(startMin / 60) * slotHeight}px`;
-                bar.style.height = `${(duration / 60) * slotHeight}px`;
-                bar.innerHTML = `
-                    <div class="font-500">${booking.user}</div>
-                    <div class="text-[10px] opacity-90">${booking.start} - ${booking.end} น.</div>
-                `;
-                layer.appendChild(bar);
-            });
-        }
-
-        function updateRoomTitle() {
-            const room = rooms.find(r => r.id === activeRoomId);
-            document.getElementById('currentRoomTitle').innerText = `ตารางการใช้งาน: ${room.name}`;
-        }
-
-        function openModal() { document.getElementById('bookingModal').classList.remove('hidden'); }
-        function closeModal() { document.getElementById('bookingModal').classList.add('hidden'); }
-
-        document.getElementById('bookingForm').onsubmit = function(e) {
-            e.preventDefault();
-            const newBooking = {
-                id: Date.now(),
-                roomId: parseInt(document.getElementById('roomSelect').value),
-                user: document.getElementById('userName').value,
-                start: document.getElementById('startTime').value,
-                end: document.getElementById('endTime').value
-            };
-            
-            bookings.push(newBooking);
-            activeRoomId = newBooking.roomId;
-            closeModal();
-            init();
-            this.reset();
-        };
-
-        init();
+            calendar.render();
+        });
     </script>
 </body>
 </html>
