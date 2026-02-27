@@ -13,12 +13,14 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Kanit', sans-serif;
-            border-radius: 0 !important; /* เน้นขอบเหลี่ยมตามความชอบ */
+            border-radius: 0 !important; /* ขอบเหลี่ยมทั้งหมด */
         }
 
         body {
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* --- Navigation Bar --- */
@@ -27,165 +29,131 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-bottom: 3px solid #006633; /* สีเขียวนนทรี */
+            padding: 15px 8%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 4px solid #006633; /* สีเขียวนนทรี */
         }
 
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .dept-logo {
-            height: 60px; /* ปรับขนาดตามไฟล์จริง */
+            height: 70px;
             width: auto;
         }
 
         .dept-name h1 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: #006633;
-            line-height: 1.2;
+            letter-spacing: 0.5px;
         }
 
         .dept-name p {
-            font-size: 0.85rem;
-            color: #666;
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: -2px;
         }
 
         .login-btn {
             background-color: #006633;
             color: white;
-            padding: 10px 25px;
+            padding: 12px 30px;
             text-decoration: none;
             font-weight: 500;
-            transition: 0.3s;
             border: none;
             cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .login-btn:hover {
             background-color: #004d26;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
 
-        /* --- Main Content --- */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-        }
-
-        .header-title {
-            margin-bottom: 30px;
-            border-left: 5px solid #006633;
-            padding-left: 15px;
-        }
-
-        /* --- Calendar Placeholder --- */
-        /* ในระบบจริงจะใช้ FullCalendar.io มา Render ตรงนี้ */
-        .calendar-wrapper {
-            border: 1px solid #ddd;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .calendar-header {
-            background: #eee;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .calendar-grid {
+        /* --- Hero Section --- */
+        .hero {
             flex-grow: 1;
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            border-top: 1px solid #ddd;
-        }
-
-        .day-label {
-            background: #f9f9f9;
-            padding: 10px;
-            font-weight: bold;
-            border-bottom: 1px solid #ddd;
-            border-right: 1px solid #eee;
-        }
-
-        .day-cell {
             padding: 20px;
-            border-right: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            min-height: 100px;
-            color: #ccc; /* ตัวอย่างวันที่ว่าง */
         }
 
-        .booking-event {
-            background: #e3f2fd;
-            color: #1976d2;
-            font-size: 0.75rem;
-            padding: 4px;
-            margin-top: 5px;
-            border-left: 3px solid #1976d2;
-            text-align: left;
+        .welcome-card {
+            background: white;
+            padding: 60px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            max-width: 600px;
+            width: 100%;
         }
 
+        .welcome-card h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .welcome-card p {
+            color: #666;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .action-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #999;
+        }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo-section">
-            <img src="https://via.placeholder.com/60" alt="ตราภาควิชา" class="dept-logo">
+            <img src="https://via.placeholder.com/70x70?text=LOGO" alt="ตราภาควิชา" class="dept-logo">
             <div class="dept-name">
-                <h1>ระบบจองห้องประชุม</h1>
+                <h1>ระบบจองห้องประชุมออนไลน์</h1>
                 <p>ภาควิชาการศึกษาเกษตรและสิ่งแวดล้อม</p>
             </div>
         </div>
-        <button class="login-btn" onclick="location.href='#login'"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</button>
+        <button class="login-btn" onclick="location.href='#login'">
+            <i class="fas fa-user-lock"></i> เข้าสู่ระบบ
+        </button>
     </nav>
 
-    <div class="container">
-        <div class="header-title">
-            <h2>ปฏิทินการใช้ห้องประชุม</h2>
-            <p>ตรวจสอบวันเวลาว่างและสถานะการจองได้ที่นี่</p>
-        </div>
-
-        <div class="calendar-wrapper">
-            <div class="calendar-header">
-                <h3>กุมภาพันธ์ 2569</h3>
-                <div>
-                    <button style="padding: 5px 15px; border: 1px solid #ccc; background: white;">ก่อนหน้า</button>
-                    <button style="padding: 5px 15px; border: 1px solid #ccc; background: white;">ถัดไป</button>
-                </div>
-            </div>
+    <main class="hero">
+        <div class="welcome-card">
+            <i class="fas fa-door-open" style="font-size: 3rem; color: #006633; margin-bottom: 20px;"></i>
+            <h2>ยินดีต้อนรับ</h2>
+            <p>กรุณาเข้าสู่ระบบเพื่อดำเนินการจองห้องประชุม <br> หรือตรวจสอบสถานะการจองของท่าน</p>
             
-            <div class="calendar-grid">
-                <div class="day-label">อา.</div>
-                <div class="day-label">จ.</div>
-                <div class="day-label">อ.</div>
-                <div class="day-label">พ.</div>
-                <div class="day-label">พฤ.</div>
-                <div class="day-label">ศ.</div>
-                <div class="day-label">ส.</div>
-                
-                <div class="day-cell">22</div>
-                <div class="day-cell">23</div>
-                <div class="day-cell">24</div>
-                <div class="day-cell">25</div>
-                <div class="day-cell">26</div>
-                <div class="day-cell" style="color: #333; background: #fffdf0;">27
-                    <div class="booking-event">13:00 - ประชุมสัมมนา</div>
-                </div>
-                <div class="day-cell">28</div>
+            <div class="action-container">
+                <button class="login-btn" style="width: 100%; justify-content: center;">
+                    เริ่มต้นใช้งาน
+                </button>
             </div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        &copy; 2026 ภาควิชาการศึกษาเกษตรและสิ่งแวดล้อม คณะศึกษาศาสตร์และพัฒนศาสตร์
+    </footer>
 
 </body>
 </html>
