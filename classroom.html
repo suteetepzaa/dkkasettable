@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจองห้องประชุม - ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</title>
+    <title>ระบบจองห้องประชุม - AG-ED | HCRD</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -13,138 +13,169 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Kanit', sans-serif;
-            border-radius: 0 !important;
+            border-radius: 0 !important; /* Sharp Edges Style */
         }
 
         body {
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* แถบระบบอยู่ระหว่างการพัฒนาและทดสอบ แยกออกมา */
-        .dev-status-bar {
-            background-color: #ffc107;
-            color: #000;
-            text-align: center;
-            padding: 5px 0;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
+        /* --- Navigation Bar --- */
         nav {
             background-color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
+            padding: 20px 8%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            border-bottom: 4px solid #006633;
+            border-bottom: 5px solid #006633;
         }
 
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
-        /* ขยายตราให้ใหญ่ขึ้น */
+        /* ขยายขนาดตราภาควิชาตามคำขอ */
         .dept-logo {
-            height: 120px;
+            height: 100px; /* เพิ่มขนาดจาก 70px เป็น 100px */
             width: auto;
         }
 
         .dept-name h1 {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: #006633;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .dept-name p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #555;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        /* วันและเวลาปัจจุบัน */
-        .current-datetime {
-            text-align: right;
-            font-size: 0.9rem;
-            color: #333;
         }
 
         .login-btn {
             background-color: #006633;
             color: white;
-            padding: 12px 30px;
+            padding: 14px 30px;
             text-decoration: none;
             font-weight: 500;
             border: none;
             cursor: pointer;
+            transition: 0.2s;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.1rem;
         }
 
-        .hero {
+        .login-btn:hover {
+            background-color: #004d26;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
             flex-grow: 1;
+            max-width: 1100px;
+            margin: 30px auto;
+            width: 90%;
+        }
+
+        /* --- Developer Info Section (ย้ายขึ้นมาด้านบน) --- */
+        .developer-header {
+            background: #ffffff;
+            border-left: 6px solid #006633;
+            padding: 20px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 20px;
         }
 
-        .welcome-card {
+        .dev-text {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .dev-text b {
+            color: #006633;
+            font-size: 1.1rem;
+        }
+
+        .dev-status-tag {
+            background-color: #ffc107;
+            padding: 5px 15px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid #e0a800;
+        }
+
+        /* --- Feature Grid --- */
+        .welcome-header {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
             background: white;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px 20px;
             border: 1px solid #eee;
-            max-width: 800px;
-            width: 100%;
-        }
-
-        /* ข้อมูลผู้พัฒนาไว้ข้างบน */
-        .developer-info {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #ddd;
-            font-size: 0.9rem;
-            color: #555;
-            text-align: left;
-        }
-
-        .welcome-content {
+            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
 
-        .welcome-content h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #006633;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
         }
 
-        .welcome-content p {
-            margin-bottom: 30px;
-            color: #666;
+        .feature-card i {
+            font-size: 3rem;
+            color: #006633;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #222;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #777;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            font-size: 0.8rem;
-            color: #999;
+            padding: 25px;
+            font-size: 0.85rem;
+            color: #888;
+            background: #fff;
+            border-top: 1px solid #eee;
         }
     </style>
 </head>
 <body>
-
-    <div class="dev-status-bar">
-        ระบบอยู่ระหว่างการพัฒนาและทดสอบ
-    </div>
 
     <nav>
         <div class="logo-section">
@@ -154,48 +185,59 @@
                 <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
             </div>
         </div>
-        <div class="nav-right">
-            <div class="current-datetime">
-                <div id="date"></div>
-                <div id="time" style="font-weight: bold; color: #006633;"></div>
-            </div>
-            <button class="login-btn" onclick="location.href='#login'">
-                <i class="fas fa-user-lock"></i> เข้าสู่ระบบ
-            </button>
-        </div>
+        <button class="login-btn" onclick="location.href='#login'">
+            <i class="fas fa-user-lock"></i> เข้าสู่ระบบ
+        </button>
     </nav>
 
-    <main class="hero">
-        <div class="welcome-card">
-            <div class="developer-info">
-                <i class="fas fa-code"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา</b> <br>
-                <span>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</span>
+    <div class="main-content">
+        
+        <div class="developer-header">
+            <div class="dev-text">
+                <i class="fas fa-code-branch"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b><br>
+                <span>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</span>
             </div>
-
-            <div class="welcome-content">
-                <i class="fas fa-door-open" style="font-size: 3rem; color: #006633; margin-bottom: 20px;"></i>
-                <h2>ยินดีต้อนรับ</h2>
-                <p>กรุณาเข้าสู่ระบบเพื่อดำเนินการจองห้องประชุม <br> หรือตรวจสอบสถานะการจองของท่าน</p>
-                <button class="login-btn" style="width: 100%; justify-content: center;">เริ่มต้นใช้งาน</button>
+            <div class="dev-status-tag">
+                <i class="fas fa-tools"></i> อยู่ระหว่างการพัฒนา
             </div>
         </div>
-    </main>
+
+        <div class="welcome-header">
+            <h2>ยินดีต้อนรับสู่ระบบจัดการห้องประชุม</h2>
+            <p>กรุณาเลือกฟีเจอร์ที่ต้องการใช้งาน</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>จองห้องประชุม</h3>
+                <p>ทำรายการจองห้องออนไลน์ได้ทันที</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-search"></i>
+                <h3>ตรวจสอบสถานะ</h3>
+                <p>เช็กประวัติและผลการอนุมัติการจอง</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-hotel"></i>
+                <h3>ห้องประชุมทั้งหมด</h3>
+                <p>ข้อมูลสิ่งอำนวยความสะดวกในแต่ละห้อง</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-book"></i>
+                <h3>คู่มือการใช้</h3>
+                <p>ขั้นตอนและระเบียบการใช้ห้องประชุม</p>
+            </div>
+        </div>
+
+    </div>
 
     <footer>
-        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.
+        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน คณะศึกษาศาสตร์และพัฒนศาสตร์ มก.กพส.
     </footer>
 
-    <script>
-        function updateDateTime() {
-            const now = new Date();
-            const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            
-            document.getElementById('date').innerText = now.toLocaleDateString('th-TH', dateOptions);
-            document.getElementById('time').innerText = now.toLocaleTimeString('th-TH', timeOptions);
-        }
-        setInterval(updateDateTime, 1000);
-        updateDateTime();
-    </script>
 </body>
 </html>
