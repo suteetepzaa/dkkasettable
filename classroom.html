@@ -1,84 +1,125 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <title>Room Booking - Mini Edition</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Kanit', sans-serif; background: #ffffff; color: #1a1a1a; }
-        
-        /* ปรับปฏิทินให้จิ๋วแต่แจ๋ว */
-        #calendar { 
-            max-width: 400px; /* ขนาดปฏิทินเล็กตามสั่ง */
-            font-size: 0.75rem;
-        }
-        .fc { border: none !important; }
-        .fc-toolbar-title { font-size: 0.9rem !important; font-weight: 600; text-transform: uppercase; }
-        
-        /* ปุ่มขอบคม */
-        .fc-button { 
-            background: #fff !important; 
-            border: 1px solid #000 !important; 
-            border-radius: 0 !important; 
-            color: #000 !important;
-            padding: 2px 8px !important;
-        }
-        .fc-button-active { background: #000 !important; color: #fff !important; }
-        
-        /* เส้นตารางบางเฉียบ */
-        .fc-theme-standard td, .fc-theme-standard th { border: 1px solid #f2f2f2 !important; }
-        .fc-v-event { background: #ff5e00 !important; border: none !important; border-radius: 0 !important; }
-        .fc-timegrid-slot { height: 40px !important; }
-    </style>
+<meta charset="UTF-8">
+<title>ระบบจองห้องประชุม</title>
+
+<style>
+body {
+    font-family: "Sarabun", sans-serif;
+    margin: 0;
+    background: #f4f6f9;
+}
+
+/* Header */
+header {
+    background: #0d47a1;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.login-btn {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: #43a047;
+}
+
+/* Content */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Calendar */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    background: #e3f2fd;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.booked {
+    background: #ffcdd2;
+}
+
+.available {
+    background: #c8e6c9;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #eeeeee;
+    margin-top: 40px;
+}
+</style>
 </head>
-<body class="p-8">
 
-    <div class="max-w-md mx-auto mb-10 border-l-4 border-orange-500 pl-6 flex justify-between items-end">
-        <div>
-            <div class="flex items-center gap-3 mb-2">
-                <div class="w-8 h-8 border-2 border-black flex items-center justify-center text-[10px] font-bold">
-                    KU
-                </div>
-                <h1 class="text-xs font-semibold tracking-widest uppercase">Department</h1>
-            </div>
-            <p class="text-2xl font-light leading-none">Meeting Rooms</p>
-        </div>
-        <button class="text-[10px] font-bold uppercase tracking-tighter border-b-2 border-black pb-1 hover:text-orange-500 hover:border-orange-500 transition-all">
-            Login →
-        </button>
+<body>
+
+<header>
+    <div class="logo">
+        <!-- เปลี่ยน logo.png เป็นตราภาควิชาของคุณ -->
+        <img src="logo.png" alt="ตราภาควิชา">
+        <h3>ระบบจองห้องประชุมภาควิชา</h3>
     </div>
+    <button class="login-btn">Login</button>
+</header>
 
-    <main class="max-w-md mx-auto bg-white p-6 border border-gray-100 shadow-[20px_20px_60px_#d9d9d9,-20px_-20px_60px_#ffffff]">
-        <div class="flex justify-between items-center mb-6">
-            <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Schedule // Today</span>
-            <div class="flex gap-2">
-                <div class="w-2 h-2 bg-orange-500"></div>
-                <div class="w-2 h-2 bg-gray-100"></div>
-            </div>
-        </div>
+<div class="container">
+    <h2>ปฏิทินการจองห้องประชุม</h2>
 
-        <div id="calendar"></div>
-    </main>
+    <div class="calendar">
+        <div class="day available">1</div>
+        <div class="day booked">2</div>
+        <div class="day available">3</div>
+        <div class="day available">4</div>
+        <div class="day booked">5</div>
+        <div class="day available">6</div>
+        <div class="day available">7</div>
+    </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'timeGridDay',
-                locale: 'th',
-                slotMinTime: '08:30:00',
-                slotMaxTime: '17:30:00',
-                allDaySlot: false,
-                headerToolbar: { left: 'prev,next', center: 'title', right: '' },
-                height: 'auto',
-                events: [
-                    { title: 'Busy', start: '2026-02-27T10:00:00', end: '2026-02-27T12:00:00' }
-                ]
-            });
-            calendar.render();
-        });
-    </script>
+<footer>
+    © 2026 ภาควิชา | ระบบจองห้องประชุม
+</footer>
+
 </body>
 </html>
