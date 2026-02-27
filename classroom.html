@@ -13,7 +13,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Kanit', sans-serif;
-            border-radius: 0 !important; /* Sharp Edges Style */
+            border-radius: 0 !important;
         }
 
         body {
@@ -23,13 +23,24 @@
             min-height: 100vh;
         }
 
+        /* --- แถบสถานะแยกส่วนด้านบนสุด --- */
+        .top-dev-bar {
+            background-color: #ffc107;
+            color: #000;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-bottom: 1px solid #e0a800;
+        }
+
         /* --- Navigation Bar --- */
         nav {
             background-color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
+            padding: 15px 8%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             border-bottom: 5px solid #006633;
         }
@@ -37,45 +48,52 @@
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
         }
 
-        /* ขยายขนาดตราภาควิชาตามคำขอ */
         .dept-logo {
-            height: 100px; /* เพิ่มขนาดจาก 70px เป็น 100px */
+            height: 90px;
             width: auto;
         }
 
         .dept-name h1 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: #006633;
-            letter-spacing: 0.5px;
             font-weight: 600;
         }
 
-        .dept-name p {
-            font-size: 1rem;
-            color: #555;
+        /* --- ส่วนแสดงวันเวลา --- */
+        .datetime-display {
+            text-align: right;
+            color: #444;
+            font-size: 0.95rem;
+            border-right: 3px solid #006633;
+            padding-right: 15px;
+            margin-right: 20px;
+        }
+
+        .datetime-display b {
+            color: #006633;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
         }
 
         .login-btn {
             background-color: #006633;
             color: white;
-            padding: 14px 30px;
+            padding: 12px 25px;
             text-decoration: none;
             font-weight: 500;
             border: none;
             cursor: pointer;
-            transition: 0.2s;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
-        }
-
-        .login-btn:hover {
-            background-color: #004d26;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            gap: 8px;
         }
 
         /* --- Main Content --- */
@@ -86,22 +104,17 @@
             width: 90%;
         }
 
-        /* --- Developer Info Section (ย้ายขึ้นมาด้านบน) --- */
         .developer-header {
             background: #ffffff;
             border-left: 6px solid #006633;
             padding: 20px 30px;
-            margin-bottom: 25px;
+            margin-bottom: 40px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .dev-text {
             font-size: 0.95rem;
             color: #444;
-            line-height: 1.6;
         }
 
         .dev-text b {
@@ -109,20 +122,7 @@
             font-size: 1.1rem;
         }
 
-        .dev-status-tag {
-            background-color: #ffc107;
-            padding: 5px 15px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border: 1px solid #e0a800;
-        }
-
-        /* --- Feature Grid --- */
-        .welcome-header {
-            text-align: center;
-            margin: 40px 0;
-        }
-
+        /* --- Grid Menu --- */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -136,16 +136,13 @@
             border: 1px solid #eee;
             transition: 0.3s;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
             border-color: #006633;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
 
         .feature-card i {
@@ -154,28 +151,20 @@
             margin-bottom: 20px;
         }
 
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: #222;
-        }
-
-        .feature-card p {
-            font-size: 0.95rem;
-            color: #777;
-        }
-
         footer {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             font-size: 0.85rem;
             color: #888;
             background: #fff;
-            border-top: 1px solid #eee;
         }
     </style>
 </head>
-<body>
+<body onload="updateClock()">
+
+    <div class="top-dev-bar">
+        <i class="fas fa-tools"></i> SYSTEM UNDER DEVELOPMENT & TESTING
+    </div>
 
     <nav>
         <div class="logo-section">
@@ -185,9 +174,16 @@
                 <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
             </div>
         </div>
-        <button class="login-btn" onclick="location.href='#login'">
-            <i class="fas fa-user-lock"></i> เข้าสู่ระบบ
-        </button>
+        
+        <div class="nav-right">
+            <div class="datetime-display">
+                <span id="current-date">วันศุกร์ที่ 27 กุมภาพันธ์ 2569</span>
+                <b id="current-time">00:00:00</b>
+            </div>
+            <button class="login-btn" onclick="location.href='#login'">
+                <i class="fas fa-user-lock"></i> เข้าสู่ระบบ
+            </button>
+        </div>
     </nav>
 
     <div class="main-content">
@@ -197,47 +193,50 @@
                 <i class="fas fa-code-branch"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b><br>
                 <span>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</span>
             </div>
-            <div class="dev-status-tag">
-                <i class="fas fa-tools"></i> อยู่ระหว่างการพัฒนา
-            </div>
-        </div>
-
-        <div class="welcome-header">
-            <h2>ยินดีต้อนรับสู่ระบบจัดการห้องประชุม</h2>
-            <p>กรุณาเลือกฟีเจอร์ที่ต้องการใช้งาน</p>
         </div>
 
         <div class="feature-grid">
             <div class="feature-card">
                 <i class="fas fa-calendar-check"></i>
                 <h3>จองห้องประชุม</h3>
-                <p>ทำรายการจองห้องออนไลน์ได้ทันที</p>
+                <p>ทำรายการจองห้องออนไลน์</p>
             </div>
-
             <div class="feature-card">
                 <i class="fas fa-search"></i>
                 <h3>ตรวจสอบสถานะ</h3>
-                <p>เช็กประวัติและผลการอนุมัติการจอง</p>
+                <p>เช็กประวัติและผลการอนุมัติ</p>
             </div>
-
             <div class="feature-card">
                 <i class="fas fa-hotel"></i>
                 <h3>ห้องประชุมทั้งหมด</h3>
-                <p>ข้อมูลสิ่งอำนวยความสะดวกในแต่ละห้อง</p>
+                <p>ข้อมูลสิ่งอำนวยความสะดวก</p>
             </div>
-
             <div class="feature-card">
                 <i class="fas fa-book"></i>
                 <h3>คู่มือการใช้</h3>
-                <p>ขั้นตอนและระเบียบการใช้ห้องประชุม</p>
+                <p>ขั้นตอนและระเบียบการใช้</p>
             </div>
         </div>
-
     </div>
 
     <footer>
         &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน คณะศึกษาศาสตร์และพัฒนศาสตร์ มก.กพส.
     </footer>
 
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // ปรับแต่งการแสดงวันที่
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('th-TH', options);
+            
+            // ปรับแต่งการแสดงเวลา
+            const timeString = now.toLocaleTimeString('th-TH', { hour12: false });
+            document.getElementById('current-time').textContent = timeString;
+            
+            setTimeout(updateClock, 1000);
+        }
+    </script>
 </body>
 </html>
