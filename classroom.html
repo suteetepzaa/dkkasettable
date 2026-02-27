@@ -2,69 +2,64 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>Room Booking</title>
+    <title>Room Booking - Mini Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Kanit', sans-serif; background: #ffffff; color: #1a1a1a; }
-        /* Reset FullCalendar to be Ultra-Minimal */
-        .fc { border: none !important; }
-        .fc-theme-standard td, .fc-theme-standard th { border: 1px solid #f0f0f0 !important; }
-        .fc-header-toolbar { margin-bottom: 2rem !important; }
-        .fc-toolbar-title { font-size: 1.2rem !important; font-weight: 600; text-transform: uppercase; }
-        .fc-button { 
-            background: #ffffff !important; 
-            border: 1px solid #1a1a1a !important; 
-            color: #1a1a1a !important; 
-            border-radius: 0px !important; 
-            font-size: 0.7rem !important;
-            text-transform: uppercase !important;
+        
+        /* ปรับปฏิทินให้จิ๋วแต่แจ๋ว */
+        #calendar { 
+            max-width: 400px; /* ขนาดปฏิทินเล็กตามสั่ง */
+            font-size: 0.75rem;
         }
-        .fc-button-active { background: #1a1a1a !important; color: #fff !important; }
-        .fc-v-event { background: #ff6b00 !important; border: none !important; border-radius: 0px !important; }
-        .fc-timegrid-slot { height: 50px !important; }
+        .fc { border: none !important; }
+        .fc-toolbar-title { font-size: 0.9rem !important; font-weight: 600; text-transform: uppercase; }
+        
+        /* ปุ่มขอบคม */
+        .fc-button { 
+            background: #fff !important; 
+            border: 1px solid #000 !important; 
+            border-radius: 0 !important; 
+            color: #000 !important;
+            padding: 2px 8px !important;
+        }
+        .fc-button-active { background: #000 !important; color: #fff !important; }
+        
+        /* เส้นตารางบางเฉียบ */
+        .fc-theme-standard td, .fc-theme-standard th { border: 1px solid #f2f2f2 !important; }
+        .fc-v-event { background: #ff5e00 !important; border: none !important; border-radius: 0 !important; }
+        .fc-timegrid-slot { height: 40px !important; }
     </style>
 </head>
-<body class="antialiased">
+<body class="p-8">
 
-    <nav class="flex justify-between items-center px-12 py-8 border-b border-gray-100">
-        <div class="flex items-center gap-6">
-            <div class="border-2 border-black p-2">
-                <img src="https://via.placeholder.com/40x40/000000/FFFFFF?text=KU" alt="Logo" class="w-10 h-10">
-            </div>
-            <div>
-                <h1 class="text-lg font-semibold tracking-tight uppercase">Room Reservation</h1>
-                <p class="text-[10px] text-gray-400 tracking-[0.2em] uppercase">Agri-Environmental Education</p>
-            </div>
-        </div>
-
-        <button class="border-b-2 border-orange-500 pb-1 text-sm font-semibold hover:text-orange-500 transition-colors uppercase">
-            Login
-        </button>
-    </nav>
-
-    <main class="max-w-5xl mx-auto py-16 px-6">
-        <div class="flex flex-col md:flex-row gap-16">
-            <div class="w-full md:w-1/4">
-                <h2 class="text-3xl font-light mb-4">Daily<br><span class="font-semibold">Schedule.</span></h2>
-                <div class="w-12 h-1 bg-orange-500 mb-8"></div>
-                <div class="space-y-4 text-[11px] uppercase tracking-widest text-gray-400">
-                    <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 bg-orange-500"></div>
-                        <span>Reserved</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 border border-gray-200"></div>
-                        <span>Available</span>
-                    </div>
+    <div class="max-w-md mx-auto mb-10 border-l-4 border-orange-500 pl-6 flex justify-between items-end">
+        <div>
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 border-2 border-black flex items-center justify-center text-[10px] font-bold">
+                    KU
                 </div>
+                <h1 class="text-xs font-semibold tracking-widest uppercase">Department</h1>
             </div>
+            <p class="text-2xl font-light leading-none">Meeting Rooms</p>
+        </div>
+        <button class="text-[10px] font-bold uppercase tracking-tighter border-b-2 border-black pb-1 hover:text-orange-500 hover:border-orange-500 transition-all">
+            Login →
+        </button>
+    </div>
 
-            <div class="w-full md:w-3/4">
-                <div id="calendar"></div>
+    <main class="max-w-md mx-auto bg-white p-6 border border-gray-100 shadow-[20px_20px_60px_#d9d9d9,-20px_-20px_60px_#ffffff]">
+        <div class="flex justify-between items-center mb-6">
+            <span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest">Schedule // Today</span>
+            <div class="flex gap-2">
+                <div class="w-2 h-2 bg-orange-500"></div>
+                <div class="w-2 h-2 bg-gray-100"></div>
             </div>
         </div>
+
+        <div id="calendar"></div>
     </main>
 
     <script>
@@ -74,12 +69,12 @@
                 initialView: 'timeGridDay',
                 locale: 'th',
                 slotMinTime: '08:30:00',
-                slotMaxTime: '18:30:00',
+                slotMaxTime: '17:30:00',
                 allDaySlot: false,
-                headerToolbar: { left: 'prev,next', center: 'title', right: 'today' },
+                headerToolbar: { left: 'prev,next', center: 'title', right: '' },
                 height: 'auto',
                 events: [
-                    { title: 'In Use', start: '2026-02-27T10:00:00', end: '2026-02-27T12:00:00' }
+                    { title: 'Busy', start: '2026-02-27T10:00:00', end: '2026-02-27T12:00:00' }
                 ]
             });
             calendar.render();
