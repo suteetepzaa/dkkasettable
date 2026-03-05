@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบส่งเอกสาร ปพ.5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Anuphan', sans-serif; background-color: #f8fafc; }
+        .glass-card { background: white; border: 1px solid #e2e8f0; }
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 flex flex-col items-center">
+
+    <div class="w-full max-w-lg text-center mb-6">
+        <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">ระบบส่งเอกสาร <span class="text-blue-600">ปพ.5</span></h1>
+        <div class="flex items-center justify-center gap-2 mt-2 text-sm font-semibold">
+            <span class="text-slate-500 font-normal">สถานะ:</span>
+            <span class="flex items-center gap-1.5 text-green-600 bg-green-50 px-3 py-0.5 rounded-full border border-green-100">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> กำลังเปิดรับเอกสาร
+            </span>
+        </div>
+    </div>
+
+    <main class="w-full max-w-lg glass-card rounded-[2.5rem] shadow-xl overflow-hidden mb-6">
+        <div class="bg-slate-800 p-4 text-white flex justify-between px-8 text-xs font-medium tracking-wide">
+            <div class="text-center">
+                <p class="opacity-70">เปิดระบบ</p>
+                <p class="text-blue-300">1 มี.ค. 2569</p>
+            </div>
+            <div class="h-8 w-[1px] bg-slate-600"></div>
+            <div class="text-center">
+                <p class="opacity-70">ปิดระบบ</p>
+                <p class="text-red-400">31 มี.ค. 2569</p>
+            </div>
+        </div>
+
+        <div class="p-8">
+            <div class="mb-6 bg-blue-50/50 border-l-4 border-blue-400 p-4 rounded-r-xl">
+                <h3 class="text-sm font-bold text-blue-800 mb-1">💡 คำแนะนำการใช้งาน:</h3>
+                <ul class="text-[13px] text-blue-700/80 space-y-1">
+                    <li>• กรอกรหัสครูให้ถูกต้อง (ใช้ตรวจสอบสิทธิ์)</li>
+                    <li>• เลือกไฟล์ได้พร้อมกันสูงสุด 50 ไฟล์ (PDF, Excel)</li>
+                    <li>• ขนาดไฟล์รวมต้องไม่เกิน 100MB</li>
+                </ul>
+            </div>
+
+            <form id="uploadForm" enctype="multipart/form-data" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2 ml-1">รหัสประจำตัวครู</label>
+                    <input type="text" id="teacherId" name="teacherId" placeholder="ระบุรหัสประจำตัว" required
+                        class="w-full text-center px-4 py-3 bg-white border-2 border-slate-100 rounded-2xl focus:border-blue-500 outline-none transition-all text-lg font-semibold shadow-sm focus:ring-4 focus:ring-blue-50">
+                </div>
+
+                <div>
+                    <div class="relative border-2 border-dashed border-slate-200 rounded-2xl p-6 hover:border-blue-400 hover:bg-blue-50/30 transition-all cursor-pointer text-center group">
+                        <input type="file" id="fileInput" multiple accept=".pdf,.xlsx,.xls" class="absolute inset-0 opacity-0 cursor-pointer">
+                        <div class="bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center mx-auto text-white shadow-lg group-hover:scale-110 transition-transform mb-3">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-width="2.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <p class="text-sm font-bold text-slate-700 leading-tight">เพิ่มไฟล์เอกสาร</p>
+                        <p class="text-[11px] text-slate-400 mt-1">คลิกหรือลากไฟล์วางที่นี่</p>
+                    </div>
+                </div>
+
+                <div id="fileList" class="custom-scrollbar space-y-2 max-h-40 overflow-y-auto min-h-[50px] border-y border-transparent">
+                    </div>
+
+                <button type="submit" id="submitBtn" 
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-200 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 disabled:bg-slate-300 disabled:cursor-not-allowed">
+                    <span id="btnText">ยืนยันการส่งข้อมูล</span>
+                </button>
+            </form>
+            
+            <p id="statusMsg" class="text-center text-xs mt-4 font-bold"></p>
+        </div>
+    </main>
+
+    <footer class="text-center mt-4">
+        <p class="text-slate-400 text-[10px] font-medium tracking-widest uppercase mb-1">Developed By</p>
+        <div class="text-slate-600 font-bold text-sm bg-white px-6 py-2 rounded-full shadow-sm inline-block border border-slate-100">
+            👨‍💻 [ใส่ชื่อของคุณที่นี่]
+        </div>
+    </footer>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileListContainer = document.getElementById('fileList');
+        const uploadForm = document.getElementById('uploadForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const statusMsg = document.getElementById('statusMsg');
+
+        let selectedFiles = [];
+
+        fileInput.addEventListener('change', (e) => {
+            const newFiles = Array.from(e.target.files);
+            
+            if (selectedFiles.length + newFiles.length > 50) {
+                alert("จำกัดจำนวนไฟล์สูงสุด 50 ไฟล์ครับ");
+                return;
+            }
+
+            selectedFiles = [...selectedFiles, ...newFiles];
+            renderFiles();
+            fileInput.value = ''; // Reset input so same file can be re-selected
+        });
+
+        function renderFiles() {
+            fileListContainer.innerHTML = '';
+            if (selectedFiles.length === 0) {
+                fileListContainer.innerHTML = '<p class="text-center text-[11px] text-slate-300 italic py-4">ยังไม่ได้เลือกไฟล์...</p>';
+                return;
+            }
+
+            selectedFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = "flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100 text-xs animate-fadeIn";
+                item.innerHTML = `
+                    <div class="flex items-center gap-2 truncate pr-2">
+                        <span class="bg-blue-500 text-white px-1.5 py-0.5 rounded text-[9px] font-bold uppercase">${file.name.split('.').pop()}</span>
+                        <span class="truncate font-medium text-slate-600">${file.name}</span>
+                    </div>
+                    <button type="button" onclick="removeFile(${index})" class="text-slate-400 hover:text-red-500 transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/></svg>
+                    </button>
+                `;
+                fileListContainer.appendChild(item);
+            });
+        }
+
+        window.removeFile = (index) => {
+            selectedFiles.splice(index, 1);
+            renderFiles();
+        };
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (selectedFiles.length === 0) {
+                alert("กรุณาเลือกไฟล์อย่างน้อย 1 ไฟล์");
+                return;
+            }
+
+            // เตรียมข้อมูลเพื่อส่งไป Server
+            const formData = new FormData();
+            formData.append('teacherId', document.getElementById('teacherId').value);
+            
+            selectedFiles.forEach((file) => {
+                formData.append('files[]', file);
+            });
+
+            // UI Feedback
+            submitBtn.disabled = true;
+            btnText.innerText = "กำลังอัปโหลดไฟล์...";
+            statusMsg.innerText = "⏳ ระบบกำลังบันทึกข้อมูล กรุณาอย่าปิดหน้านี้";
+            statusMsg.className = "text-center text-xs mt-4 font-bold text-blue-500";
+
+            // จำลองการส่งข้อมูล (ตรงนี้ต้องเปลี่ยนเป็น fetch('your-api-url') ในอนาคต)
+            setTimeout(() => {
+                statusMsg.innerText = "✅ ส่งข้อมูลสำเร็จ " + selectedFiles.length + " ไฟล์แล้ว!";
+                statusMsg.className = "text-center text-xs mt-4 font-bold text-green-600";
+                btnText.innerText = "ยืนยันการส่งข้อมูล";
+                submitBtn.disabled = false;
+                
+                // Clear ข้อมูลหลังจากส่งสำเร็จ
+                selectedFiles = [];
+                renderFiles();
+                document.getElementById('teacherId').value = '';
+            }, 2500);
+        });
+
+        renderFiles(); // Initial empty state
+    </script>
+
+</body>
+</html>
