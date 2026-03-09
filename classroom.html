@@ -13,169 +13,202 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Kanit', sans-serif;
+            border-radius: 0 !important; /* รักษาความเหลี่ยมตามต้นฉบับ */
         }
 
         body {
-            background-color: #ffffff;
+            background-color: #f4f6f9;
             color: #333;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            align-items: center;
         }
 
         /* --- Header: โลโก้และชื่อระบบอยู่ตรงกลาง --- */
         header {
+            background-color: #ffffff;
             text-align: center;
-            padding: 50px 20px 30px;
+            padding: 60px 20px;
             width: 100%;
+            border-bottom: 5px solid #006633;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .dept-logo {
-            height: 140px;
+            height: 160px; /* ขนาดโลโก้ใหญ่ชัดเจนกึ่งกลาง */
             width: auto;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         h1 {
-            font-size: 2.4rem;
+            font-size: 2.8rem;
             color: #006633;
-            margin-bottom: 5px;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
         .dept-subname {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        /* --- แถบประกาศ (Status Banner) --- */
-        .dev-notice {
-            background-color: #fff9db; /* สีเหลืองอ่อนแบบทางการ */
-            border: 1px solid #fab005;
-            color: #856404;
-            padding: 10px 25px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
+            font-size: 1.3rem;
+            color: #555;
             margin-bottom: 30px;
         }
 
-        /* --- Main Menu --- */
-        .container {
-            max-width: 900px;
-            width: 90%;
-            margin-bottom: 50px;
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .menu-card {
-            background: #fdfdfd;
-            padding: 35px 20px;
-            text-align: center;
-            text-decoration: none;
-            color: #333;
-            border: 1px solid #eee;
-            transition: 0.2s;
-        }
-
-        .menu-card:hover {
-            background: #006633;
-            color: #fff;
-            border-color: #006633;
-        }
-
-        .menu-card i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .menu-card span {
+        /* --- แถบประกาศพัฒนาระบบ (กึ่งกลาง) --- */
+        .dev-status-tag {
+            background-color: #ffc107;
+            color: #000;
+            padding: 15px 30px;
+            font-weight: 600;
             font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        /* --- Developer Info --- */
-        .dev-info {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid #eee;
-            width: 100%;
-            margin-top: auto;
-        }
-
-        .dev-info b {
-            color: #006633;
+            border: 2px solid #e0a800;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 auto 20px;
         }
 
         .datetime-info {
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: #777;
+            font-size: 1rem;
+            color: #444;
+            margin-top: 10px;
+        }
+
+        /* --- Main Content: กรอบฟีเจอร์ขนาดใหญ่ --- */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            width: 95%;
+            flex-grow: 1;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            aspect-ratio: 1 / 1; /* บังคับกรอบเป็นสี่เหลี่ยมจัตุรัสขนาดใหญ่ */
+            padding: 40px;
+            border: 1px solid #eee;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #006633;
+            box-shadow: 0 15px 30px rgba(0, 102, 51, 0.1);
+            background-color: #fdfdfd;
+        }
+
+        .feature-card i {
+            font-size: 5rem; /* ไอคอนขนาดใหญ่ */
+            color: #006633;
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #222;
+        }
+
+        /* --- Developer Footer Card --- */
+        .developer-footer-card {
+            background: #ffffff;
+            border-left: 8px solid #006633;
+            padding: 30px 40px;
+            margin: 40px auto;
+            max-width: 1200px;
+            width: 95%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            border-top: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dev-text {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.8;
         }
 
         footer {
-            background: #f8f9fa;
-            width: 100%;
-            padding: 15px;
             text-align: center;
-            font-size: 0.85rem;
+            padding: 25px;
+            font-size: 0.9rem;
             color: #888;
+            background: #fff;
+            border-top: 1px solid #eee;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .feature-card i { font-size: 4rem; }
+            .feature-card h3 { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body onload="startTime()">
 
     <header>
-        <img src="HCRD.png" alt="โลโก้ภาควิชา" class="dept-logo">
+        <img src="HCRD.png" alt="ตราภาควิชา" class="dept-logo">
         <h1>ระบบจองห้องประชุม</h1>
         <p class="dept-subname">ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
         
-        <div class="dev-notice">
-            <i class="fas fa-exclamation-triangle"></i>
-            <span>ระบบอยู่ระหว่างการพัฒนาและทดสอบ (Beta Version)</span>
+        <div class="dev-status-tag">
+            <i class="fas fa-tools"></i> ระบบอยู่ระหว่างการพัฒนาและทดสอบ
         </div>
 
         <div class="datetime-info">
-            <span id="date-now"></span> | <span id="time-now" style="font-weight: bold; color: #006633;"></span>
+            <span id="date-now"></span> | <span id="time-now" style="font-weight: 600; color: #006633;"></span>
         </div>
     </header>
 
-    <div class="container">
-        <div class="menu-grid">
-            <a href="#" class="menu-card">
+    <main class="main-content">
+        <div class="feature-grid">
+            <a href="#" class="feature-card">
                 <i class="fas fa-calendar-check"></i>
-                <span>จองห้องประชุม</span>
+                <h3>จองห้องประชุม</h3>
             </a>
-            <a href="#" class="menu-card">
+
+            <a href="#" class="feature-card">
                 <i class="fas fa-search"></i>
-                <span>ตรวจสอบสถานะ</span>
+                <h3>ตรวจสอบสถานะ</h3>
             </a>
-            <a href="#" class="menu-card">
+
+            <a href="#" class="feature-card">
                 <i class="fas fa-hotel"></i>
-                <span>ห้องประชุมทั้งหมด</span>
+                <h3>ห้องประชุมทั้งหมด</h3>
             </a>
-            <a href="#" class="menu-card">
+
+            <a href="#" class="feature-card">
                 <i class="fas fa-user-lock"></i>
-                <span>เข้าสู่ระบบ</span>
+                <h3>เข้าสู่ระบบ</h3>
             </a>
         </div>
-    </div>
 
-    <div class="dev-info">
-        <p>ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b></p>
-        <p>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา</p>
-    </div>
+        <div class="developer-footer-card">
+            <div class="dev-text">
+                <i class="fas fa-code-branch"></i> ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b><br>
+                <span>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</span>
+            </div>
+        </div>
+    </main>
 
     <footer>
-        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.
+        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน คณะศึกษาศาสตร์และพัฒนศาสตร์ มก.กพส.
     </footer>
 
     <script>
@@ -187,5 +220,6 @@
             setTimeout(startTime, 1000);
         }
     </script>
+
 </body>
 </html>
