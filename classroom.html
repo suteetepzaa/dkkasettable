@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KU-HCRD | ระบบจองห้องประชุมออนไลน์</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <title>HCRD Booking | Next-Gen Reservation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --ku-green: #006633; /* สีเขียวนนทรี */
-            --ku-gold: #b3995d;
-            --bg-light: #f4f7f6;
-            --text-dark: #243231;
-            --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --main-bg: #0f172a; /* สีกรมท่าเข้มแบบแอปสมัยใหม่ */
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #10b981; /* สีเขียวมรกต สว่างและทันสมัย */
+            --text-white: #f8fafc;
         }
 
         * {
@@ -25,295 +24,211 @@
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--main-bg);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 102, 51, 0.2) 0%, transparent 40%);
             min-height: 100vh;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* --- Main App Container --- */
+        .app-window {
+            width: 90%;
+            max-width: 1100px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 60px 40px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Floating Header --- */
+        .header-content {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo-box {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 28px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: auto;
+        }
+
+        .header-content h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-content p {
+            color: #94a3b8;
+            font-weight: 300;
+            font-size: 1.1rem;
+        }
+
+        /* --- Interactive Menu Grid --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .nav-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--text-white);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
-        /* --- University Header Bar --- */
-        .uni-bar {
-            background: var(--ku-green);
-            color: white;
-            padding: 8px 10%;
+        .nav-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .nav-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+
+        .nav-card h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        /* --- Footer Info --- */
+        .footer-info {
+            margin-top: 60px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            font-weight: 300;
+            align-items: flex-end;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
         }
 
-        /* --- Main Header Section (Centered) --- */
-        header {
-            background: var(--white);
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-bottom: 4px solid var(--ku-gold);
+        .dev-tag {
+            font-size: 0.9rem;
         }
 
-        .logo-container {
-            margin-bottom: 20px;
-            display: inline-block;
-            position: relative;
+        .dev-tag b {
+            color: var(--accent);
+            font-weight: 500;
         }
 
-        .main-logo {
-            height: 110px;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-            transition: var(--transition);
+        .time-display {
+            text-align: right;
+            font-family: monospace;
+            color: var(--accent);
+            font-size: 1.1rem;
         }
 
-        .main-logo:hover {
-            transform: scale(1.05);
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            color: var(--ku-green);
-            font-weight: 600;
-            margin-bottom: 5px;
+        /* --- Dev Badge --- */
+        .badge {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 100px;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        header p {
-            color: var(--text-dark);
-            font-size: 1.1rem;
-            font-weight: 400;
-        }
-
-        .sub-text {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        /* --- Content Container --- */
-        .main-wrapper {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
-        /* --- Status Info --- */
-        .status-strip {
-            background: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 12px 20px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 0.95rem;
-        }
-
-        /* --- Grid Menu --- */
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .portal-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 4px; /* ทรงเหลี่ยมแบบเป็นทางการ */
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border: 1px solid #eee;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .portal-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--ku-green);
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .portal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-color: var(--ku-green);
-        }
-
-        .portal-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .icon-box {
-            font-size: 3rem;
-            color: var(--ku-green);
-            margin-bottom: 20px;
-        }
-
-        .portal-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--ku-green);
-        }
-
-        .portal-card p {
-            font-size: 0.9rem;
-            color: #777;
-            line-height: 1.4;
-        }
-
-        /* --- Login Section --- */
-        .auth-footer {
-            margin-top: 50px;
-            text-align: center;
-            padding: 40px;
-            background: #fdfdfd;
-            border: 1px dashed #ccc;
-        }
-
-        .btn-ku {
-            background: var(--ku-green);
-            color: white;
-            padding: 14px 35px;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-        }
-
-        .btn-ku:hover {
-            background: #004d26;
-            box-shadow: 0 5px 15px rgba(0,102,51,0.3);
-        }
-
-        /* --- Developer & Footer --- */
-        .credit-section {
-            margin-top: auto;
-            background: #eef2f1;
-            padding: 30px 0;
-        }
-
-        .dev-card {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .dev-info h4 { color: var(--ku-green); font-size: 1rem; }
-        .dev-info p { font-size: 0.85rem; color: #666; }
-
-        footer {
-            background: var(--ku-green);
-            color: rgba(255,255,255,0.7);
-            text-align: center;
-            padding: 15px;
-            font-size: 0.8rem;
-        }
-
         @media (max-width: 768px) {
-            .uni-bar { display: none; }
-            .dev-card { flex-direction: column; text-align: center; gap: 20px; }
-            header h1 { font-size: 1.4rem; }
+            .app-window { padding: 40px 20px; border-radius: 0; width: 100%; }
+            .header-content h1 { font-size: 2rem; }
+            .footer-info { flex-direction: column; align-items: center; gap: 20px; text-align: center; }
         }
     </style>
 </head>
 <body onload="startTime()">
 
-    <div class="uni-bar">
-        <div>Kasetsart University | Kamphaeng Saen Campus</div>
-        <div id="clock-display"></div>
-    </div>
+    <div class="app-window">
+        <div class="badge">Development Phase</div>
 
-    <header>
-        <div class="logo-container">
-            <img src="HCRD.png" alt="HCRD Logo" class="main-logo">
-        </div>
-        <h1>ระบบบริการจองห้องประชุมออนไลน์</h1>
-        <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</p>
-        <div class="sub-text">คณะศึกษาศาสตร์และพัฒนศาสตร์ มหาวิทยาลัยเกษตรศาสตร์</div>
-    </header>
-
-    <div class="main-wrapper">
-        <div class="status-strip">
-            <i class="fas fa-info-circle" style="color: #856404;"></i>
-            <span><b>ประกาศ:</b> ระบบอยู่ในช่วงทดสอบ (Sandbox Mode) สำหรับนิสิตและบุคลากรในภาควิชาเท่านั้น</span>
-        </div>
-
-        <div class="portal-grid">
-            <a href="#" class="portal-card">
-                <div class="icon-box"><i class="fas fa-calendar-plus"></i></div>
-                <h3>จองใช้ห้องประชุม</h3>
-                <p>ตรวจสอบวันว่างและกรอกข้อมูล <br>ขอใช้ห้องสำหรับการเรียนการสอนหรือสัมมนา</p>
-            </a>
-
-            <a href="#" class="portal-card">
-                <div class="icon-box"><i class="fas fa-calendar-check"></i></div>
-                <h3>ปฏิทินการใช้ห้อง</h3>
-                <p>ตารางสรุปการใช้งานห้องประชุมทั้งหมด <br>ในรูปแบบรายวันและรายเดือน</p>
-            </a>
-
-            <a href="#" class="portal-card">
-                <div class="icon-box"><i class="fas fa-file-invoice"></i></div>
-                <h3>ติดตามสถานะ</h3>
-                <p>ตรวจสอบผลการอนุมัติการจอง <br>โดยใช้หมายเลขคำขอหรือรหัสนิสิต</p>
-            </a>
-
-            <a href="#" class="portal-card">
-                <div class="icon-box"><i class="fas fa-book-reader"></i></div>
-                <h3>ระเบียบการใช้ห้อง</h3>
-                <p>ข้อกำหนดและแนวทางปฏิบัติ <br>ในการใช้ห้องประชุมและอุปกรณ์ส่วนกลาง</p>
-            </a>
-        </div>
-
-        <div class="auth-footer">
-            <p style="margin-bottom: 20px; color: #555;">สำหรับเจ้าหน้าที่จัดการข้อมูลและผู้ดูแลระบบ</p>
-            <a href="#login" class="btn-ku">
-                <i class="fas fa-lock"></i> เข้าสู่ระบบบุคลากร (Staff Login)
-            </a>
-        </div>
-    </div>
-
-    <div class="credit-section">
-        <div class="dev-card">
-            <div class="dev-info">
-                <h4>ออกแบบและพัฒนาโดย</h4>
-                <p><b>นายเมธี ใจสุขดี</b></p>
-                <p>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา</p>
+        <div class="header-content">
+            <div class="logo-box">
+                <img src="HCRD.png" alt="HCRD">
             </div>
-            <div style="text-align: right; font-size: 0.85rem; color: #666;">
-                <p>Human and Community Resource Development</p>
-                <p>Faculty of Education and Development Sciences</p>
+            <h1>ห้องประชุม HCRD</h1>
+            <p>ระบบจัดการพื้นที่การเรียนรู้ยุคใหม่ ภาควิชา HCRD มก.กพส.</p>
+        </div>
+
+        <div class="grid-layout">
+            <a href="#" class="nav-card">
+                <i class="fas fa-bolt"></i>
+                <h3>จองด่วนตอนนี้</h3>
+            </a>
+            <a href="#" class="nav-card">
+                <i class="fas fa-layer-group"></i>
+                <h3>สถานะห้อง</h3>
+            </a>
+            <a href="#" class="nav-card">
+                <i class="fas fa-fingerprint"></i>
+                <h3>เข้าสู่ระบบ</h3>
+            </a>
+            <a href="#" class="nav-card">
+                <i class="fas fa-compass"></i>
+                <h3>คู่มือใช้งาน</h3>
+            </a>
+        </div>
+
+        <div class="footer-info">
+            <div class="dev-tag">
+                <p>Designed & Coded with <i class="fas fa-heart" style="color: #e11d48;"></i></p>
+                <p><b>นายเมธี ใจสุขดี</b> | นิสิตปี 2 เกษตรและสิ่งแวดล้อมศึกษา</p>
+            </div>
+            <div class="time-display">
+                <div id="date-text" style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 5px;"></div>
+                <div id="clock-text"></div>
             </div>
         </div>
     </div>
-
-    <footer>
-        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน
-    </footer>
 
     <script>
         function startTime() {
             const now = new Date();
-            const options = { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            document.getElementById('clock-display').innerHTML = now.toLocaleDateString('th-TH', options);
+            const dateOptions = { day: 'numeric', month: 'short', year: 'numeric' };
+            document.getElementById('date-text').innerText = now.toLocaleDateString('th-TH', dateOptions);
+            document.getElementById('clock-text').innerText = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             setTimeout(startTime, 1000);
         }
     </script>
+
 </body>
 </html>
