@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจองห้องประชุมออนไลน์ | HCRD - KU</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>ระบบจองห้องประชุม HCRD | มก.กพส.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --ku-green: #006633;
-            --ku-green-dark: #004d26;
-            --ku-gold: #b3995d;
-            --bg-gray: #f8fafc;
-            --text-dark: #1e293b;
-            --white: #ffffff;
+            --bg-color: #fcfdfe;
+            --card-bg: #ffffff;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --border: #edf2f7;
         }
 
         * {
@@ -25,292 +25,183 @@
         }
 
         body {
-            background-color: var(--bg-gray);
-            color: var(--text-dark);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             min-height: 100vh;
-        }
-
-        /* --- Header Section (Centered Identity) --- */
-        .main-header {
-            background: var(--white);
-            padding: 50px 20px;
-            text-align: center;
-            border-bottom: 5px solid var(--ku-green);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .main-header::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 5px;
-            background: var(--ku-gold);
-        }
-
-        .logo-box {
-            width: 120px;
-            height: auto;
-            margin: 0 auto 25px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-box img {
-            width: 100%;
-            height: auto;
-        }
-
-        .main-header h1 {
-            font-size: 2.2rem;
-            color: var(--ku-green);
-            font-weight: 600;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        .main-header p {
-            font-size: 1.1rem;
-            color: #64748b;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* --- Main Content --- */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            flex-grow: 1;
-        }
-
-        .dev-alert {
-            background: #fffbeb;
-            border: 1px solid #fef3c7;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            color: #92400e;
-            font-size: 0.95rem;
-            margin-bottom: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        /* --- Grid Menu --- */
-        .action-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-
-        .action-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: inherit;
-            text-align: center;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .action-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border-color: var(--ku-green);
-        }
-
-        .icon-circle {
-            width: 80px;
-            height: 80px;
-            background: #f0fdf4;
-            color: var(--ku-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 25px;
-            transition: 0.3s;
-        }
-
-        .action-card:hover .icon-circle {
-            background: var(--ku-green);
-            color: var(--white);
-        }
-
-        .action-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .action-card p {
-            font-size: 0.9rem;
-            color: #64748b;
-            line-height: 1.5;
-        }
-
-        /* --- Login Section --- */
-        .staff-section {
-            background: #f1f5f9;
-            padding: 40px;
-            border-radius: 16px;
+        /* --- Header Section (Centered) --- */
+        .hero-section {
+            width: 100%;
+            padding: 80px 20px 60px;
             text-align: center;
-            border: 1px solid #e2e8f0;
+            background: white;
+            border-bottom: 1px solid var(--border);
         }
 
-        .login-btn {
-            background: var(--ku-green);
-            color: var(--white);
-            padding: 14px 40px;
-            border-radius: 8px;
-            text-decoration: none;
+        .main-logo {
+            height: 120px;
+            margin-bottom: 30px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.2rem;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-
-        .login-btn:hover {
-            background: var(--ku-green-dark);
-            box-shadow: 0 5px 15px rgba(0, 102, 51, 0.2);
-        }
-
-        /* --- Footer Info --- */
-        .footer-branding {
-            background: var(--white);
-            padding: 40px 20px;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 60px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .dev-info h4 {
             color: var(--ku-green);
+            letter-spacing: -0.5px;
             margin-bottom: 8px;
         }
 
-        .dev-info p {
-            font-size: 0.9rem;
-            color: #64748b;
+        .hero-section p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
         }
 
-        .time-box {
-            text-align: right;
+        /* --- Main Content --- */
+        .main-container {
+            max-width: 900px;
+            width: 95%;
+            margin-top: -30px; /* ให้กล่องเมนูเกยขึ้นไปนิดหน่อยดูมีมิติ */
+        }
+
+        /* --- Menu Grid --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: var(--card-bg);
+            padding: 40px;
+            text-decoration: none;
+            color: var(--text-main);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.25s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.05);
+            border-color: var(--ku-green);
+        }
+
+        .menu-item i {
+            font-size: 2.5rem;
             color: var(--ku-green);
+            margin-bottom: 20px;
         }
 
-        footer {
-            background: var(--ku-green);
-            color: rgba(255,255,255,0.8);
+        .menu-item span {
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+
+        /* --- Footer Info (Bottom Centered) --- */
+        .info-footer {
+            margin-top: auto;
+            width: 100%;
+            padding: 60px 20px 40px;
             text-align: center;
-            padding: 20px;
-            font-size: 0.85rem;
         }
 
-        @media (max-width: 768px) {
-            .footer-container { flex-direction: column; text-align: center; gap: 30px; }
-            .time-box { text-align: center; width: 100%; }
-            .main-header h1 { font-size: 1.7rem; }
+        .dev-box {
+            display: inline-block;
+            padding: 20px 40px;
+            background: white;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .dev-box p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .dev-box b {
+            color: var(--ku-green);
+            font-weight: 500;
+        }
+
+        .clock-section {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #166534;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            border: 1px solid #dcfce7;
+        }
+
+        @media (max-width: 600px) {
+            .menu-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body onload="startTime()">
 
-    <header class="main-header">
-        <div class="logo-box">
-            <img src="HCRD.png" alt="HCRD Logo">
-        </div>
-        <h1>ระบบจองห้องประชุมออนไลน์</h1>
-        <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน คณะศึกษาศาสตร์และพัฒนศาสตร์<br>มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน</p>
+    <header class="hero-section">
+        <img src="HCRD.png" alt="HCRD Logo" class="main-logo">
+        <div class="status-badge">Development Version</div>
+        <h1>ระบบจองห้องประชุม</h1>
+        <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
     </header>
 
-    <div class="container">
-        <div class="dev-alert">
-            <i class="fas fa-tools"></i> 
-            ขณะนี้ระบบอยู่ในช่วง <b>Internal Beta Test</b> โดย นายเมธี ใจสุขดี (นิสิตผู้พัฒนา)
-        </div>
-
-        <div class="action-grid">
-            <a href="#" class="action-card">
-                <div class="icon-circle"><i class="fas fa-calendar-alt"></i></div>
-                <h3>จองห้องประชุม</h3>
-                <p>เลือกห้อง วันที่ และเวลาที่ต้องการจอง<br>สำหรับการประชุมหรือการเรียนการสอน</p>
+    <div class="main-container">
+        <div class="menu-grid">
+            <a href="#" class="menu-item">
+                <i class="fas fa-calendar-plus"></i>
+                <span>จองห้องประชุม</span>
             </a>
-
-            <a href="#" class="action-card">
-                <div class="icon-circle"><i class="fas fa-search"></i></div>
-                <h3>ตรวจสอบสถานะ</h3>
-                <p>ติดตามสถานะคำขอการจองห้อง<br>และประวัติการใช้งานย้อนหลัง</p>
+            <a href="#" class="menu-item">
+                <i class="fas fa-clock-rotate-left"></i>
+                <span>ตรวจสอบสถานะ</span>
             </a>
-
-            <a href="#" class="action-card">
-                <div class="icon-circle"><i class="fas fa-desktop"></i></div>
-                <h3>ข้อมูลห้องประชุม</h3>
-                <p>รายละเอียดอุปกรณ์อำนวยความสะดวก<br>และจำนวนที่รองรับในแต่ละห้อง</p>
+            <a href="#" class="menu-item">
+                <i class="fas fa-list-ul"></i>
+                <span>ข้อมูลห้องประชุม</span>
             </a>
-
-            <a href="#" class="action-card">
-                <div class="icon-circle"><i class="fas fa-file-pdf"></i></div>
-                <h3>คู่มือการใช้งาน</h3>
-                <p>ขั้นตอนการใช้งานระบบอย่างละเอียด<br>และระเบียบการใช้ห้องประชุม</p>
-            </a>
-        </div>
-
-        <div class="staff-section">
-            <p style="margin-bottom: 20px; color: #475569;">สำหรับบุคลากร เจ้าหน้าที่ และผู้ดูแลระบบ</p>
-            <a href="#login" class="login-btn">
-                <i class="fas fa-user-lock"></i> เข้าสู่ระบบจัดการ (Management Login)
+            <a href="#" class="menu-item">
+                <i class="fas fa-user-circle"></i>
+                <span>เจ้าหน้าที่ระบบ</span>
             </a>
         </div>
     </div>
 
-    <div class="footer-branding">
-        <div class="footer-container">
-            <div class="dev-info">
-                <h4>ออกแบบและพัฒนาโดย</h4>
-                <p><b>นายเมธี ใจสุขดี</b></p>
-                <p>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา</p>
-                <p>ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน</p>
-            </div>
-            <div class="time-box">
-                <p id="date-now" style="font-weight: 400;"></p>
-                <p id="time-now" style="font-size: 1.5rem; font-weight: 600;"></p>
-            </div>
+    <div class="info-footer">
+        <div class="dev-box">
+            <p>ออกแบบและพัฒนาโดย <b>นายเมธี ใจสุขดี</b></p>
+            <p style="font-size: 0.85rem;">นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา</p>
+        </div>
+        
+        <div class="clock-section">
+            <span id="date-text"></span> | <span id="time-text" style="color: var(--ku-green); font-weight: 500;"></span>
         </div>
     </div>
-
-    <footer>
-        Copyright &copy; 2026 Department of Human and Community Resource Development. Kasetsart University.
-    </footer>
 
     <script>
         function startTime() {
             const now = new Date();
             const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-            document.getElementById('date-now').innerHTML = now.toLocaleDateString('th-TH', dateOptions);
-            document.getElementById('time-now').innerHTML = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('date-text').innerText = now.toLocaleDateString('th-TH', dateOptions);
+            document.getElementById('time-text').innerText = now.toLocaleTimeString('th-TH');
             setTimeout(startTime, 1000);
         }
     </script>
