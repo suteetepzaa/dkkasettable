@@ -21,37 +21,50 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            align-items: center; /* จัดทุกอย่างให้อยู่กึ่งกลางหน้าจอ */
+            align-items: center;
         }
 
         /* --- Header: โลโก้และชื่อระบบอยู่ตรงกลาง --- */
         header {
             text-align: center;
-            padding: 60px 20px;
+            padding: 50px 20px 30px;
             width: 100%;
         }
 
         .dept-logo {
-            height: 150px; /* ปรับขนาดโลโก้ให้เด่น */
+            height: 140px;
             width: auto;
             margin-bottom: 20px;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             color: #006633;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .dept-subname {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #666;
-            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        /* --- แถบประกาศ (Status Banner) --- */
+        .dev-notice {
+            background-color: #fff9db; /* สีเหลืองอ่อนแบบทางการ */
+            border: 1px solid #fab005;
+            color: #856404;
+            padding: 10px 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
         }
 
         /* --- Main Menu --- */
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             width: 90%;
             margin-bottom: 50px;
         }
@@ -59,32 +72,33 @@
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            gap: 15px;
         }
 
         .menu-card {
-            background: #f9f9f9;
-            padding: 40px 20px;
+            background: #fdfdfd;
+            padding: 35px 20px;
             text-align: center;
             text-decoration: none;
             color: #333;
             border: 1px solid #eee;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .menu-card:hover {
             background: #006633;
             color: #fff;
+            border-color: #006633;
         }
 
         .menu-card i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
             display: block;
         }
 
         .menu-card span {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
         }
 
@@ -101,12 +115,18 @@
             color: #006633;
         }
 
+        .datetime-info {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
         footer {
-            background: #f4f4f4;
+            background: #f8f9fa;
             width: 100%;
             padding: 15px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #888;
         }
     </style>
@@ -117,7 +137,13 @@
         <img src="HCRD.png" alt="โลโก้ภาควิชา" class="dept-logo">
         <h1>ระบบจองห้องประชุม</h1>
         <p class="dept-subname">ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
-        <div style="margin-top: 15px; color: #888;">
+        
+        <div class="dev-notice">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>ระบบอยู่ระหว่างการพัฒนาและทดสอบ (Beta Version)</span>
+        </div>
+
+        <div class="datetime-info">
             <span id="date-now"></span> | <span id="time-now" style="font-weight: bold; color: #006633;"></span>
         </div>
     </header>
