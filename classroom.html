@@ -3,21 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจองห้องประชุม HCRD | มก.กพส.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ระบบจองห้องประชุม HCRD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        :root {
-            --ku-green: #006633;
-            --ku-gold: #b3995d;
-            --bg-color: #f8fafc;
-            --white: #ffffff;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --border: #e2e8f0;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -26,219 +16,148 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            min-height: 100vh;
+            background-color: #ffffff;
+            color: #333;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
+            align-items: center; /* จัดทุกอย่างให้อยู่กึ่งกลางหน้าจอ */
         }
 
-        /* --- New Centered Header Style --- */
-        .branding-header {
-            background: var(--white);
-            padding: 60px 20px 80px;
+        /* --- Header: โลโก้และชื่อระบบอยู่ตรงกลาง --- */
+        header {
             text-align: center;
-            border-bottom: 1px solid var(--border);
-            position: relative;
+            padding: 60px 20px;
+            width: 100%;
         }
 
-        .logo-wrapper {
-            display: inline-block;
-            margin-bottom: 25px;
-        }
-
-        .main-logo {
-            height: 130px; /* ปรับขนาดให้พอดี */
+        .dept-logo {
+            height: 150px; /* ปรับขนาดโลโก้ให้เด่น */
             width: auto;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.08));
+            margin-bottom: 20px;
         }
 
-        .system-title-group {
-            position: relative;
-            display: inline-block;
-        }
-
-        .system-title-group h1 {
-            font-size: 2.6rem;
-            font-weight: 600;
-            color: var(--ku-green);
-            letter-spacing: 1px;
-            line-height: 1.2;
+        h1 {
+            font-size: 2.5rem;
+            color: #006633;
             margin-bottom: 10px;
         }
 
-        /* เส้นใต้สีทองแบบหรูหรา */
-        .system-title-group::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background: var(--ku-gold);
-            margin: 15px auto;
-            border-radius: 10px;
-        }
-
-        .dept-title {
+        .dept-subname {
             font-size: 1.2rem;
+            color: #666;
             font-weight: 300;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
         }
 
-        /* --- Main Layout --- */
-        .main-content {
+        /* --- Main Menu --- */
+        .container {
             max-width: 1000px;
-            width: 95%;
-            margin: -40px auto 40px;
+            width: 90%;
+            margin-bottom: 50px;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
 
-        .card-link {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 20px;
+        .menu-card {
+            background: #f9f9f9;
+            padding: 40px 20px;
+            text-align: center;
             text-decoration: none;
-            color: var(--text-dark);
-            border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            color: #333;
+            border: 1px solid #eee;
+            transition: 0.3s;
         }
 
-        .card-link:hover {
-            transform: translateY(-8px);
-            border-color: var(--ku-green);
-            box-shadow: 0 20px 30px rgba(0,102,51,0.08);
+        .menu-card:hover {
+            background: #006633;
+            color: #fff;
         }
 
-        .card-link i {
-            font-size: 2.5rem;
-            color: var(--ku-green);
-            margin-bottom: 20px;
+        .menu-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        .card-link span {
+        .menu-card span {
             font-size: 1.2rem;
             font-weight: 500;
         }
 
-        /* --- Footer Info --- */
-        .footer-branding {
-            margin-top: auto;
-            padding: 50px 20px;
+        /* --- Developer Info --- */
+        .dev-info {
             text-align: center;
+            padding: 30px;
+            border-top: 1px solid #eee;
+            width: 100%;
+            margin-top: auto;
         }
 
-        .dev-badge {
-            display: inline-block;
-            padding: 15px 35px;
-            background: var(--white);
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            margin-bottom: 25px;
-        }
-
-        .dev-badge p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        .dev-badge b { color: var(--ku-green); font-weight: 500; }
-
-        .status-tag {
-            background: #fffbeb;
-            color: #92400e;
-            padding: 6px 18px;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-bottom: 20px;
-            display: inline-block;
-            border: 1px solid #fef3c7;
+        .dev-info b {
+            color: #006633;
         }
 
         footer {
-            background: var(--ku-green);
-            color: rgba(255,255,255,0.7);
-            padding: 20px;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-
-        @media (max-width: 600px) {
-            .system-title-group h1 { font-size: 1.8rem; }
-            .dept-title { font-size: 1rem; }
-            .main-logo { height: 100px; }
+            background: #f4f4f4;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
         }
     </style>
 </head>
 <body onload="startTime()">
 
-    <header class="branding-header">
-        <div class="logo-wrapper">
-            <img src="HCRD.png" alt="HCRD Dept Logo" class="main-logo">
-        </div>
-        
-        <br>
-        <div class="status-tag">INTERNAL BETA VERSION</div>
-
-        <div class="system-title-group">
-            <h1>ระบบจองห้องประชุม</h1>
-            <p class="dept-title">ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
+    <header>
+        <img src="HCRD.png" alt="โลโก้ภาควิชา" class="dept-logo">
+        <h1>ระบบจองห้องประชุม</h1>
+        <p class="dept-subname">ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.</p>
+        <div style="margin-top: 15px; color: #888;">
+            <span id="date-now"></span> | <span id="time-now" style="font-weight: bold; color: #006633;"></span>
         </div>
     </header>
 
-    <main class="main-content">
+    <div class="container">
         <div class="menu-grid">
-            <a href="#" class="card-link">
+            <a href="#" class="menu-card">
                 <i class="fas fa-calendar-check"></i>
                 <span>จองห้องประชุม</span>
             </a>
-            <a href="#" class="card-link">
+            <a href="#" class="menu-card">
                 <i class="fas fa-search"></i>
                 <span>ตรวจสอบสถานะ</span>
             </a>
-            <a href="#" class="card-link">
-                <i class="fas fa-door-open"></i>
+            <a href="#" class="menu-card">
+                <i class="fas fa-hotel"></i>
                 <span>ห้องประชุมทั้งหมด</span>
             </a>
-            <a href="#" class="card-link">
-                <i class="fas fa-user-shield"></i>
-                <span>ระบบเจ้าหน้าที่</span>
+            <a href="#" class="menu-card">
+                <i class="fas fa-user-lock"></i>
+                <span>เข้าสู่ระบบ</span>
             </a>
-        </div>
-    </main>
-
-    <div class="footer-branding">
-        <div class="dev-badge">
-            <p>ออกแบบและพัฒนาโดย <b>นายเมธี ใจสุขดี</b></p>
-            <p style="font-size: 0.85rem;">นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา</p>
-        </div>
-        
-        <div style="font-size: 0.9rem; color: var(--text-light);">
-            <i class="far fa-calendar-alt"></i> <span id="date-display"></span> | 
-            <i class="far fa-clock"></i> <span id="time-display" style="color: var(--ku-green); font-weight: 500;"></span>
         </div>
     </div>
 
+    <div class="dev-info">
+        <p>ออกแบบและพัฒนาโดย: <b>นายเมธี ใจสุขดี</b></p>
+        <p>นิสิตชั้นปีที่ 2 สาขาเกษตรและสิ่งแวดล้อมศึกษา</p>
+    </div>
+
     <footer>
-        &copy; 2026 DEPARTMENT OF HUMAN AND COMMUNITY RESOURCE DEVELOPMENT. ALL RIGHTS RESERVED.
+        &copy; 2026 ภาควิชาการพัฒนาทรัพยากรมนุษย์และชุมชน มก.กพส.
     </footer>
 
     <script>
         function startTime() {
             const now = new Date();
             const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
-            document.getElementById('date-display').innerHTML = now.toLocaleDateString('th-TH', dateOptions);
-            document.getElementById('time-display').innerHTML = now.toLocaleTimeString('th-TH');
+            document.getElementById('date-now').innerHTML = now.toLocaleDateString('th-TH', dateOptions);
+            document.getElementById('time-now').innerHTML = now.toLocaleTimeString('th-TH');
             setTimeout(startTime, 1000);
         }
     </script>
